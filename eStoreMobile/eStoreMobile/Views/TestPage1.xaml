@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+             xmlns:sfDatePicker="clr-namespace:Syncfusion.XForms.Pickers;assembly=Syncfusion.SfPicker.XForms"
+             xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:cardLayout="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="eStoreMobile.Views.TestPage1">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="eStore Component test Page!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+            <Label Text="StaffName" Visual="Material"/>
+            <combobox:SfComboBox/>
+            <Label>Status</Label>
+            <combobox:SfComboBox/>
+            <Label>Date</Label>
+            <sfDatePicker:SfDatePicker/>
+            <Label>Time</Label>
+            <sfDatePicker:SfTimePicker/>
+            <StackLayout Orientation="Horizontal" Spacing="22" Padding="10" BackgroundColor="Beige">
+                <button:SfSwitch Visual="Material" />
+                <Label  Text="Tailoring" TextColor="Crimson" FontSize="Medium" />
+            </StackLayout>
+            <inputLayout:SfTextInputLayout Hint="Remarks" Visual="Material">
+                <Entry Placeholder="Enter Remarks"  Visual="Material"
+                    MaxLength="100"
+                      IsSpellCheckEnabled="true"
+                     IsTextPredictionEnabled="true"
+                    />
+            </inputLayout:SfTextInputLayout>
+            <button:SfChipGroup   HorizontalOptions="CenterAndExpand"  ChipBackgroundColor="#FFEBEBEB" ChipTextColor="#FF202020" Type="Action" Visual="Material">
+                <button:SfChipGroup.ChipLayout>
+                    <StackLayout Orientation="Horizontal" Spacing="2"/>
+                </button:SfChipGroup.ChipLayout>
+                <button:SfChipGroup.Items >
+                    <button:SfChip Text="  Add  "/>
+                    <button:SfChip Text="Cancel"/>
+                    <button:SfChip Text="Update"/>
+
+                </button:SfChipGroup.Items>
+            </button:SfChipGroup>
+            <!--<Label>Date</Label>
+            
+            
+            <button:SfChipGroup ChipBackgroundColor="#FFEBEBEB" ChipTextColor="#FF202020" Type="Action">
+                <button:SfChipGroup.ChipLayout>
+                    <StackLayout Orientation="Horizontal"/>
+                </button:SfChipGroup.ChipLayout>
+                <button:SfChipGroup.Items>
+                    <button:SfChip Text="Add"/>
+                    <button:SfChip Text="Cancel"/>
+                    <button:SfChip Text="Update"/>
+
+                </button:SfChipGroup.Items>
+            </button:SfChipGroup>-->
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="eStoreMobile.Views.TaskNotificationPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:controls="clr-namespace:eStoreMobile.Controls"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:template="clr-namespace:eStoreMobile.Views.Templates"
+    x:Name="taskNotificationPage"
+    BackgroundColor="{DynamicResource Gray-Bg}"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
+
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout Spacing="0">
+
+                <!--  Title View  -->
+                <controls:TitleView Title="Notifications">
+
+                    <!--  Back button  -->
+                    <controls:TitleView.LeadingView>
+                        <buttons:SfButton
+                            Command="{Binding Path=BindingContext.BackButtonCommand, Source={x:Reference taskNotificationPage}}"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                    </controls:TitleView.LeadingView>
+
+                    <!--  More button  -->
+                    <controls:TitleView.TrailingView>
+                        <buttons:SfButton
+                            Command="{Binding Path=BindingContext.MenuCommand, Source={x:Reference taskNotificationPage}}"
+                            CornerRadius="4"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource More}" />
+                    </controls:TitleView.TrailingView>
+
+                </controls:TitleView>
+                <ContentPresenter />
+
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+
+    <ContentPage.Content>
+        <Grid
+            ColumnSpacing="0"
+            RowDefinitions="Auto, *"
+            RowSpacing="0">
+
+            <Grid Grid.Row="0">
+                <Label
+                    Margin="16,16,16,8"
+                    FontFamily="Montserrat-SemiBold"
+                    FontSize="12"
+                    HorizontalOptions="Start"
+                    Text="RECENT"
+                    TextColor="{DynamicResource Gray-900}" />
+
+                <buttons:SfButton
+                    Margin="16,16,16,8"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
+                    Command="{Binding MarkAllCommand}"
+                    HeightRequest="18"
+                    HorizontalOptions="End"
+                    Style="{StaticResource TransparentButtonStyle}"
+                    TextColor="{DynamicResource Gray-600}"
+                    WidthRequest="134">
+
+                    <Label
+                        FontFamily="Montserrat-SemiBold"
+                        FontSize="12"
+                        HorizontalTextAlignment="Center"
+                        LineHeight="{OnPlatform Android=1.5,
+                                                Default=-1}"
+                        Text="MARK ALL AS READ"
+                        TextColor="{DynamicResource HyperLink}"
+                        VerticalTextAlignment="Center" />
+
+                </buttons:SfButton>
+            </Grid>
+
+            <StackLayout Grid.Row="1" Spacing="0">
+                <listView:SfListView
+                    x:Name="TaskNotifications"
+                    AllowSwiping="True"
+                    AutoFitMode="Height"
+                    IsScrollBarVisible="False"
+                    ItemSpacing="0"
+                    ItemsSource="{Binding TaskNotificationsList}"
+                    SelectionBackgroundColor="Transparent"
+                    SelectionGesture="Tap"
+                    SelectionMode="Single"
+                    TapCommand="{Binding ItemTappedCommand}"
+                    VerticalOptions="FillAndExpand">
+
+                    <listView:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <template:TaskNotificationTemplate />
+                            </ViewCell>
+                        </DataTemplate>
+                    </listView:SfListView.ItemTemplate>
+                </listView:SfListView>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
