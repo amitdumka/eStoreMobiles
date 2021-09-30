@@ -1,8 +1,6 @@
-﻿using eStore.Shared.Models.Users;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -12,12 +10,10 @@ namespace eStoreMobile.Core.RestApi
 {
     public class RestService<T>
     {
-
-        JsonSerializerOptions serializerOptions;
-        HttpClient client;
-        string restUrl;
-        string APIName;
-
+        private JsonSerializerOptions serializerOptions;
+        private HttpClient client;
+        private string restUrl;
+        private string APIName;
 
         public RestService(string url, string name)
         {
@@ -29,7 +25,6 @@ namespace eStoreMobile.Core.RestApi
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
                 WriteIndented = true
             };
-
         }
 
         public async Task DeleteAsync(int id)
@@ -44,7 +39,6 @@ namespace eStoreMobile.Core.RestApi
                 {
                     Debug.WriteLine ($@"\t{APIName} successfully deleted.");
                 }
-
             }
             catch ( Exception ex )
             {
@@ -64,7 +58,6 @@ namespace eStoreMobile.Core.RestApi
                 {
                     Debug.WriteLine ($@"\t{APIName} successfully deleted.");
                 }
-
             }
             catch ( Exception ex )
             {
@@ -74,7 +67,6 @@ namespace eStoreMobile.Core.RestApi
 
         public async Task<List<T>> RefreshDataAsync()
         {
-            Debug.WriteLine ("Refreshing user datat");
             List<T> Items = new List<T> ();
 
             Uri uri = new Uri (string.Format (restUrl, string.Empty));
@@ -83,13 +75,12 @@ namespace eStoreMobile.Core.RestApi
                 HttpResponseMessage response = await client.GetAsync (uri);
                 if ( response.IsSuccessStatusCode )
                 {
-                    Debug.WriteLine ("got success dude");
                     string content = await response.Content.ReadAsStringAsync ();
                     Items = JsonSerializer.Deserialize<List<T>> (content, serializerOptions);
                 }
                 else
                 {
-                    Debug.WriteLine ("got error dueue");
+                    Debug.WriteLine ("Error occured!, No Data has returned");
                 }
             }
             catch ( Exception ex )
@@ -123,7 +114,6 @@ namespace eStoreMobile.Core.RestApi
                 {
                     Debug.WriteLine ($@"\t{APIName} successfully saved.");
                 }
-
             }
             catch ( Exception ex )
             {
@@ -133,8 +123,6 @@ namespace eStoreMobile.Core.RestApi
 
         public async Task<T> GetByIdAsync(int id)
         {
-
-
             Uri uri = new Uri (string.Format (restUrl + $"/{id}", string.Empty));
             try
             {
@@ -152,6 +140,7 @@ namespace eStoreMobile.Core.RestApi
 
             return default (T);
         }
+
         public async Task<T> GetByIdAsync(string id)
         {
             Uri uri = new Uri (string.Format (restUrl + $"/{id}", string.Empty));
@@ -171,6 +160,7 @@ namespace eStoreMobile.Core.RestApi
 
             return default (T);
         }
+
         public async Task<List<T>> FindAsync(string queryParams)
         {
             List<T> Items = new List<T> ();
@@ -193,8 +183,6 @@ namespace eStoreMobile.Core.RestApi
 
             return Items;
         }
-
-
     }
 
     public interface IRestService<T>
@@ -204,6 +192,7 @@ namespace eStoreMobile.Core.RestApi
         Task SaveAsync(T item, bool isNewItem);
 
         Task DeleteAsync(int id);
+
         Task DeleteAsync(string id);
     }
 }

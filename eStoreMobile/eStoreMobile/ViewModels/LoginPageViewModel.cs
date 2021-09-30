@@ -1,16 +1,11 @@
-﻿using eStoreMobile.Validators;
+﻿using eStoreMobile.Core.DataViewModel;
+using eStoreMobile.Validators;
 using eStoreMobile.Validators.Rules;
 using eStoreMobile.Views;
-using eStoreMobile.Core.DataViewModel;
+using System;
+using System.Diagnostics;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using System;
-using System.Threading.Tasks;
-using System.Diagnostics;
-using System.Text.Json;
-using System.Net.Http;
-using eStore.Shared.Models.Users;
-using System.Collections.Generic;
 
 namespace eStoreMobile.ViewModels
 {
@@ -24,7 +19,7 @@ namespace eStoreMobile.ViewModels
 
         private ValidatableObject<string> password;
 
-        #endregion
+        #endregion Fields
 
         #region Constructor
 
@@ -35,13 +30,15 @@ namespace eStoreMobile.ViewModels
         {
             this.InitializeProperties ();
             this.AddValidationRules ();
-            this.LoginCommand = new Command  (this.LoginClicked);
+            this.LoginCommand = new Command (this.LoginClicked);
             this.SignUpCommand = new Command (this.SignUpClicked);
             this.ForgotPasswordCommand = new Command (this.ForgotPasswordClicked);
             this.SocialMediaLoginCommand = new Command (this.SocialLoggedIn);
+            this.Email.Value = "Admin@estore.in";
+            this.password.Value = "Admin";
         }
 
-        #endregion
+        #endregion Constructor
 
         #region property
 
@@ -66,14 +63,14 @@ namespace eStoreMobile.ViewModels
             }
         }
 
-        #endregion
+        #endregion property
 
         #region Command
 
         /// <summary>
         /// Gets or sets the command that is executed when the Log In button is clicked.
         /// </summary>
-        public Command  LoginCommand { get; set; }
+        public Command LoginCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the command that is executed when the Sign Up button is clicked.
@@ -90,7 +87,7 @@ namespace eStoreMobile.ViewModels
         /// </summary>
         public Command SocialMediaLoginCommand { get; set; }
 
-        #endregion
+        #endregion Command
 
         #region methods
 
@@ -127,67 +124,30 @@ namespace eStoreMobile.ViewModels
         /// <param name="obj">The Object</param>
         private void LoginClicked(object obj)
         {
-            //if ( this.AreFieldsValid () )
+            if ( this.AreFieldsValid () )
             {
-                
-                UserViewModel vm = new UserViewModel ();
-                //JsonSerializerOptions serializerOptions= new JsonSerializerOptions
-                //{
-                //    PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                //    WriteIndented = true
-                //}; ;
-                //HttpClient client = new HttpClient();
-                //Debug.WriteLine("Refreshing user datat");
-                //List<User> Items = new List<User>();
+                DoLogin ();
+            }
+        }
 
-                //Uri uri = new Uri(string.Format("https://www.aprajitaretails.in/api/users", string.Empty));
-                //try
-                //{
-                //    var res= client.GetAsync(uri);
-                //    res.ConfigureAwait(true);
-                //    HttpResponseMessage response = res.GetAwaiter().GetResult();
-                //    Debug.WriteLine(response.StatusCode.ToString());
-                //    if (response.IsSuccessStatusCode)
-                //    {
-                //        Debug.WriteLine("got success dude");
-
-                //        var con=  response.Content.ReadAsStringAsync();
-                //        con.ConfigureAwait(true);
-                //        string content = con.GetAwaiter().GetResult();
-
-                //        Items = JsonSerializer.Deserialize<List<User>>(content, serializerOptions);
-                //    }
-                //    else
-                //    {
-                //        Debug.WriteLine("got error dueue");
-                //    }
-                //}
-                //catch (Exception ex)
-                //{
-                //    Debug.WriteLine(@"\tERROR {0}", ex.Message);
-                //}
-
-                try
+        private async void DoLogin()
+        {
+            UserViewModel vm = new UserViewModel ();
+            try
+            {
+                var result = await vm.VerifyLoginAsync (Email.Value, Password.Value);
+                if ( result )
                 {
-                    var result = vm.VerifyLoginAsync(Email.Value, Password.Value);
-                    result.ConfigureAwait(true);
-                    var status = result.GetAwaiter().GetResult();
-
-                    if (status)
-                    {
-                        Shell.Current.GoToAsync(nameof(TestPage1));
-                    }
-                    else
-                    {
-                        Debug.WriteLine(" Login Failed");
-                    }
+                    await Shell.Current.GoToAsync (nameof (TestPage1));
                 }
-                catch (Exception e)
+                else
                 {
-
-                    Debug.WriteLine("LPVM:\t" + e.Message);
+                    Debug.WriteLine (" Login Failed");
                 }
-
+            }
+            catch ( Exception e )
+            {
+                Debug.WriteLine ("LPVM:\t" + e.Message);
             }
         }
 
@@ -198,7 +158,7 @@ namespace eStoreMobile.ViewModels
         private void SignUpClicked(object obj)
         {
             // Do Something
-             Shell.Current.GoToAsync ("//SignUpPage");
+            Shell.Current.GoToAsync ("//SignUpPage");
         }
 
         /// <summary>
@@ -220,6 +180,6 @@ namespace eStoreMobile.ViewModels
             // Do something
         }
 
-        #endregion
+        #endregion methods
     }
 }

@@ -1,10 +1,8 @@
-﻿
-using eStore.Shared.Models.Users;
+﻿using eStore.Shared.Models.Users;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace eStoreMobile.Core.DataViewModel
@@ -21,42 +19,35 @@ namespace eStoreMobile.Core.DataViewModel
 
         public async Task<List<User>> GetUserListAsync()
         {
-            Users =  await service.RefreshDataAsync ();
+            Users = await service.RefreshDataAsync ();
             return Users;
         }
-
 
         public async Task<bool> VerifyLoginAsync(string username, string password)
         {
             try
             {
-                Debug.WriteLine("got Username=" + username);
-
-                if (Users == null || Users.Count > 0)
+                if ( Users == null || Users.Count > 0 )
                 {
-                   Users= await GetUserListAsync();
+                    Users = await GetUserListAsync ();
                 }
-                if (Users != null && Users.Count > 0)
+                if ( Users != null && Users.Count > 0 )
                 {
-                    var user =  Users.Where(c => c.UserName == username && c.Password == password).FirstOrDefault();
-                    Debug.WriteLine("\nGot User" + user.FullName);
-                    if (user != null)
+                    var user = Users.Where (c => c.UserName == username && c.Password == password).FirstOrDefault ();
+
+                    if ( user != null )
                         return true;
                     else
                         return false;
                 }
                 else
                     return false;
-                
             }
-            catch (Exception ex)
+            catch ( Exception ex )
             {
-                Debug.WriteLine(ex.Message);
+                Debug.WriteLine (ex.Message);
                 return false;
             }
-            
-
         }
-
     }
 }
