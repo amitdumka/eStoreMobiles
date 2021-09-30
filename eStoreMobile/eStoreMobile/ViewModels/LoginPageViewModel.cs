@@ -7,6 +7,7 @@ using System.Diagnostics;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
+
 namespace eStoreMobile.ViewModels
 {
     /// <summary>
