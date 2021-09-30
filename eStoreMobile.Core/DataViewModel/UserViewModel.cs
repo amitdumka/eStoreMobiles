@@ -26,20 +26,35 @@ namespace eStoreMobile.Core.DataViewModel
         }
 
 
-        public bool VerifyLoginAsync(string username, string password)
+        public async Task<bool> VerifyLoginAsync(string username, string password)
         {
-            Debug.WriteLine ("got Username=" + username);
-            if ( Users != null && Users.Count > 0 )
+            try
             {
-                _ = GetUserListAsync ();
-            }
+                Debug.WriteLine("got Username=" + username);
 
-            var user = Users.Where (c => c.UserName == username && c.Password == password).FirstOrDefault ();
-            Debug.WriteLine ("\nGot User" + user.FullName);
-            if ( user != null )
-                return true;
-            else
+                if (Users == null || Users.Count > 0)
+                {
+                   Users= await GetUserListAsync();
+                }
+                if (Users != null && Users.Count > 0)
+                {
+                    var user =  Users.Where(c => c.UserName == username && c.Password == password).FirstOrDefault();
+                    Debug.WriteLine("\nGot User" + user.FullName);
+                    if (user != null)
+                        return true;
+                    else
+                        return false;
+                }
+                else
+                    return false;
+                
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
                 return false;
+            }
+            
 
         }
 

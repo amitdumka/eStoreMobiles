@@ -7,6 +7,10 @@ using Xamarin.Forms.Internals;
 using System;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Text.Json;
+using System.Net.Http;
+using eStore.Shared.Models.Users;
+using System.Collections.Generic;
 
 namespace eStoreMobile.ViewModels
 {
@@ -31,7 +35,7 @@ namespace eStoreMobile.ViewModels
         {
             this.InitializeProperties ();
             this.AddValidationRules ();
-            this.LoginCommand = new Command  (this.LoginClickedAsync);
+            this.LoginCommand = new Command  (this.LoginClicked);
             this.SignUpCommand = new Command (this.SignUpClicked);
             this.ForgotPasswordCommand = new Command (this.ForgotPasswordClicked);
             this.SocialMediaLoginCommand = new Command (this.SocialLoggedIn);
@@ -121,32 +125,69 @@ namespace eStoreMobile.ViewModels
         /// Invoked when the Log In button is clicked.
         /// </summary>
         /// <param name="obj">The Object</param>
-        private void LoginClickedAsync(object obj)
+        private void LoginClicked(object obj)
         {
-            if ( this.AreFieldsValid () )
+            //if ( this.AreFieldsValid () )
             {
                 
                 UserViewModel vm = new UserViewModel ();
-               
+                //JsonSerializerOptions serializerOptions= new JsonSerializerOptions
+                //{
+                //    PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                //    WriteIndented = true
+                //}; ;
+                //HttpClient client = new HttpClient();
+                //Debug.WriteLine("Refreshing user datat");
+                //List<User> Items = new List<User>();
+
+                //Uri uri = new Uri(string.Format("https://www.aprajitaretails.in/api/users", string.Empty));
+                //try
+                //{
+                //    var res= client.GetAsync(uri);
+                //    res.ConfigureAwait(true);
+                //    HttpResponseMessage response = res.GetAwaiter().GetResult();
+                //    Debug.WriteLine(response.StatusCode.ToString());
+                //    if (response.IsSuccessStatusCode)
+                //    {
+                //        Debug.WriteLine("got success dude");
+
+                //        var con=  response.Content.ReadAsStringAsync();
+                //        con.ConfigureAwait(true);
+                //        string content = con.GetAwaiter().GetResult();
+
+                //        Items = JsonSerializer.Deserialize<List<User>>(content, serializerOptions);
+                //    }
+                //    else
+                //    {
+                //        Debug.WriteLine("got error dueue");
+                //    }
+                //}
+                //catch (Exception ex)
+                //{
+                //    Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                //}
+
                 try
                 {
-                    var result = vm.VerifyLoginAsync (Email.Value, Password.Value);
+                    var result = vm.VerifyLoginAsync(Email.Value, Password.Value);
+                    result.ConfigureAwait(true);
+                    var status = result.GetAwaiter().GetResult();
 
-                    if ( result )
+                    if (status)
                     {
-                        Shell.Current.GoToAsync (nameof (TestPage1));
+                        Shell.Current.GoToAsync(nameof(TestPage1));
                     }
                     else
                     {
-                        Debug.WriteLine (" Login Failed");
+                        Debug.WriteLine(" Login Failed");
                     }
                 }
-                catch ( Exception e)
+                catch (Exception e)
                 {
 
-                    Debug.WriteLine ("LPVM:\t"+e.Message);
-                } 
-               
+                    Debug.WriteLine("LPVM:\t" + e.Message);
+                }
+
             }
         }
 
