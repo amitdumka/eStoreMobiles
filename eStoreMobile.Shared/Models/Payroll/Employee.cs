@@ -1,4 +1,5 @@
 ﻿using eStore.Shared.Models.Stores;
+using SQLiteNetExtensions.Attributes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -60,15 +61,10 @@ namespace eStore.Shared.Models.Payroll
         public string State { get; set; }
         public string FatherName { get; set; }
         public string HighestQualification { get; set; }
-
-        // public ICollection<SalaryPayment> SalaryPayments { get; set; }
-        // public ICollection<StaffAdvancePayment> AdvancePayments { get; set; }
-        // public ICollection<StaffAdvanceReceipt> AdvanceReceipts { get; set; }
-        // public ICollection<PettyCashExpense> CashExpenses { get; set; }
-        // public ICollection<Expense> Expenses { get; set; }
-        //public virtual ICollection<CurrentSalary> CurrentSalaries { get; set; }
-
+        
+        [OneToMany]
         public ICollection<Salesman> Salesmen { get; set; }
+       // [ManyToMany]
         public ICollection<Attendance> Attendances { get; set; }
         public virtual EmployeeUser User { get; set; }
 

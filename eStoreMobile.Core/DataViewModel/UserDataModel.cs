@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace eStoreMobile.Core.DataViewModel
 {
-    public class UserViewModel
+    public class UserDataModel
     {
         public List<User> Users { get; set; }
         private RestApi.RestService<User> service;
         private eStoreDatabase _context;
 
-        public UserViewModel()
+        public UserDataModel()
         {
             service = new RestApi.RestService<User> (Constants.UserUrl, "User");
         }

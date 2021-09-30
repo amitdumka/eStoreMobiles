@@ -133,7 +133,7 @@ namespace eStoreMobile.ViewModels
 
         private async void DoLogin()
         {
-            UserViewModel vm = new UserViewModel ();
+            UserDataModel vm = new UserDataModel ();
             try
             {
                 var result = await vm.VerifyLoginAsync (Email.Value, Password.Value);

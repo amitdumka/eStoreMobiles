@@ -1,4 +1,5 @@
 ﻿using eStore.Shared.Models.Payroll;
+using SQLiteNetExtensions.Attributes;
 using System.ComponentModel.DataAnnotations;
 
 namespace eStore.Shared.Models.Stores
@@ -17,6 +18,7 @@ namespace eStore.Shared.Models.Stores
         //public virtual ICollection<RegularSaleItem> SaleItems { get; set; }
 
         public int? EmployeeId { get; set; }
+        [OneToOne]
         public virtual Employee Employee { get; set; }
     }
 }

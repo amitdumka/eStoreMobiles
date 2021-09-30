@@ -91,7 +91,7 @@ namespace eStoreMobile.Core.RestApi
             return Items;
         }
 
-        public async Task SaveAsync(T item, bool isNewItem)
+        public async Task<bool> SaveAsync(T item, bool isNewItem)
         {
             Uri uri = new Uri (string.Format (restUrl, string.Empty));
 
@@ -113,11 +113,14 @@ namespace eStoreMobile.Core.RestApi
                 if ( response.IsSuccessStatusCode )
                 {
                     Debug.WriteLine ($@"\t{APIName} successfully saved.");
+                    return true;
                 }
+                return false;
             }
             catch ( Exception ex )
             {
                 Debug.WriteLine ($@"\t{APIName}: \tERROR {0}", ex.Message);
+                return false;
             }
         }
 
