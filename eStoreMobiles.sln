@@ -7,9 +7,22 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eStoreMobile.Android", "eSt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eStoreMobile.iOS", "eStoreMobile\eStoreMobile.iOS\eStoreMobile.iOS.csproj", "{1C820141-57D0-44AD-92A5-7C69531AF8C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eStoreMobile", "eStoreMobile\eStoreMobile\eStoreMobile.csproj", "{B8C71E91-3F75-46DC-9BB9-8B0035D6F7E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eStoreMobile", "eStoreMobile\eStoreMobile\eStoreMobile.csproj", "{B8C71E91-3F75-46DC-9BB9-8B0035D6F7E2}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "eStore.Shared", "..\eStoreWeb\eStore.Shared\eStore.Shared.shproj", "{AD575A80-1A21-41CF-858C-41F0DD7EE827}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "eStore", "eStore", "{6644B74A-CF54-4EEE-85E2-1BE04D3194C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eStoreMobile.Core", "eStoreMobile.Core\eStoreMobile.Core.csproj", "{6D8B549C-4B05-43BD-8BF2-9718397AFCC3}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "eStoreMobile.Shared", "eStoreMobile.Shared\eStoreMobile.Shared.shproj", "{EF5CF715-48CA-477B-BB23-7F750BF970FA}"
 EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		eStoreMobile.Shared\eStoreMobile.Shared.projitems*{6d8b549c-4b05-43bd-8bf2-9718397afcc3}*SharedItemsImports = 5
+		eStoreMobile.Shared\eStoreMobile.Shared.projitems*{b8c71e91-3f75-46dc-9bb9-8b0035d6f7e2}*SharedItemsImports = 5
+		eStoreMobile.Shared\eStoreMobile.Shared.projitems*{ef5cf715-48ca-477b-bb23-7f750bf970fa}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|iPhone = Debug|iPhone
@@ -73,9 +86,24 @@ Global
 		{B8C71E91-3F75-46DC-9BB9-8B0035D6F7E2}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{B8C71E91-3F75-46DC-9BB9-8B0035D6F7E2}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{B8C71E91-3F75-46DC-9BB9-8B0035D6F7E2}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
+		{6D8B549C-4B05-43BD-8BF2-9718397AFCC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D8B549C-4B05-43BD-8BF2-9718397AFCC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D8B549C-4B05-43BD-8BF2-9718397AFCC3}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{6D8B549C-4B05-43BD-8BF2-9718397AFCC3}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{6D8B549C-4B05-43BD-8BF2-9718397AFCC3}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{6D8B549C-4B05-43BD-8BF2-9718397AFCC3}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{6D8B549C-4B05-43BD-8BF2-9718397AFCC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D8B549C-4B05-43BD-8BF2-9718397AFCC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D8B549C-4B05-43BD-8BF2-9718397AFCC3}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{6D8B549C-4B05-43BD-8BF2-9718397AFCC3}.Release|iPhone.Build.0 = Release|Any CPU
+		{6D8B549C-4B05-43BD-8BF2-9718397AFCC3}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{6D8B549C-4B05-43BD-8BF2-9718397AFCC3}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AD575A80-1A21-41CF-858C-41F0DD7EE827} = {6644B74A-CF54-4EEE-85E2-1BE04D3194C9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2DEEF896-0DFE-4989-A66E-082BBC32C37F}

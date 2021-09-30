@@ -1,8 +1,12 @@
 ﻿using eStoreMobile.Validators;
 using eStoreMobile.Validators.Rules;
 using eStoreMobile.Views;
+using eStoreMobile.Core.DataViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using System;
+using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace eStoreMobile.ViewModels
 {
@@ -27,7 +31,7 @@ namespace eStoreMobile.ViewModels
         {
             this.InitializeProperties ();
             this.AddValidationRules ();
-            this.LoginCommand = new Command (this.LoginClicked);
+            this.LoginCommand = new Command  (this.LoginClickedAsync);
             this.SignUpCommand = new Command (this.SignUpClicked);
             this.ForgotPasswordCommand = new Command (this.ForgotPasswordClicked);
             this.SocialMediaLoginCommand = new Command (this.SocialLoggedIn);
@@ -65,7 +69,7 @@ namespace eStoreMobile.ViewModels
         /// <summary>
         /// Gets or sets the command that is executed when the Log In button is clicked.
         /// </summary>
-        public Command LoginCommand { get; set; }
+        public Command  LoginCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the command that is executed when the Sign Up button is clicked.
@@ -117,19 +121,32 @@ namespace eStoreMobile.ViewModels
         /// Invoked when the Log In button is clicked.
         /// </summary>
         /// <param name="obj">The Object</param>
-        private void LoginClicked(object obj)
+        private void LoginClickedAsync(object obj)
         {
             if ( this.AreFieldsValid () )
             {
-                // Do Something
-                if(Email.Value=="demo@aprajitaretails.in" && Password.Value == "demo" )
+                
+                UserViewModel vm = new UserViewModel ();
+               
+                try
                 {
-                    Shell.Current.GoToAsync (nameof (TestPage1));
+                    var result = vm.VerifyLoginAsync (Email.Value, Password.Value);
+
+                    if ( result )
+                    {
+                        Shell.Current.GoToAsync (nameof (TestPage1));
+                    }
+                    else
+                    {
+                        Debug.WriteLine (" Login Failed");
+                    }
                 }
-                else
+                catch ( Exception e)
                 {
-                    //alert
-                }
+
+                    Debug.WriteLine ("LPVM:\t"+e.Message);
+                } 
+               
             }
         }
 
