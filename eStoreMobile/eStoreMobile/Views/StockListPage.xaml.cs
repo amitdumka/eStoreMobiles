@@ -1,15 +1,11 @@
 ﻿using eStoreMobile.Core.Database;
+using eStoreMobile.Core.DataViewModel;
 using eStoreMobile.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using Syncfusion.SfDataGrid.XForms;
-using Syncfusion.SfDataGrid.XForms.Exporting;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -19,16 +15,19 @@ namespace eStoreMobile.Views
     public class StockRepo
     {
         private ObservableCollection<StockList> stockLists;
+
         public ObservableCollection<StockList> StockListCollection
         {
             get { return stockLists; }
             set { this.stockLists = value; }
         }
+
         public StockRepo()
         {
             stockLists = new ObservableCollection<StockList> ();
             this.LoadData ();
         }
+
         private async void LoadData()
         {
             using ( var db = new eStoreDbContext () )
@@ -42,18 +41,16 @@ namespace eStoreMobile.Views
         }
     }
 
-
     [XamlCompilation (XamlCompilationOptions.Compile)]
     public partial class StockListPage : ContentPage
     {
-       // StockRepo viewModel = new StockRepo ();
-       // SfDataGrid dataGrid;
-       
+        // StockRepo viewModel = new StockRepo ();
+        // SfDataGrid dataGrid;
+
         public StockListPage()
         {
             InitializeComponent ();
             dataGrid = new SfDataGrid ();
-
         }
 
         private void Load()
@@ -63,8 +60,8 @@ namespace eStoreMobile.Views
 
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
-
         }
+
         private void ExportToExcel_Clicked(object sender, EventArgs e)
         {
             //DataGridExcelExportingController excelExport = new DataGridExcelExportingController ();
@@ -77,6 +74,7 @@ namespace eStoreMobile.Views
 
             //Xamarin.Forms.DependencyService.Get<ISave> ().Save ("DataGrid.xlsx", "application/msexcel", stream);
         }
+
         private void PDFExport_Activated(object sender, EventArgs e)
         {
             /////   isExporting = true;
@@ -101,6 +99,12 @@ namespace eStoreMobile.Views
             //    Xamarin.Forms.DependencyService.Get<ISaveWindowsPhone> ().Save ("DataGrid.pdf", "application/pdf", stream);
             //else
             //    Xamarin.Forms.DependencyService.Get<ISave> ().Save ("DataGrid.pdf", "application/pdf", stream);
+        }
+
+        private void SfButton_Clicked(object sender, EventArgs e)
+        {
+            StockListDataModel dm = new StockListDataModel ();
+            _ = dm.SyncUpAsync ();
         }
     }
 }

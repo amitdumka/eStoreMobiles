@@ -32,6 +32,7 @@ namespace eStoreMobile.Core
         //Urls
         public static readonly string BaseAddress = "https://www.aprajitaretails.in/api";
         public static readonly string UserUrl = $"{BaseAddress}/users";
+        public static readonly string StockListurl = $"{BaseAddress}/stockLists";
         public static readonly string StoreUrl = $"{BaseAddress}/stores";
         public static readonly string EmployeeUrl = $"{BaseAddress}/employees";
         public static readonly string DailySaleUrl = $"{BaseAddress}/dailysale";

@@ -123,6 +123,41 @@ namespace eStoreMobile.Core.RestApi
                 return false;
             }
         }
+        public async Task<bool> SaveRangeAsync(List<T> item, bool isNewItem)
+        {
+            string range = "AddRange";
+            if ( !isNewItem )
+                range = "UpdateRange";
+            Uri uri = new Uri (string.Format (restUrl+range, string.Empty));
+
+            try
+            {
+                string json = JsonSerializer.Serialize<List<T>> (item, serializerOptions);
+                StringContent content = new StringContent (json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = null;
+                if ( isNewItem )
+                {
+                    response = await client.PostAsync (uri, content);
+                }
+                else
+                {
+                    response = await client.PutAsync (uri, content);
+                }
+
+                if ( response.IsSuccessStatusCode )
+                {
+                    Debug.WriteLine ($@"\t{APIName} successfully saved.");
+                    return true;
+                }
+                return false;
+            }
+            catch ( Exception ex )
+            {
+                Debug.WriteLine ($@"\t{APIName}: \tERROR {0}", ex.Message);
+                return false;
+            }
+        }
 
         public async Task<T> GetByIdAsync(int id)
         {

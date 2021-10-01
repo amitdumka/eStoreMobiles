@@ -67,5 +67,16 @@ namespace eStoreMobile.Core.DataViewModel
             }
         }
 
+        public async Task SyncUpAsync()
+        {
+            RestApi.RestService<StockList> restService = new RestApi.RestService<StockList> (Constants.StockListurl, "StockList");
+            using(_context=new eStoreDbContext () )
+            {
+                var data = await _context.StockLists.ToListAsync ();
+                restService.SaveRangeAsync (data, true);
+            }
+            
+        }
+
     }
 }

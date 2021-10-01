@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:eStoreMobile.Views"
              xmlns:datagrid="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
@@ -15,6 +16,7 @@
             <Label Text="Stock List"  TextColor="DarkRed" HorizontalOptions="CenterAndExpand" FontSize="24" />
             <!--<SearchBar Placeholder="Barcode" TextChanged="SearchBar_TextChanged"/>
             <Button x:Name="Excel" Text="ExportExcel" Clicked ="ExportToExcel_Clicked" HeightRequest="50" />-->
+            <button:SfButton Text="Sync" Clicked="SfButton_Clicked"/>
             <datagrid:SfDataGrid x:Name="dataGrid" BackgroundColor="DimGray"                                  HeightRequest="290" AllowSorting="True"
                            WidthRequest="200" ColumnSizer="Star"     AutoGenerateColumns="False" VerticalOptions="FillAndExpand"                                             HorizontalOptions="Center"                               ItemsSource="{Binding StockListCollection}">
                 <datagrid:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
@@ -26,7 +28,7 @@
                     <datagrid:GridDateTimeColumn HeaderText="Date"
                                    MappingName="LastAccess" />
                 </datagrid:SfDataGrid.Columns>
-                
+
                 <datagrid:SfDataGrid.SortColumnDescriptions>
                     <datagrid:SortColumnDescription ColumnName="Barcode" />
                 </datagrid:SfDataGrid.SortColumnDescriptions>
