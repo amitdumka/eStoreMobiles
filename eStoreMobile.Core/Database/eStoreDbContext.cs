@@ -3,6 +3,7 @@ using eStore.Shared.Models.Users;
 using eStore.Shared.Models.Payroll;
 using eStore.Shared.Models.Stores;
 using eStore.Shared.Models.Sales;
+using eStoreMobile.Core.Models;
 
 namespace eStoreMobile.Core.Database
 {
@@ -22,6 +23,7 @@ namespace eStoreMobile.Core.Database
             SQLitePCL.Batteries_V2.Init();
             this.Database.EnsureCreated();
         }
+        public DbSet<StockList> StockLists { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Store> Stores { get; set; }
         public DbSet<Employee> Employees { get; set; }

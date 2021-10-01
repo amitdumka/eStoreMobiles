@@ -293,6 +293,4 @@
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
   </ItemGroup>
-
-  <Import Project="..\..\eStoreMobile.Shared\eStoreMobile.Shared.projitems" Label="Shared" />
 </Project>

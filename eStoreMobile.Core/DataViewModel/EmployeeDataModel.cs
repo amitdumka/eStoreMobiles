@@ -26,7 +26,7 @@ namespace eStoreMobile.Core.DataViewModel
             { 
                 using( _context=new eStoreDbContext())
                 {
-                    await _context.Employees.Where(c => c.StoreId == storeid).ToListAsync();
+                     return await _context.Employees.Where(c => c.StoreId == storeid).ToListAsync();
                 }
             }
             else
@@ -51,18 +51,18 @@ namespace eStoreMobile.Core.DataViewModel
         }
 
 
-        public async Task<IQueryable<(int EmployeeId, string StaffName)>> GetEmployeeNameList(int storeId,bool working=true)
+        public async Task<Dictionary<int, string>> GetEmployeeNameList(int storeId,bool working=true)
         {
             using (_context = new eStoreDbContext()) {
                 //var list=await eStoreDatabase.Database.Table<Employee> ().Where (c => c.StoreId == storeId && c.IsWorking == working).ToListAsync ();
                 if (working)
                 {
-                    var list =  _context.Employees.Where(c => c.StoreId == storeId && c.IsWorking).Select(c => (c.EmployeeId, c.StaffName));
+                    var list = await _context.Employees.Where(c => c.StoreId == storeId && c.IsWorking).Select(c => new { c.EmployeeId, c.StaffName }).ToDictionaryAsync(c=>c.EmployeeId,c=>c.StaffName);
                         return list;
                 }
                 else
                 {
-                    var list =  _context.Employees.Where(c => c.StoreId == storeId ).Select(c => (c.EmployeeId, c.StaffName));
+                    var list = await _context.Employees.Where(c => c.StoreId == storeId ).Select (c => new { c.EmployeeId, c.StaffName }).ToDictionaryAsync (t => t.EmployeeId, t => t.StaffName);
                     return list;
                 } }
 
@@ -102,6 +102,26 @@ namespace eStoreMobile.Core.DataViewModel
 
         }
 
+        public int DeleteEmployee(int id) {
+
+            using(_context=new eStoreDbContext () )
+            {
+                var emp = _context.Employees.Find (id);
+                if ( emp != null )
+                { 
+                    _context.Employees.Remove (emp); 
+                }
+                return _context.SaveChanges ();
+
+            }
+        }
+
+        public bool IsExists(int id)
+        {
+            if ( _context.Employees.Find (id) != null )
+                return true;
+            return false;
+        }
 
 
 

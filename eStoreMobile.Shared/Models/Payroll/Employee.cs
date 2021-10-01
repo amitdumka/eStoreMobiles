@@ -1,5 +1,4 @@
 ﻿using eStore.Shared.Models.Stores;
-using SQLiteNetExtensions.Attributes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -62,9 +61,7 @@ namespace eStore.Shared.Models.Payroll
         public string FatherName { get; set; }
         public string HighestQualification { get; set; }
         
-        [OneToMany]
         public ICollection<Salesman> Salesmen { get; set; }
-       // [ManyToMany]
         public ICollection<Attendance> Attendances { get; set; }
         public virtual EmployeeUser User { get; set; }
 
