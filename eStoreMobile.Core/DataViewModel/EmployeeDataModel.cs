@@ -1,16 +1,19 @@
 ﻿using eStore.Shared.Models.Payroll;
 using eStoreMobile.Core.Database;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace eStoreMobile.Core.DataViewModel
 {
+    
     public class EmployeeDataModel
     {
         public List<Employee> Employees { get; set; }
         private RestApi.RestService<Employee> service;
-        private eStoreDatabase _context;
+        private eStoreDbContext _context;
 
         public EmployeeDataModel()
         {
@@ -20,10 +23,11 @@ namespace eStoreMobile.Core.DataViewModel
         public async Task<List<Employee>> GetEmployees(int storeid,bool local = true)
         {
             if ( local )
-            {
-                if ( _context == null )
-                    _context = await eStoreDatabase.Instance;
-                return await eStoreDatabase.Database.Table<Employee> ().Where(c=>c.StoreId==storeid).ToListAsync ();
+            { 
+                using( _context=new eStoreDbContext())
+                {
+                    await _context.Employees.Where(c => c.StoreId == storeid).ToListAsync();
+                }
             }
             else
             {
@@ -35,49 +39,57 @@ namespace eStoreMobile.Core.DataViewModel
 
         public async void Sync()
         {
-            if ( Employees == null || Employees.Count <= 0 )
-                Employees = await service.RefreshDataAsync ();
-            if ( _context == null )
-                _context = await eStoreDatabase.Instance;
-            int record = await eStoreDatabase.Database.InsertAllAsync (Employees);
-            Debug.WriteLine ("No of Record added: " + record);
+            using (_context = new eStoreDbContext())
+            {
+                if (Employees == null || Employees.Count <= 0)
+                    Employees = await service.RefreshDataAsync();
+
+                await _context.Employees.AddRangeAsync(Employees);
+                int record = await _context.SaveChangesAsync();
+                Debug.WriteLine("No of Record added: " + record);
+            }
         }
 
 
-        public async System.Threading.Tasks.Task<List<Employee>> GetEmployeeNameList(int storeId,bool working=true)
+        public async Task<IQueryable<(int EmployeeId, string StaffName)>> GetEmployeeNameList(int storeId,bool working=true)
         {
-            if ( _context == null )
-                _context = await eStoreDatabase.Instance;
-            //var list=await eStoreDatabase.Database.Table<Employee> ().Where (c => c.StoreId == storeId && c.IsWorking == working).ToListAsync ();
-            if ( working )
-            {
-                var list = await eStoreDatabase.Database.QueryAsync<Employee> ($"SELECT EmployeeId, FirstName, LastName FROM [Employee] WHERE [StoreId] = {storeId} and [IsWorking]=0");
-                return list;
-            }
-            else
-            {
-                var list = await eStoreDatabase.Database.QueryAsync<Employee> ($"SELECT EmployeeId, FirstName, LastName FROM [Employee] WHERE [StoreId] = {storeId}");
-                return list;
-            }
+            using (_context = new eStoreDbContext()) {
+                //var list=await eStoreDatabase.Database.Table<Employee> ().Where (c => c.StoreId == storeId && c.IsWorking == working).ToListAsync ();
+                if (working)
+                {
+                    var list =  _context.Employees.Where(c => c.StoreId == storeId && c.IsWorking).Select(c => (c.EmployeeId, c.StaffName));
+                        return list;
+                }
+                else
+                {
+                    var list =  _context.Employees.Where(c => c.StoreId == storeId ).Select(c => (c.EmployeeId, c.StaffName));
+                    return list;
+                } }
 
         }
 
         public void GetEmployeeById(int id) { }
         public void GetEmployeeByName(string firstName, string lastName) { }
+
         public async Task<int> SaveEmployee(Employee employee, bool isNew=true, bool local=false)
         {
             if ( local )
             {
-                if ( _context == null )
-                    _context = await eStoreDatabase.Instance;
-                if ( isNew )
+                using(_context = new eStoreDbContext())
                 {
-                   return await eStoreDatabase.Database.InsertAsync (employee);
+                    if (isNew)
+                    {
+                         await _context.Employees.AddAsync(employee);
+                    }
+                    else
+                    {
+                         _context.Employees.Update(employee);
+                    }
+                    return await _context.SaveChangesAsync();
                 }
-                else
-                {
-                   return await eStoreDatabase.Database.UpdateAsync (employee);
-                }
+
+                
+               
             }
             else
             {
