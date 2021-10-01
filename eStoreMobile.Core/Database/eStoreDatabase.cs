@@ -1,4 +1,5 @@
-﻿using eStore.Shared.Models.Payroll;
+﻿using System;
+using eStore.Shared.Models.Payroll;
 using eStore.Shared.Models.Sales;
 using eStore.Shared.Models.Stores;
 using eStore.Shared.Models.Users;
@@ -6,6 +7,8 @@ using SQLite;
 
 namespace eStoreMobile.Core.Database
 {
+    //Note: Will Think of using SqlLite direct database if EF Core doesnt work as is required.
+    [Obsolete]
     public class eStoreDatabase
     {
         public static SQLiteAsyncConnection Database;

@@ -70,6 +70,7 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="..\..\.editorconfig" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -194,7 +195,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\eStoreMobile\eStoreMobile.csproj">
-      <Project>{36AFAC7B-0A66-4842-BAE7-7057CD4A51B0}</Project>
+      <Project>{B8C71E91-3F75-46DC-9BB9-8B0035D6F7E2}</Project>
       <Name>eStoreMobile</Name>
     </ProjectReference>
   </ItemGroup>

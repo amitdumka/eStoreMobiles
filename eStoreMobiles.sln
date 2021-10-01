@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eStoreMobile.Android", "eSt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eStoreMobile.iOS", "eStoreMobile\eStoreMobile.iOS\eStoreMobile.iOS.csproj", "{1C820141-57D0-44AD-92A5-7C69531AF8C5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eStoreMobile", "eStoreMobile\eStoreMobile\eStoreMobile.csproj", "{B8C71E91-3F75-46DC-9BB9-8B0035D6F7E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eStoreMobile", "eStoreMobile\eStoreMobile\eStoreMobile.csproj", "{B8C71E91-3F75-46DC-9BB9-8B0035D6F7E2}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "eStore.Shared", "..\eStoreWeb\eStore.Shared\eStore.Shared.shproj", "{AD575A80-1A21-41CF-858C-41F0DD7EE827}"
 EndProject
@@ -16,6 +16,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eStoreMobile.Core", "eStoreMobile.Core\eStoreMobile.Core.csproj", "{6D8B549C-4B05-43BD-8BF2-9718397AFCC3}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "eStoreMobile.Shared", "eStoreMobile.Shared\eStoreMobile.Shared.shproj", "{EF5CF715-48CA-477B-BB23-7F750BF970FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9AC78725-C318-486E-86FA-092FBBD49766}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
