@@ -28,11 +28,15 @@ namespace eStoreMobile.Core.DataViewModel
 
         public async Task<int> SaveAsync(StockList item, bool isNew)
         {
-            if ( isNew )
-                await _context.StockLists.AddAsync (item);
-            else
-                _context.StockLists.Update (item);
-            return await _context.SaveChangesAsync ();
+            using ( _context = new eStoreDbContext () )
+            {
+                if ( isNew )
+                    await _context.StockLists.AddAsync (item);
+                else
+                    _context.StockLists.Update (item);
+                return await _context.SaveChangesAsync ();
+            }
+                
         }
         public int Delete(int id)
         {

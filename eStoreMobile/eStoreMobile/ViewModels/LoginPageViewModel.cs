@@ -6,6 +6,7 @@ using System;
 using System.Diagnostics;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using Xamarin.CommunityToolkit.Extensions;
 
 
 namespace eStoreMobile.ViewModels
@@ -98,8 +99,10 @@ namespace eStoreMobile.ViewModels
         /// <returns>Returns the fields are valid or not</returns>
         public bool AreFieldsValid()
         {
-            bool isEmailValid = this.Email.Validate ();
+            //bool isEmailValid = this.Email.Validate ();
+            bool isEmailValid = !string.IsNullOrEmpty (this.Email.Value);
             bool isPasswordValid = this.Password.Validate ();
+            
             return isEmailValid && isPasswordValid;
         }
 
@@ -127,7 +130,7 @@ namespace eStoreMobile.ViewModels
         {
             if ( this.AreFieldsValid () )
             {
-                DoLogin ();
+                DoLogin (); 
             }
         }
 
@@ -139,11 +142,13 @@ namespace eStoreMobile.ViewModels
                 var result = await vm.VerifyLoginAsync (Email.Value, Password.Value);
                 if ( result )
                 {
-                    await Shell.Current.GoToAsync (nameof (TestPage1));
+                   // await Shell.Current.GoToAsync (nameof (StockScanner));
+                    Application.Current.MainPage = new AppShell ();
                 }
                 else
                 {
                     Debug.WriteLine (" Login Failed");
+                  // ("Error", "Login Failed, Kindly Username and Password", "OK");
                 }
             }
             catch ( Exception e )

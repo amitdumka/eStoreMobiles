@@ -1,3 +1,5 @@
+using Syncfusion.SfDataGrid.XForms.iOS;
+using Syncfusion.SfNumericTextBox.XForms.iOS;
 using Syncfusion.XForms.iOS.EffectsView;
 using Syncfusion.XForms.iOS.Expander;
 using Syncfusion.XForms.Pickers.iOS;
@@ -42,6 +44,8 @@ namespace eStoreMobile.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
 global::Xamarin.Forms.Forms.Init();
+SfDataGridRenderer.Init();
+SfNumericTextBoxRenderer.Init();
             SfEffectsViewRenderer.Init();
             SfExpanderRenderer.Init();
 SfDatePickerRenderer.Init();
@@ -64,7 +68,8 @@ SfCardLayoutRenderer.Init();
             SfGradientViewRenderer.Init();
             SfBorderRenderer.Init();
             SfButtonRenderer.Init();
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense ("NTA3MzU4QDMxMzkyZTMyMmUzMG50Y25oZEhtbEdXbzY3TnFoZTJpd3dKb3pHVUQzdWhQUjBXUHMrMkRyaFU9");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense ("NTA5NTg4QDMxMzkyZTMzMmUzMGNDRS9qQ1pzSmpIRkVmMTlJaEVNdzlkQ29QNFF0eTFDMmlIemliMUtaVDA9");
+            ZXing.Net.Mobile.Forms.iOS.Platform.Init ();
             LoadApplication (new App());
 
             return base.FinishedLaunching(app, options);

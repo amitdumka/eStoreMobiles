@@ -77,6 +77,9 @@
     <PackageReference Include="Syncfusion.Xamarin.Core">
       <Version>19.3.0.43</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.DataGridExport">
+      <Version>19.3.0.43</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.DataSource">
       <Version>19.3.0.43</Version>
     </PackageReference>
@@ -95,6 +98,9 @@
     <PackageReference Include="Syncfusion.Xamarin.SfComboBox">
       <Version>19.3.0.43</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfDataGrid">
+      <Version>19.3.0.43</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfGauge">
       <Version>19.3.0.43</Version>
     </PackageReference>
@@ -107,14 +113,26 @@
     <PackageReference Include="Syncfusion.Xamarin.SfMaps">
       <Version>19.3.0.43</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfNumericTextBox">
+      <Version>19.3.0.43</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfPicker">
       <Version>19.3.0.43</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfRating">
       <Version>19.3.0.43</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.CommunityToolkit">
+      <Version>1.3.0-pre1</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2125" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+    <PackageReference Include="ZXing.Net.Mobile">
+      <Version>3.1.0-beta2</Version>
+    </PackageReference>
+    <PackageReference Include="ZXing.Net.Mobile.Forms">
+      <Version>3.1.0-beta2</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />

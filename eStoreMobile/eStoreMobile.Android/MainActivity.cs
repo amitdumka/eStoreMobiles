@@ -13,15 +13,16 @@ namespace eStoreMobile.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense ("NTA3MzU4QDMxMzkyZTMyMmUzMG50Y25oZEhtbEdXbzY3TnFoZTJpd3dKb3pHVUQzdWhQUjBXUHMrMkRyaFU9");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense ("NTA5NTg4QDMxMzkyZTMzMmUzMGNDRS9qQ1pzSmpIRkVmMTlJaEVNdzlkQ29QNFF0eTFDMmlIemliMUtaVDA9");
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            LoadApplication(new App());
+            ZXing.Net.Mobile.Forms.Android.Platform.Init ();
+            LoadApplication (new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
+            global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult (requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
        

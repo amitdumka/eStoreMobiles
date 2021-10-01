@@ -1,5 +1,6 @@
 ﻿using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
+using Xamarin.CommunityToolkit.Extensions;
 
 namespace eStoreMobile.Views
 {
