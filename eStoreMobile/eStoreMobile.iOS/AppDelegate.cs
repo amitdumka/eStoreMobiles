@@ -1,3 +1,4 @@
+using Syncfusion.XForms.iOS.DataForm;
 using Syncfusion.SfDataGrid.XForms.iOS;
 using Syncfusion.SfNumericTextBox.XForms.iOS;
 using Syncfusion.XForms.iOS.EffectsView;
@@ -44,6 +45,7 @@ namespace eStoreMobile.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
 global::Xamarin.Forms.Forms.Init();
+SfDataFormRenderer.Init();
 SfDataGridRenderer.Init();
 SfNumericTextBoxRenderer.Init();
             SfEffectsViewRenderer.Init();

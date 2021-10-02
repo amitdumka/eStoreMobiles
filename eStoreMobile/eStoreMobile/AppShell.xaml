@@ -78,38 +78,23 @@
         FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element    
         https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
-    <!--<FlyoutItem Title="Login" Icon="icon_about.png">
-        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
-    </FlyoutItem>
-    <FlyoutItem Title="SingnUp" Icon="icon_about.png">
-        <ShellContent Route="SignUpPage" ContentTemplate="{DataTemplate local:SignUpPage}" />
-    </FlyoutItem>-->
-    <FlyoutItem Title="Stock List" Icon="icon_about.png">
+    
+    <FlyoutItem Title="Stock List" Icon="feed.png">
         <ShellContent Route="StocKList" ContentTemplate="{DataTemplate local:StockListPage}" />
     </FlyoutItem>
     <FlyoutItem Title="Stock Scanner" Icon="icon_about.png">
         <ShellContent Route="StockScanner" ContentTemplate="{DataTemplate local:StockScanner}" />
     </FlyoutItem>
-    <!--<FlyoutItem Title="ChatCon" Icon="icon_about.png">
-        <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:ContactEmailEntry}" />
+    <FlyoutItem Title="Users" Icon="icon_about.png">
+        <ShellContent Route="User" ContentTemplate="{DataTemplate local:UserEditor}" />
     </FlyoutItem>
-    <FlyoutItem Title="ContactUs" Icon="icon_about.png">
-        <ShellContent Route="ContactUsPage" ContentTemplate="{DataTemplate local:EmailEntry}" />
-    </FlyoutItem>
-    
-    <FlyoutItem Title="DailiyCal" Icon="icon_about.png">
-        <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:RecentChatPage}" />
-    </FlyoutItem>
-    <FlyoutItem Title="Help" Icon="icon_about.png">
-        <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:TaskNotificationPage}" />
-    </FlyoutItem>-->
-    <FlyoutItem Title="TestPage" Icon="icon_about.png">
-        <ShellContent Route="TestPage" ContentTemplate="{DataTemplate local:TestPage1}" />
+    <FlyoutItem Title="Attendance" Icon="icon_about.png">
+        <ShellContent Route="Attendance" ContentTemplate="{DataTemplate local:AttendancePage}" />
     </FlyoutItem>
     
-    <!--<FlyoutItem Title="ForgotPassword" Icon="icon_about.png">
-        <ShellContent Route="ForgotPasswordPageWithGradient" ContentTemplate="{DataTemplate local:ForgotPasswordPageWithGradient}" />
-    </FlyoutItem>-->
+    <FlyoutItem Title="Add Attendance" Icon="icon_about.png">
+        <ShellContent Route="AddAttendance" ContentTemplate="{DataTemplate local:AddAttendanceView}" />
+    </FlyoutItem>
     
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
     <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">

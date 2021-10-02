@@ -1,5 +1,7 @@
-﻿using eStoreMobile.ViewModels;
+﻿using eStore.Shared.Models.Payroll;
+using eStoreMobile.ViewModels;
 using eStoreMobile.Views;
+
 using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
@@ -12,8 +14,9 @@ namespace eStoreMobile
         {
             InitializeComponent ();
             //Routing.RegisterRoute (nameof (ItemDetailPage), typeof (ItemDetailPage));
-            // Routing.RegisterRoute (nameof (NewItemPage), typeof (NewItemPage));
-            Routing.RegisterRoute (nameof (TestPage1), typeof (TestPage1));
+            Routing.RegisterRoute (nameof (UserEditor), typeof (UserEditor));
+            Routing.RegisterRoute (nameof (AttendancePage), typeof (AttendancePage));
+            Routing.RegisterRoute (nameof (AddAttendanceView), typeof (AddAttendanceView));
 
         }
 
