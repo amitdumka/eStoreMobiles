@@ -1,4 +1,5 @@
 ﻿using System;
+using eStore.Shared.Models.Payroll;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

@@ -1,13 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:pulltorefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
-             xmlns:dataform="clr-namespace:Syncfusion.XForms.DataForm;assembly=Syncfusion.SfDataForm.XForms"
-             xmlns:local="clr-namespace:eStoreMobile.Views"
+             xmlns:pulltorefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms" xmlns:datagrid="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
              x:Class="eStoreMobile.Views.AttendancePage">
     <!--<ContentPage.BindingContext>
         <local:ViewModel />
     </ContentPage.BindingContext>-->
+
     <ContentPage.Content>
         <pulltorefresh:SfPullToRefresh BackgroundColor="Beige"
                        x:Name="pullToRefresh">
@@ -15,9 +14,13 @@
                 <StackLayout>
                     <Label Text="Attendance" FontSize="Title" TextColor="Blue" HorizontalTextAlignment="Center" TextDecorations="Underline" FontAttributes="Bold" />
                    
-                    <!--<StackLayout>
+                    <StackLayout>
                        <datagrid:SfDataGrid ItemsSource="{Binding OrderInfoCollection}">        </datagrid:SfDataGrid>
-                    </StackLayout>-->
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Button Text="Add " x:Name="AddButton" CornerRadius="3" Clicked="AddButton_Clicked"/>
+                        <Button Text="Add Employee" x:Name="EmployeeButton" CornerRadius="3"  Clicked="EmployeeButton_Clicked"/>
+                    </StackLayout>
                      </StackLayout>
             </pulltorefresh:SfPullToRefresh.PullableContent>
         </pulltorefresh:SfPullToRefresh>
