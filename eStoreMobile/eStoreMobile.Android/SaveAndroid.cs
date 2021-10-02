@@ -7,6 +7,7 @@ using Java.IO;
 using eStoreMobile.Droid;
 using Xamarin.Forms;
 using Android.App;
+using AndroidX.Core.Content;
 //using Android.OS;
 //using Android.Runtime;
 
