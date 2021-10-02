@@ -72,8 +72,8 @@ namespace eStoreMobile.Core.DataViewModel
             RestApi.RestService<StockList> restService = new RestApi.RestService<StockList> (Constants.StockListurl, "StockList");
             using(_context=new eStoreDbContext () )
             {
-                var data = await _context.StockLists.ToListAsync ();
-                restService.SaveRangeAsync (data, true);
+                var data = await _context.StockLists.Select(c=> new StockList {StockListId=0, Count=c.Count, Barcode=c.Barcode,LastAccess=DateTime.Now, Stock=c.Stock }).ToListAsync ();
+                await restService.SaveRangeAsync (data, true);
             }
             
         }

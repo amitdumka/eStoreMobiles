@@ -1,5 +1,6 @@
 ﻿using eStore.Shared.Models.Users;
 using eStoreMobile.Core.Database;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,7 +13,7 @@ namespace eStoreMobile.Core.DataViewModel
     {
         public List<User> Users { get; set; }
         private RestApi.RestService<User> service;
-        private eStoreDatabase _context;
+        private eStoreDbContext _context;
 
         public UserDataModel()
         {
@@ -23,32 +24,38 @@ namespace eStoreMobile.Core.DataViewModel
         {
             if ( local )
             {
-                if ( _context == null )
-                    _context = await eStoreDatabase.Instance;
-                Users = await eStoreDatabase.Database.Table<User> ().ToListAsync ();
-            }
+                using(_context = new eStoreDbContext())
+                {
+                    Users = await _context.Users.ToListAsync();
+                }
 
-            if ( Users == null || Users.Count <= 0 )
-                Users = await service.RefreshDataAsync ();
+                
+            }
+            if (Users == null || Users.Count <= 0)
+                Users = await service.RefreshDataAsync();
             return Users;
+
         }
 
         public async Task<bool> VerifyLoginAsync(string username, string password)
         {
-            if ( _context == null )
-                _context = await eStoreDatabase.Instance;
-            if ( ( await eStoreDatabase.Database.Table<User> ().CountAsync () ) > 0 )
+            
+            using(_context = new eStoreDbContext())
             {
-                var user = await eStoreDatabase.Database.Table<User> ().Where (c => c.UserName == username && c.Password == password).FirstOrDefaultAsync ();
-                if ( user != null )
-                    return true;
+                if ((await _context.Users.CountAsync()) > 0)
+                {
+                    var user = await _context.Users.Where(c => c.UserName == username && c.Password == password).FirstOrDefaultAsync();
+                    if (user != null)
+                        return true;
+                    else
+                        return false;
+                }
                 else
-                    return false;
+                {
+                    return await VerifyLoginRemoteAsync(username, password);
+                }
             }
-            else
-            {
-                return await VerifyLoginRemoteAsync (username, password);
-            }
+            
         }
 
         public async Task<bool> VerifyLoginRemoteAsync(string username, string password)
@@ -83,10 +90,15 @@ namespace eStoreMobile.Core.DataViewModel
         {
             if(Users==null|| Users.Count<=0 )
                 Users = await service.RefreshDataAsync ();
-            if ( _context == null )
-                _context = await eStoreDatabase.Instance;
-            int record= await eStoreDatabase.Database.InsertAllAsync(Users);
-            Debug.WriteLine ("No of Record added: " + record);
+
+            using(_context= new eStoreDbContext())
+            {
+                await _context.Users.AddRangeAsync(Users);
+                int record = await _context.SaveChangesAsync();
+                Debug.WriteLine("No of Record added: " + record);
+            }
+            
+           
         }
     }
 }

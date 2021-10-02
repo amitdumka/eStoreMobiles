@@ -11,7 +11,7 @@ namespace eStoreMobile.Core
     {
         public const string BackendUrl  = "https://zumo-abcd1234.azurewebsites.net";
         //Database
-        public const string DatabaseFilename = "estoreSQLite.db3";
+        public const string DatabaseFilename = "estoreSQLiteVer3.db3";
 
         public const SQLite.SQLiteOpenFlags Flags =
             // open the database in read/write mode

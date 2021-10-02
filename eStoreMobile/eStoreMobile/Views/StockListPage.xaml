@@ -1,38 +1,83 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:eStoreMobile.Views"
              xmlns:datagrid="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             xmlns:pulltoRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
              x:Class="eStoreMobile.Views.StockListPage">
+<ContentPage.BindingContext>
+<local:StockRepo x:Name="viewModel" />
+</ContentPage.BindingContext>
+<ContentPage.Content>
+<!-- RefreshContentHeight="50"RefreshContentWidth="50" -->
 
-    <ContentPage.BindingContext>
-        <local:StockRepo x:Name="viewModel" />
-    </ContentPage.BindingContext>
+<pulltoRefresh:SfPullToRefresh x:Name="pullToRefresh"
+                               RefreshContentHeight="50"
+                               RefreshContentWidth="50"
+                               PullingThreshold="150"
+                               TransitionMode="SlideOnTop"
+                               Refreshing="PullToRefresh_Refreshing"
+                               IsRefreshing="False">
+<pulltoRefresh:SfPullToRefresh.ProgressStrokeWidth>
+<OnPlatform x:TypeArguments="x:Double">
+<OnPlatform.WinPhone>2</OnPlatform.WinPhone>
+<OnPlatform.Android>
+<OnIdiom x:TypeArguments="x:Double"
+         Phone="6"
+         Tablet="3" />
+</OnPlatform.Android>
+<OnPlatform.iOS>2</OnPlatform.iOS>
+</OnPlatform>
+</pulltoRefresh:SfPullToRefresh.ProgressStrokeWidth>
+<pulltoRefresh:SfPullToRefresh.PullableContent>
+    <StackLayout BackgroundColor="Aqua"
+             Padding="2">
+<Label Text="Stock List"
+       TextColor="DarkRed"
+       HorizontalOptions="CenterAndExpand"
+       FontSize="24" />
+    <SearchBar Placeholder="Barcode"
+           TextChanged="SearchBar_TextChanged" />
+<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+<Button x:Name="Excel"
+                 Text="To Excel"
+                 Clicked="ExportToExcel_Clicked" />
+<Button Text="Sync"
+                 Clicked="SfButton_ClickedAsync" />
+</StackLayout>
+    
+<datagrid:SfDataGrid x:Name="dataGrid"
+                     BackgroundColor="DimGray"
+                     AllowSorting="True"
+                     ColumnSizer="Star"
+                     SelectionMode="Single"
+                     AutoGenerateColumns="False"
+                     VerticalOptions="FillAndExpand"
+                     HorizontalOptions="Center"
+                     VerticalOverScrollMode="Bounce"
+                     ItemsSource="{Binding StockListCollection}">
+<datagrid:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
+<datagrid:GridTextColumn HeaderText="Barcode"
+                         HeaderFontAttribute="Bold"
+                         MappingName="Barcode" />
+<datagrid:GridNumericColumn HeaderText="Stock"
+                            TextAlignment="Center"
+                            HeaderFontAttribute="Bold"
+                            HeaderTextAlignment="Center"
+                            ColumnSizer="Auto"
+                            MappingName="Stock" />
+<datagrid:GridDateTimeColumn HeaderText="Date"
+                             HeaderFontAttribute="Bold"
+                             MappingName="LastAccess" />
+</datagrid:SfDataGrid.Columns>
+<datagrid:SfDataGrid.SortColumnDescriptions>
+<datagrid:SortColumnDescription ColumnName="Barcode" />
+</datagrid:SfDataGrid.SortColumnDescriptions>
+</datagrid:SfDataGrid>
 
-    <ContentPage.Content>
-
-        <StackLayout BackgroundColor="Aqua" Padding="2">
-            <Label Text="Stock List"  TextColor="DarkRed" HorizontalOptions="CenterAndExpand" FontSize="24" />
-            <!--<SearchBar Placeholder="Barcode" TextChanged="SearchBar_TextChanged"/>
-            <Button x:Name="Excel" Text="ExportExcel" Clicked ="ExportToExcel_Clicked" HeightRequest="50" />-->
-            <button:SfButton Text="Sync" Clicked="SfButton_Clicked"/>
-            <datagrid:SfDataGrid x:Name="dataGrid" BackgroundColor="DimGray"                                  HeightRequest="290" AllowSorting="True"
-                           WidthRequest="200" ColumnSizer="Star"     AutoGenerateColumns="False" VerticalOptions="FillAndExpand"                                             HorizontalOptions="Center"                               ItemsSource="{Binding StockListCollection}">
-                <datagrid:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
-                    <datagrid:GridTextColumn HeaderText="Barcode"
-                                   MappingName="Barcode" />
-                    <datagrid:GridNumericColumn HeaderText="Stock" TextAlignment="Center"   HeaderTextAlignment="Center" ColumnSizer="Auto"
-                                   MappingName="Stock" />
-
-                    <datagrid:GridDateTimeColumn HeaderText="Date"
-                                   MappingName="LastAccess" />
-                </datagrid:SfDataGrid.Columns>
-
-                <datagrid:SfDataGrid.SortColumnDescriptions>
-                    <datagrid:SortColumnDescription ColumnName="Barcode" />
-                </datagrid:SfDataGrid.SortColumnDescriptions>
-            </datagrid:SfDataGrid>
-        </StackLayout>
-    </ContentPage.Content>
+</StackLayout>
+    </pulltoRefresh:SfPullToRefresh.PullableContent>
+</pulltoRefresh:SfPullToRefresh>
+</ContentPage.Content>
 </ContentPage>

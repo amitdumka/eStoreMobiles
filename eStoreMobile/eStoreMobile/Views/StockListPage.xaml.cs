@@ -1,14 +1,14 @@
-﻿using eStoreMobile.Core.Database;
-using eStoreMobile.Core.DataViewModel;
+﻿using eStoreMobile.Core.DataViewModel;
 using eStoreMobile.Core.Models;
-using Microsoft.EntityFrameworkCore;
 using Syncfusion.SfDataGrid.XForms;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Syncfusion.SfPullToRefresh.XForms;
+using System.Diagnostics.CodeAnalysis;
 
 namespace eStoreMobile.Views
 {
@@ -24,33 +24,38 @@ namespace eStoreMobile.Views
 
         public StockRepo()
         {
-            stockLists = new ObservableCollection<StockList> ();
-            this.LoadData ();
+            stockLists = new ObservableCollection<StockList>();
+            this.LoadData();
         }
 
         private async void LoadData()
         {
-            using ( var db = new eStoreDbContext () )
+            StockListDataModel dm = new StockListDataModel();
+
+            List<StockList> Data = await dm.RefreshDataAsync();
+            stockLists.Clear();
+            foreach (var item in Data)
             {
-                List<StockList> Data = await db.StockLists.ToListAsync ();
-                foreach ( var item in Data )
-                {
-                    stockLists.Add (item);
-                }
+                stockLists.Add(item);
             }
+
         }
+        public void ItemsSourceRefresh()
+        {
+            LoadData();
+        }
+
+        
     }
 
-    [XamlCompilation (XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class StockListPage : ContentPage
     {
-        // StockRepo viewModel = new StockRepo ();
-        // SfDataGrid dataGrid;
 
         public StockListPage()
         {
-            InitializeComponent ();
-            dataGrid = new SfDataGrid ();
+            InitializeComponent();
+            dataGrid = new SfDataGrid();
         }
 
         private void Load()
@@ -58,10 +63,18 @@ namespace eStoreMobile.Views
             dataGrid.ItemsSource = viewModel.StockListCollection;
         }
 
+
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
         }
 
+        private async void PullToRefresh_Refreshing(object sender, EventArgs e)
+        {
+            pullToRefresh.IsRefreshing = true;
+            await Task.Delay(1200);
+            this.viewModel.ItemsSourceRefresh();
+            pullToRefresh.IsRefreshing = false;
+        }
         private void ExportToExcel_Clicked(object sender, EventArgs e)
         {
             //DataGridExcelExportingController excelExport = new DataGridExcelExportingController ();
@@ -101,10 +114,19 @@ namespace eStoreMobile.Views
             //    Xamarin.Forms.DependencyService.Get<ISave> ().Save ("DataGrid.pdf", "application/pdf", stream);
         }
 
-        private void SfButton_Clicked(object sender, EventArgs e)
+        private async void SfButton_ClickedAsync(object sender, EventArgs e)
         {
-            StockListDataModel dm = new StockListDataModel ();
-            _ = dm.SyncUpAsync ();
+          var res=await  DisplayAlert("Alert", "Do you want to upload to server?", "Ok", "Cancel");
+            if (res)
+            {
+                StockListDataModel dm = new StockListDataModel();
+                await dm.SyncUpAsync();
+            }
         }
     }
+
+
+
+
+
 }

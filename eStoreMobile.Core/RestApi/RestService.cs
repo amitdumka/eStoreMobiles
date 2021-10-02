@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace eStoreMobile.Core.RestApi
 {
@@ -125,9 +126,9 @@ namespace eStoreMobile.Core.RestApi
         }
         public async Task<bool> SaveRangeAsync(List<T> item, bool isNewItem)
         {
-            string range = "AddRange";
+            string range = "/AddRange";
             if ( !isNewItem )
-                range = "UpdateRange";
+                range = "/UpdateRange";
             Uri uri = new Uri (string.Format (restUrl+range, string.Empty));
 
             try
