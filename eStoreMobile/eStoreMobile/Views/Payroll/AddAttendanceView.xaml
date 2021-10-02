@@ -5,14 +5,26 @@
              xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
              xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
              xmlns:sfDatePicker="clr-namespace:Syncfusion.XForms.Pickers;assembly=Syncfusion.SfPicker.XForms"
+             xmlns:dataform="clr-namespace:Syncfusion.XForms.DataForm;assembly=Syncfusion.SfDataForm.XForms"
+             xmlns:local="clr-namespace:eStoreMobile.Views"
              xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              x:Class="eStoreMobile.Views.AddAttendanceView">
-  <ContentPage.Content>
+    <ContentPage.BindingContext>
+        <local:AttendanceViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
        
             <StackLayout BackgroundColor="DarkBlue" Padding="10">
                 <Label x:Name="title_label" Text="New Attendance"  TextColor="Aquamarine"  FontSize="Title"  HorizontalOptions="CenterAndExpand" Margin="10" />
 
-                <StackLayout BackgroundColor="White">
+                 <dataform:SfDataForm 
+                        CommitMode="LostFocus"
+                        VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                        ColumnCount="2"  AutoGeneratingDataFormItem="dataForm_AutoGeneratingDataFormItem"
+                        BackgroundColor="LightPink" ContainerBackgroundColor="LightCoral" 
+                        x:Name="dataForm" DataObject="{Binding Attendance}" LayoutOptions="Default" LabelPosition="Top" ShowHelperText="True" />
+               
+                <!--<StackLayout BackgroundColor="White">
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
                         <Label Margin="5,5,0,5"  Text="StaffName : " Visual="Material" FontSize="Body" TextColor="Blue" VerticalTextAlignment="Start" HorizontalOptions="StartAndExpand"/>
                         <combobox:SfComboBox  DropDownCornerRadius="3" DropDownTextColor="#1976d2" x:Name="staff" Visual="Material" ShowBorder="True" WidthRequest="200" HeightRequest="40" BorderColor="#1976d2" MaximumDropDownHeight="200" Text="Select Staff" TextColor="DarkBlue"/>
@@ -55,7 +67,7 @@
                         </StackLayout>
 
                     </border:SfBorder>
-                </StackLayout>
+                </StackLayout>-->
 
 
 

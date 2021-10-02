@@ -5,26 +5,20 @@
              xmlns:dataform="clr-namespace:Syncfusion.XForms.DataForm;assembly=Syncfusion.SfDataForm.XForms"
              xmlns:local="clr-namespace:eStoreMobile.Views"
              x:Class="eStoreMobile.Views.AttendancePage">
-    <ContentPage.BindingContext>
+    <!--<ContentPage.BindingContext>
         <local:ViewModel />
-    </ContentPage.BindingContext>
+    </ContentPage.BindingContext>-->
     <ContentPage.Content>
         <pulltorefresh:SfPullToRefresh BackgroundColor="Beige"
                        x:Name="pullToRefresh">
             <pulltorefresh:SfPullToRefresh.PullableContent>
                 <StackLayout>
                     <Label Text="Attendance" FontSize="Title" TextColor="Blue" HorizontalTextAlignment="Center" TextDecorations="Underline" FontAttributes="Bold" />
-
+                   
                     <!--<StackLayout>
                        <datagrid:SfDataGrid ItemsSource="{Binding OrderInfoCollection}">        </datagrid:SfDataGrid>
                     </StackLayout>-->
-                    <dataform:SfDataForm 
-                        CommitMode="LostFocus"
-                        VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
-                        ColumnCount="2"  AutoGeneratingDataFormItem="dataForm_AutoGeneratingDataFormItem"
-                        BackgroundColor="LightPink" ContainerBackgroundColor="LightCoral" 
-                        x:Name="dataForm" DataObject="{Binding Attendance}" LayoutOptions="Default" LabelPosition="Top" ShowHelperText="True" />
-                </StackLayout>
+                     </StackLayout>
             </pulltorefresh:SfPullToRefresh.PullableContent>
         </pulltorefresh:SfPullToRefresh>
     </ContentPage.Content>
