@@ -15,7 +15,7 @@ namespace eStoreMobile.Views
     public class StockRepo
     {
         private ObservableCollection<StockList> stockLists;
-
+        
         public ObservableCollection<StockList> StockListCollection
         {
             get { return stockLists; }
@@ -46,12 +46,28 @@ namespace eStoreMobile.Views
         }
 
         
+        
+
+        
     }
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class StockListPage : ContentPage
     {
-
+        int swipedRowIndex = -1;
+        StockList selecteRow;
+        void DeleteRow()
+        {
+            var d = viewModel.StockListCollection[this.swipedRowIndex];
+        }
+        void dataGrid_SwipeStarted(System.Object sender, Syncfusion.SfDataGrid.XForms.SwipeStartedEventArgs e)
+        {
+        }
+        void dataGrid_SwipeEnded(System.Object sender, Syncfusion.SfDataGrid.XForms.SwipeEndedEventArgs e)
+        {
+            this.selecteRow = (StockList)e.RowData;
+            this.swipedRowIndex = e.RowIndex;
+        }
         public StockListPage()
         {
             InitializeComponent();

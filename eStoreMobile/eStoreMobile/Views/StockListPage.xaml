@@ -11,7 +11,6 @@
 </ContentPage.BindingContext>
 <ContentPage.Content>
 <!-- RefreshContentHeight="50"RefreshContentWidth="50" -->
-
 <pulltoRefresh:SfPullToRefresh x:Name="pullToRefresh"
                                RefreshContentHeight="50"
                                RefreshContentWidth="50"
@@ -31,24 +30,26 @@
 </OnPlatform>
 </pulltoRefresh:SfPullToRefresh.ProgressStrokeWidth>
 <pulltoRefresh:SfPullToRefresh.PullableContent>
-    <StackLayout BackgroundColor="Aqua"
+<StackLayout BackgroundColor="Aqua"
              Padding="2">
-<Label Text="Stock List"
+<Label Text="Stock List Barcode"
        TextColor="DarkRed"
        HorizontalOptions="CenterAndExpand"
        FontSize="24" />
-    <SearchBar Placeholder="Barcode"
+<SearchBar Placeholder="Barcode"
            TextChanged="SearchBar_TextChanged" />
-<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+<StackLayout Orientation="Horizontal"
+             HorizontalOptions="Center">
 <Button x:Name="Excel"
-                 Text="To Excel"
-                 Clicked="ExportToExcel_Clicked" />
+        Text="To Excel"
+        Clicked="ExportToExcel_Clicked" />
 <Button Text="Sync"
-                 Clicked="SfButton_ClickedAsync" />
+        Clicked="SfButton_ClickedAsync" />
 </StackLayout>
-    
 <datagrid:SfDataGrid x:Name="dataGrid"
+                     
                      BackgroundColor="DimGray"
+                     AllowSwiping="true"
                      AllowSorting="True"
                      ColumnSizer="Star"
                      SelectionMode="Single"
@@ -71,13 +72,54 @@
                              HeaderFontAttribute="Bold"
                              MappingName="LastAccess" />
 </datagrid:SfDataGrid.Columns>
+
+    <datagrid:SfDataGrid.LeftSwipeTemplate>
+                    <DataTemplate>
+                        <Grid BackgroundColor="#42A5F5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <ContentView Grid.Column="0" Padding="16,0,0,0" Content="{StaticResource leftImage}" />
+                            <ContentView Grid.Column="1" Padding="15, 0, 0, 0">
+                                <Label BackgroundColor="Transparent"
+                                       HorizontalTextAlignment="Start"
+                                       LineBreakMode="NoWrap"
+                                       Text="EDIT"
+                                       TextColor="White"
+                                       VerticalTextAlignment="Center" />
+                            </ContentView>
+                        </Grid>
+                    </DataTemplate>
+                </datagrid:SfDataGrid.LeftSwipeTemplate>
+
+                <datagrid:SfDataGrid.RightSwipeTemplate>
+                    <DataTemplate>
+                        <Grid BackgroundColor="#EF5350">
+                            <Grid.ColumnDefinitions> 
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="40" />
+                            </Grid.ColumnDefinitions>
+                            <ContentView Grid.Column="1" Padding="5,0,0,0" Content="{StaticResource rightImage}" HorizontalOptions="Start"/>
+                            <ContentView Grid.Column="0" Padding="10, 0, 0, 0">
+                                <Label BackgroundColor="Transparent" HorizontalOptions="End"
+                                       HorizontalTextAlignment="Start"
+                                       LineBreakMode="NoWrap"
+                                       Text="DELETE"
+                                       TextColor="White"
+                                       VerticalTextAlignment="Center" />
+                            </ContentView>
+                        </Grid>
+                    </DataTemplate>
+                </datagrid:SfDataGrid.RightSwipeTemplate>
+
+
 <datagrid:SfDataGrid.SortColumnDescriptions>
 <datagrid:SortColumnDescription ColumnName="Barcode" />
 </datagrid:SfDataGrid.SortColumnDescriptions>
 </datagrid:SfDataGrid>
-
 </StackLayout>
-    </pulltoRefresh:SfPullToRefresh.PullableContent>
+</pulltoRefresh:SfPullToRefresh.PullableContent>
 </pulltoRefresh:SfPullToRefresh>
 </ContentPage.Content>
 </ContentPage>
