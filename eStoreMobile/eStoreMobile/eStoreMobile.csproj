@@ -25,6 +25,8 @@
     <None Remove="Resources\Fonts\Montserrat-SemiBold.ttf" />
     <None Remove="Resources\Fonts\UIFontIcons.ttf" />
     <None Remove="Syncfusion.Xamarin.SfPullToRefresh" />
+    <None Remove="Microsoft.Azure.Mobile.Client" />
+    <None Remove="Microsoft.Azure.Mobile.Client.SQLiteStore" />
   </ItemGroup>
 
   <ItemGroup>
@@ -76,6 +78,8 @@
     <PackageReference Include="ZXing.Net.Mobile" Version="3.1.0-beta2" />  
     <PackageReference Include="ZXing.Net.Mobile.Forms" Version="3.1.0-beta2" />
     <PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh" Version="19.3.0.43" />
+    <PackageReference Include="Microsoft.Azure.Mobile.Client" Version="4.2.0" />
+    <PackageReference Include="Microsoft.Azure.Mobile.Client.SQLiteStore" Version="4.2.0" />
   </ItemGroup>
 
   <ItemGroup>

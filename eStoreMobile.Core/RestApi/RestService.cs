@@ -27,7 +27,7 @@ namespace eStoreMobile.Core.RestApi
             };
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             Uri uri = new Uri (string.Format (restUrl, id));
 
@@ -38,15 +38,17 @@ namespace eStoreMobile.Core.RestApi
                 if ( response.IsSuccessStatusCode )
                 {
                     Debug.WriteLine ($@"\t{APIName} successfully deleted.");
+                    return true;
                 }
             }
             catch ( Exception ex )
             {
                 Debug.WriteLine ($@"\t{APIName}:\tERROR {0}", ex.Message);
             }
+            return false;
         }
 
-        public async Task DeleteAsync(string id)
+        public async Task<bool> DeleteAsync(string id)
         {
             Uri uri = new Uri (string.Format (restUrl, id));
 
@@ -57,12 +59,14 @@ namespace eStoreMobile.Core.RestApi
                 if ( response.IsSuccessStatusCode )
                 {
                     Debug.WriteLine ($@"\t{APIName} successfully deleted.");
+                    return true;
                 }
             }
             catch ( Exception ex )
             {
                 Debug.WriteLine ($@"\t{APIName}:\tERROR {0}", ex.Message);
             }
+            return false;
         }
 
         public async Task<List<T>> RefreshDataAsync()

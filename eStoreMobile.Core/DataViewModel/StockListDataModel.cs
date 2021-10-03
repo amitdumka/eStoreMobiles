@@ -1,16 +1,11 @@
 ﻿using eStoreMobile.Core.Database;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using eStore.Shared.Models.Payroll;
-using eStoreMobile.Core.Database;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using eStoreMobile.Core.Models;
-
+//Note: It will be local and web Api based. 
 namespace eStoreMobile.Core.DataViewModel
 {
     public  class StockListDataModel

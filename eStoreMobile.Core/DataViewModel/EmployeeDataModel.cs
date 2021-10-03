@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
+//Always Cache Employee Database in local for Admin work.
 namespace eStoreMobile.Core.DataViewModel
 {
     
@@ -20,7 +21,7 @@ namespace eStoreMobile.Core.DataViewModel
             service = new RestApi.RestService<Employee> (Constants.EmployeeUrl, "Employee");
         }
 
-        public async Task<List<Employee>> GetEmployees(int storeid,bool local = true)
+        public async Task<List<Employee>> GetEmployees(int storeid,bool local = false)
         {
             if ( local )
             { 
@@ -49,7 +50,6 @@ namespace eStoreMobile.Core.DataViewModel
                 Debug.WriteLine("No of Record added: " + record);
             }
         }
-
 
         public async Task<Dictionary<int, string>> GetEmployeeNameList(int storeId,bool working=true)
         {

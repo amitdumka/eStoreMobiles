@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-
+//Only Logged in User record can only be store locally otherwise not it will be from web.
 namespace eStoreMobile.Core.DataViewModel
 {
     public class AttendanceDataModel
@@ -21,52 +21,51 @@ namespace eStoreMobile.Core.DataViewModel
         {
             empId = id;
             Role = role;
-            service = new RestApi.RestService<Attendance> (Constants.AttendanceUrl, "Attendance");
-            isAdmin = IsAdmin ();
+            service = new RestApi.RestService<Attendance>(Constants.AttendanceUrl, "Attendance");
+            isAdmin = IsAdmin();
         }
 
         public bool IsAdmin()
         {
-            if ( Role == EmpType.Accounts || Role == EmpType.StoreManager || Role == EmpType.Owner )
+            if (Role == EmpType.Accounts || Role == EmpType.StoreManager || Role == EmpType.Owner)
                 return true;
             else
                 return false;
         }
 
-        public async Task<List<Attendance>> GetAttendances(int storeid, bool local = true)
+        public async Task<List<Attendance>> GetAttendances(int storeid, bool local = false)
         {
-            if ( isAdmin )
+            if (isAdmin)
             {
-                if ( local )
+                if (local)
                 {
-                    using ( _context = new eStoreDbContext () )
+                    using (_context = new eStoreDbContext())
                     {
-                        return await _context.Attendances.Where (c => c.StoreId == storeid).ToListAsync ();
+                        return await _context.Attendances.Where(c => c.StoreId == storeid).ToListAsync();
                     }
                 }
                 else
                 {
-                    Attendances = await service.RefreshDataAsync ();
-                    Sync ();
+                    Attendances = await service.RefreshDataAsync();
                     return Attendances;
                 }
             }
             else
             {
-                if ( local )
+                if (local)
                 {
-                    using ( _context = new eStoreDbContext () )
+                    using (_context = new eStoreDbContext())
                     {
-                        return await _context.Attendances.Where (c => c.StoreId == storeid && c.EmployeeId == empId).ToListAsync ();
+                        return await _context.Attendances.Where(c => c.StoreId == storeid && c.EmployeeId == empId).ToListAsync();
                     }
                 }
                 else
                 {
-                    if ( empId > 0 )
+                    if (empId > 0)
                     {
-                        Attendances = ( await service.RefreshDataAsync () );
-                        Attendances = Attendances.Where (c => c.EmployeeId == empId).ToList ();
-                        Sync ();
+                        Attendances = (await service.RefreshDataAsync());
+                        Attendances = Attendances.Where(c => c.EmployeeId == empId).ToList();
+
                     }
                     else
                         Attendances = null;
@@ -76,120 +75,158 @@ namespace eStoreMobile.Core.DataViewModel
             }
         }
 
+        //Do not use
         public async void Sync()
         {
             try
             {
-                using ( _context = new eStoreDbContext () )
+                using (_context = new eStoreDbContext())
                 {
-                    if ( Attendances == null || Attendances.Count <= 0 )
-                        Attendances = await service.RefreshDataAsync ();
-                    Attendances = Attendances.OrderBy (c => c.EmployeeId).ToList ();
+                    if (Attendances == null || Attendances.Count <= 0)
+                        Attendances = await service.RefreshDataAsync();
+                    Attendances = Attendances.OrderBy(c => c.EmployeeId).ToList();
 
-                    foreach ( var item in Attendances )
+                    foreach (var item in Attendances)
                     {
                         item.Employee.EmployeeId = 0;
                         item.EmployeeId = 0;
-                        _context.Employees.Add (item.Employee);
+                        _context.Employees.Add(item.Employee);
                         item.AttendanceId = 0;
-                        _context.Attendances.Add (item);
+                        _context.Attendances.Add(item);
                     }
-                   
-                   
-                    int record = _context.SaveChanges ();
-                   
 
 
-                    Debug.WriteLine ("No of Record added: " + record);
+                    int record = _context.SaveChanges();
+
+
+
+                    Debug.WriteLine("No of Record added: " + record);
                 }
             }
-            catch ( System.Exception ex )
+            catch (System.Exception ex)
             {
 
-                Debug.WriteLine (ex.Message);
+                Debug.WriteLine(ex.Message);
             }
-            
+
         }
 
-        public async Task<Attendance> GetAttendanceByIdAsync(int id)
+        public async Task<Attendance> GetAttendanceByIdAsync(int id, bool local = false)
         {
-
-            using ( _context = new eStoreDbContext () )
+            Attendance att = null;
+            if (local)
             {
-                Attendance att = null;
-                if(isAdmin||( empId > 0 && empId == id ) )
+                using (_context = new eStoreDbContext())
                 {
-                    att = await _context.Attendances.FindAsync (id);
+
+                    if (isAdmin || (empId > 0))
+                    {
+                        att = await _context.Attendances.FindAsync(id);
+
+                    }
+
+
+
                 }
-               
-                
-                return null;
             }
+            else
+            {
+                if (isAdmin || (empId > 0))
+                {
+                    att = await service.GetByIdAsync(id);
+                }
+            }
+            if (att.EmployeeId != empId && !isAdmin)
+                return null;
+            else return att;
+
         }
 
-        public async Task<List<Attendance>> GetAttendanceByName(string StaffName)
+        public async Task<List<Attendance>> GetAttendanceByName(string StaffName, bool local = false)
         {
-            using ( _context = new eStoreDbContext () )
-            {
-                if ( isAdmin )
-                    return await _context.Attendances.Include (c => c.Employee).Where (c => c.Employee.StaffName == StaffName).ToListAsync ();
-                else
-                    return null;
-            }
+            
+            
+                List<Attendance> att=null;
+                if (local && isAdmin)
+                {
+                    using (_context = new eStoreDbContext())
+                    {
+                        att = await _context.Attendances.Include(c => c.Employee).Where(c => c.Employee.StaffName == StaffName).ToListAsync();
+                    }
+                }
+                else if (!local && isAdmin)
+                {
+                    string param = $"{{queryByField:'StaffName', fieldValue:'{StaffName}'}}";
+                    att = await service.FindAsync(param);
+                }
+                return att;
+            
         }
 
         public async Task<int> SaveAttendance(Attendance Attendance, bool isNew = true, bool local = false)
         {
-            if ( isAdmin || ( empId > 0 && empId == Attendance.EmployeeId ) )
+            if (isAdmin || (empId > 0 && empId == Attendance.EmployeeId))
             {
-                if ( local )
+                if (local)
                 {
 
 
-                    using ( _context = new eStoreDbContext () )
+                    using (_context = new eStoreDbContext())
                     {
-                        if ( isNew )
+                        if (isNew)
                         {
-                            await _context.Attendances.AddAsync (Attendance);
+                            await _context.Attendances.AddAsync(Attendance);
                         }
                         else
                         {
-                            _context.Attendances.Update (Attendance);
+                            _context.Attendances.Update(Attendance);
                         }
 
-                        return await _context.SaveChangesAsync ();
+                        return await _context.SaveChangesAsync();
                     }
 
                 }
                 else
                 {
-                    if ( await service.SaveAsync (Attendance, isNew) )
+                    if (await service.SaveAsync(Attendance, isNew))
                         return 1;
-                    
+
                 }
             }
             return -1;//Error;
-                
+
         }
 
-        public int DeleteAttendance(int id)
+        public async Task<bool> DeleteAttendanceAsync(int id, bool local=false)
         {
-            if(isAdmin||(empId==id))
-            using ( _context = new eStoreDbContext () )
+            if (isAdmin || (empId == id))
             {
-                var emp = _context.Attendances.Find (id);
-                if ( emp != null )
+                if (local)
                 {
-                    _context.Attendances.Remove (emp);
+                    using (_context = new eStoreDbContext())
+                    {
+                        var emp = _context.Attendances.Find(id);
+                        if (emp != null)
+                        {
+                            _context.Attendances.Remove(emp);
+                        }
+
+                    }
+                    return (_context.SaveChanges()>0?true:false);
                 }
-               
+                else
+                {
+                    return await service.DeleteAsync(id);
+                }
+
             }
-            return _context.SaveChanges ();
+            return false;
         }
+
 
         public bool IsExists(int id)
         {
-            if ( _context.Attendances.Find (id) != null )
+            if (_context.Attendances.Find(id) != null)
                 return true;
             return false;
         }
