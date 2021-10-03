@@ -2,6 +2,7 @@
 using eStore.Shared.Models.Stores;
 using eStore.Shared.Models.Tailoring;
 using eStore.Shared.Models.Users;
+using eStoreMobile.Core.DataViewModel;
 using eStoreMobile.Core.Models;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace eStoreMobile.Views
 
         void AddButton_Clicked(System.Object sender, System.EventArgs e)
         {
+
         }
 
         void EmployeeButton_Clicked(System.Object sender, System.EventArgs e)
@@ -35,29 +37,31 @@ namespace eStoreMobile.Views
     }
 
     public class AttendanceRepository{
-        private ObservableCollection<Attendance> stockLists;
+        int StoreId =1;
+        private ObservableCollection<Attendance> attendances;
 
         public ObservableCollection<Attendance> StockListCollection
         {
-            get { return stockLists; }
-            set { this.stockLists = value; }
+            get { return attendances; }
+            set { this.attendances = value; }
         }
 
         public AttendanceRepository()
         {
-            stockLists = new ObservableCollection<Attendance>();
+            attendances = new ObservableCollection<Attendance>();
             this.LoadData();
         }
 
         private async void LoadData()
         {
-            StockListDataModel dm = new StockListDataModel();
+            AttendanceDataModel dm = new AttendanceDataModel();
 
-            List<StockList> Data = await dm.RefreshDataAsync();
-            stockLists.Clear();
+            List<Attendance> Data = await dm.GetAttendances(StoreId);
+
+            attendances.Clear();
             foreach (var item in Data)
             {
-                stockLists.Add(item);
+                attendances.Add(item);
             }
 
         }

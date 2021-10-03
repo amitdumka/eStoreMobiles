@@ -100,5 +100,27 @@ namespace eStoreMobile.Core.DataViewModel
             
            
         }
+
+        public async Task<int> SaveUser(User user, bool isNew = true, bool isLocal=true)
+        {
+            int count = 0;
+            using (_context=new eStoreDbContext())
+            {
+                if (isNew) {
+                   await _context.Users.AddAsync(user);
+                }
+                else {
+                    _context.Users.Update(user);
+                }
+                count = await _context.SaveChangesAsync();
+            }
+            if (!isLocal)
+            {
+                _ = service.SaveAsync(user, isNew);
+            }
+            return count;
+        }
+
+
     }
 }
