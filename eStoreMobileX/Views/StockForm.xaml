@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:dataform="clr-namespace:Syncfusion.XForms.DataForm;assembly=Syncfusion.SfDataForm.XForms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:eStoreMobileX.ViewModel"
+             Title="Stock List"
+             x:Class="eStoreMobileX.Views.StockForm">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Export" />
+        <ToolbarItem Text="Sync"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.BindingContext>
+        <local:StockListViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Stock Form" VerticalOptions="Start"  TextColor="DarkBlue" FontSize="20"  HorizontalOptions="CenterAndExpand" />
+            <dataform:SfDataForm x:Name="dataForm" DataObject="{Binding StockList}" LayoutOptions="TextInputLayout" />
+                <StackLayout >
+                <Button Text="Save"/>
+                <Button Text="Sync"/>
+                <Button Text="Export"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

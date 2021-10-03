@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace eStoreMobileX
+namespace eStoreMobileX.Views
 {
     public partial class MainPage : ContentPage
     {

@@ -13,7 +13,7 @@ namespace eStoreMobileX
         {
             InitializeComponent ();
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense ("NTA5NTg4QDMxMzkyZTMzMmUzMGNDRS9qQ1pzSmpIRkVmMTlJaEVNdzlkQ29QNFF0eTFDMmlIemliMUtaVDA9");
-            MainPage = new eStoreMobileX.MainPage ();
+            MainPage = new eStoreMobileX.AppShell ();
         }
 
         protected override void OnStart()

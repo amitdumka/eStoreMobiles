@@ -34,6 +34,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eStoreMobileX.UWP", "eStore
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		eStoreMobile.Shared\eStoreMobile.Shared.projitems*{65a0bcfe-9828-4750-8266-58c9fd522e2f}*SharedItemsImports = 5
 		eStoreMobile.Shared\eStoreMobile.Shared.projitems*{6d8b549c-4b05-43bd-8bf2-9718397afcc3}*SharedItemsImports = 5
 		eStoreMobile.Shared\eStoreMobile.Shared.projitems*{ef5cf715-48ca-477b-bb23-7f750bf970fa}*SharedItemsImports = 13
 	EndGlobalSection
