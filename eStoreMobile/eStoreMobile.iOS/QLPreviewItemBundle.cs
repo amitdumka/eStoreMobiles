@@ -1,18 +1,16 @@
-﻿using System;
-namespace eStoreMobile.iOS
+﻿namespace eStoreMobile.iOS
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.IO;
     using Foundation;
     using QuickLook;
+    using System.Diagnostics.CodeAnalysis;
+    using System.IO;
 
     /// <summary>
     ///  An item that can be previewed with a QuickLook.QLPreviewController.
     /// </summary>
     public class QLPreviewItemBundle : QLPreviewItem
     {
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Reviewed. Suppression is OK here.Private field does not need documentation")]
+        [SuppressMessage ("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Reviewed. Suppression is OK here.Private field does not need documentation")]
         private string fileName, filePath;
 
         /// <summary>
@@ -45,8 +43,8 @@ namespace eStoreMobile.iOS
             get
             {
                 var documents = NSBundle.MainBundle.BundlePath;
-                var lib = Path.Combine(documents, this.filePath);
-                var url = NSUrl.FromFilename(lib);
+                var lib = Path.Combine (documents, this.filePath);
+                var url = NSUrl.FromFilename (lib);
                 return url;
             }
         }

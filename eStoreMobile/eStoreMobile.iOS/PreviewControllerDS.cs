@@ -1,16 +1,15 @@
-﻿using System;
-namespace eStoreMobile.iOS
+﻿namespace eStoreMobile.iOS
 {
+    using QuickLook;
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using QuickLook;
 
     /// <summary>
     ///  A class that allows a QuickLook.QLPreviewController to preview multiple items.
     /// </summary>
     public class PreviewControllerDS : QLPreviewControllerDataSource
     {
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Reviewed. Suppression is OK here.Private field does not need documentation")]
+        [SuppressMessage ("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Reviewed. Suppression is OK here.Private field does not need documentation")]
         private QLPreviewItem item;
 
         /// <summary>
@@ -29,7 +28,7 @@ namespace eStoreMobile.iOS
         /// <returns>returns the value of n integer type as 1</returns>
         public override nint PreviewItemCount(QLPreviewController controller)
         {
-            return (nint)1;
+            return (nint) 1;
         }
 
         /// <summary>

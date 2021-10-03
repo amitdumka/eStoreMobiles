@@ -179,9 +179,9 @@
     <AndroidResource Include="Resources\drawable\icon_feed.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\eStoreMobile\eStoreMobile.csproj">
+    <ProjectReference Include="..\eStoreMobile\eStoreMobileObSoulte.csproj">
       <Project>{B8C71E91-3F75-46DC-9BB9-8B0035D6F7E2}</Project>
-      <Name>eStoreMobile</Name>
+      <Name>eStoreMobileObSoulte</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

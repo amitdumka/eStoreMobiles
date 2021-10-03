@@ -3,7 +3,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using Application = Android.App.Application;
 
-[assembly: ExportRenderer(typeof(eStoreMobile.Controls.BorderlessEditor), typeof(eStoreMobile.Droid.BorderlessEditorRenderer))]
+[assembly: ExportRenderer (typeof (eStoreMobile.Controls.BorderlessEditor), typeof (eStoreMobile.Droid.BorderlessEditorRenderer))]
 
 namespace eStoreMobile.Droid
 {
@@ -15,11 +15,11 @@ namespace eStoreMobile.Droid
         #region Constructor
 
         public BorderlessEditorRenderer()
-            : base(Application.Context)
+            : base (Application.Context)
         {
         }
 
-        #endregion
+        #endregion Constructor
 
         #region Methods
 
@@ -29,14 +29,14 @@ namespace eStoreMobile.Droid
         /// <param name="e">The editor</param>
         protected override void OnElementChanged(ElementChangedEventArgs<Editor> e)
         {
-            base.OnElementChanged(e);
+            base.OnElementChanged (e);
 
-            if (this.Control != null)
+            if ( this.Control != null )
             {
-                this.Control.Background = new ColorDrawable(Android.Graphics.Color.Transparent);
+                this.Control.Background = new ColorDrawable (Android.Graphics.Color.Transparent);
             }
         }
 
-        #endregion
+        #endregion Methods
     }
 }
