@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
+
 namespace eStore.Shared.Models.Payroll
 {
     /// <summary>
@@ -30,25 +31,5 @@ namespace eStore.Shared.Models.Payroll
         public bool IsTailoring { get; set; }
     }
 
-    public class AttendanceVM 
-    {
-        public int AttendanceId { get; set; }
-
-        [Display(Name = "Staff Name")]
-        public int EmployeeId { get; set; }
-
-        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Attendance Date")]
-        public DateTime AttDate { get; set; }
-
-        [Display(Name = "Entry Time")]
-        public string EntryTime { get; set; }
-
-        public AttUnit Status { get; set; }
-        public string Remarks { get; set; }
-
-        [Display(Name = "Tailor")]
-        public bool IsTailoring { get; set; }
-        public int StoreId { get; set; }
-    }
+   
 }

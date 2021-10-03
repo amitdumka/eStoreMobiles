@@ -1,77 +1,67 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converter="clr-namespace:eStoreMobile.Converters"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
-             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
-             xmlns:sfDatePicker="clr-namespace:Syncfusion.XForms.Pickers;assembly=Syncfusion.SfPicker.XForms"
              xmlns:dataform="clr-namespace:Syncfusion.XForms.DataForm;assembly=Syncfusion.SfDataForm.XForms"
              xmlns:local="clr-namespace:eStoreMobile.Views"
              xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              x:Class="eStoreMobile.Views.AddAttendanceView">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
+            <converter:NameValidationConverter x:Key="FirstValidationErrorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.BindingContext>
         <local:AttendanceViewModel />
     </ContentPage.BindingContext>
+    <!--BackgroundColor="#1B1F35" Black  BackgroundColor="#E5EBFF" White-->
     <ContentPage.Content>
-       
-            <StackLayout BackgroundColor="DarkBlue" Padding="10">
-                <Label x:Name="title_label" Text="New Attendance"  TextColor="Aquamarine"  FontSize="Title"  HorizontalOptions="CenterAndExpand" Margin="10" />
+        <Grid>
+           
+            <StackLayout  Padding="10" >
+                <!--<gradient:SfGradientView Style="{StaticResource BlueGradientStyle}" />-->
+                <Label x:Name="title_label" Text="New Attendance"  Style="{StaticResource TitleLabelStyle}"                           
+                            TextColor="{DynamicResource PrimaryGradient}"  FontSize="20"  HorizontalOptions="CenterAndExpand" Margin="10" />
+                 <dataform:SfDataForm  
+                         VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                         AutoGeneratingDataFormItem="dataForm_AutoGeneratingDataFormItem"                       
+                        x:Name="dataForm" DataObject="{Binding Attendance}" LayoutOptions="TextInputLayout"  ShowHelperText="False" >
+                 </dataform:SfDataForm>
+                <border:SfBorder BorderColor="{DynamicResource Gray-White}" BorderWidth="3" HasShadow="True">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Padding="10" >
+                        <button:SfButton Grid.Row="5"  Margin="0,16" HorizontalOptions="Fill" Style="{StaticResource GradientButtonStyle}" Text=" Cancel " />
+                        <button:SfButton Grid.Row="5"
+                            Margin="0,16,0,16"  Style="{StaticResource GradientButtonStyle}" HorizontalOptions="Fill">
+                            <button:SfButton.Content>
+                                <StackLayout
+                                    HorizontalOptions="CenterAndExpand"
+                                    Orientation="Horizontal"
+                                    VerticalOptions="Center">
+                                    <Label
+                                        FontFamily="FontIcons"
+                                        FontSize="18"
+                                        Text="   &#xe738;"
+                                        TextColor="{DynamicResource Gray-White}"
+                                        VerticalTextAlignment="Center" />
+                                    <Label
+                                        FontFamily="Montserrat-Medium"
+                                        FontSize="16"
+                                        Text=" Save    "
+                                        TextColor="{DynamicResource Gray-White}" />
+                                </StackLayout>
+                            </button:SfButton.Content>
+                        </button:SfButton>
+                    </StackLayout>
 
-                 <dataform:SfDataForm 
-                        CommitMode="LostFocus"
-                        VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
-                        ColumnCount="2"  AutoGeneratingDataFormItem="dataForm_AutoGeneratingDataFormItem"
-                        BackgroundColor="LightPink" ContainerBackgroundColor="LightCoral" 
-                        x:Name="dataForm" DataObject="{Binding Attendance}" LayoutOptions="Default" LabelPosition="Top" ShowHelperText="True" />
-               
-                <!--<StackLayout BackgroundColor="White">
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
-                        <Label Margin="5,5,0,5"  Text="StaffName : " Visual="Material" FontSize="Body" TextColor="Blue" VerticalTextAlignment="Start" HorizontalOptions="StartAndExpand"/>
-                        <combobox:SfComboBox  DropDownCornerRadius="3" DropDownTextColor="#1976d2" x:Name="staff" Visual="Material" ShowBorder="True" WidthRequest="200" HeightRequest="40" BorderColor="#1976d2" MaximumDropDownHeight="200" Text="Select Staff" TextColor="DarkBlue"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
-                        <Label Margin="5,5,0,5"  Text="Status : " Visual="Material" FontSize="Body" TextColor="Blue" VerticalTextAlignment="Start" HorizontalOptions="StartAndExpand"/>
-                        <combobox:SfComboBox x:Name="status" DropDownCornerRadius="3" DropDownTextColor="#1976d2"  Visual="Material" ShowBorder="True" WidthRequest="200" HeightRequest="40" BorderColor="#1976d2" MaximumDropDownHeight="200" Text="Select Attendance" TextColor="DarkBlue"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
-                        <Label Margin="5,5,0,5"  Text="Date : " Visual="Material" FontSize="Body" TextColor="Blue" VerticalTextAlignment="Start" HorizontalOptions="StartAndExpand"/>
-                        <sfDatePicker:SfDatePicker x:Name="DateDiag"   Visual="Material"  ShowFooter="True" PickerWidth="400" SelectedItemFontSize="20"
-                                         UnselectedItemFontSize="20" ColumnHeaderHeight="40" Date="{Binding SelectedDate, Mode=TwoWay}" IsOpen="{Binding IsPickerOpen, Mode=TwoWay}"
-                                         OkCommand="{Binding AcceptCommand}" CancelCommand="{Binding DeclineCommand}"
-                                         HeaderText="Select a date"
-                                         PickerMode="Dialog"/>
-                        <Label Text="Date" x:Name="onDate" TextColor="Blue" HorizontalOptions="StartAndExpand"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
-                        <Label Margin="5,5,0,5"  Text="Time : " Visual="Material" FontSize="Body" TextColor="Blue" VerticalTextAlignment="Start" HorizontalOptions="StartAndExpand"/>
-                        <sfDatePicker:SfTimePicker x:Name="TimeDiag" UnselectedItemFontSize="20" ColumnHeaderHeight="40" Time="{Binding SelectedDate, Mode=TwoWay}" IsOpen="{Binding IsPickerOpen, Mode=TwoWay}"
-                                         OkCommand="{Binding AcceptCommand}" CancelCommand="{Binding DeclineCommand}"
-                                         HeaderText="Select Entry Time"  PickerMode="Dialog"/>
-                        <Label Text="Time" x:Name="EntryTime" TextColor="Blue" HorizontalOptions="StartAndExpand"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal" Spacing="22" Padding="10">
-                        <button:SfSwitch Visual="Material"  StateChanged="isTailoringSwitch_StateChanged" x:Name="isTailoring" IsOn="False"/>
-                        <Label  Text="Tailoring" TextColor="Blue" FontSize="Medium" />
-                    </StackLayout>
-                    <inputLayout:SfTextInputLayout Hint="Remarks" Visual="Material" ShowHelperText="True">
-                        <Entry Placeholder="Enter Remarks"  Visual="Material"  TextColor="Blue"
-                    MaxLength="100"
-                      IsSpellCheckEnabled="true"
-                     IsTextPredictionEnabled="true"
-                    />
-                    </inputLayout:SfTextInputLayout>
-                    <border:SfBorder BorderColor="BurlyWood" BorderWidth="3" HasShadow="True">
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Padding="10" >
-                            <button:SfButton Text="  Add  " HasShadow="True" CornerRadius="3" HorizontalOptions="FillAndExpand" BackgroundColor = "DeepSkyBlue" Clicked="AddButton_Clicked"/>
-                            <button:SfButton Text=" Cancel " HasShadow="True" CornerRadius="3" HorizontalOptions="FillAndExpand" Clicked="CancelButton_Clicked"/>
-                        </StackLayout>
-
-                    </border:SfBorder>
-                </StackLayout>-->
-
+                </border:SfBorder>
 
 
             </StackLayout>
+
+        </Grid>
        
     </ContentPage.Content>
 </ContentPage>

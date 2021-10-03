@@ -8,16 +8,19 @@
         <local:AttendanceRepository />
     </ContentPage.BindingContext>
 
-    <ContentPage.Content>
-        <pulltorefresh:SfPullToRefresh BackgroundColor="Beige" x:Name="pullToRefresh">
+    <!--BackgroundColor="#1B1F35" Black  BackgroundColor="#E5EBFF" White-->
+    
+    <ContentPage.Content BackgroundColor="#1B1F35">
+        <pulltorefresh:SfPullToRefresh BackgroundColor="#1B1F35" x:Name="pullToRefresh">
             <pulltorefresh:SfPullToRefresh.PullableContent>
                 <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" Padding="5">
-                    <Label Text="Attendance" FontSize="Title" TextColor="Blue" HorizontalTextAlignment="Center" TextDecorations="Underline" FontAttributes="Bold" />
+                    <Label Text="Attendance" FontSize="Title" TextColor="Aqua" HorizontalTextAlignment="Center" TextDecorations="Underline" FontAttributes="Bold" />
 
                     <StackLayout Margin="5" VerticalOptions="StartAndExpand" Padding="10">
                        <datagrid:SfDataGrid ItemsSource="{Binding AttendanceList}"
                                                     x:Name="dataGrid"
-                                                    BackgroundColor="DimGray"
+                                                    BackgroundColor="#E5EBFF"
+                                                    
                                                     AllowSwiping="true"
                                                     AllowSorting="True"
                                                     ColumnSizer="Star"
@@ -25,7 +28,7 @@
                                                     AutoGenerateColumns="False"  HeightRequest="600" 
                                                     VerticalOptions="StartAndExpand">
                            
-                            <datagrid:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
+                            <datagrid:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns" >
                                 <datagrid:GridTextColumn HeaderText="Id"
                                      HeaderFontAttribute="Bold"  ColumnSizer="Star"
                                      MappingName="EmployeeId" />
@@ -52,7 +55,7 @@
                         </datagrid:SfDataGrid>
                         
                     </StackLayout>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="5">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="5" BackgroundColor="#E5EBFF">
                         <Button Text="Add " x:Name="AddButton" CornerRadius="5" Clicked="AddButton_Clicked"/>
                         <Button Text="Add Employee" x:Name="EmployeeButton" CornerRadius="3"  Clicked="EmployeeButton_Clicked"/>
                     </StackLayout>

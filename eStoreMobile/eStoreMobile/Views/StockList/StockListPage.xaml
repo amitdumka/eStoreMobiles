@@ -30,17 +30,17 @@
             </OnPlatform>
         </pulltoRefresh:SfPullToRefresh.ProgressStrokeWidth>
         <pulltoRefresh:SfPullToRefresh.PullableContent>
-        <StackLayout BackgroundColor="Aqua"
-                 Padding="2">
-            <Label Text="Stock List Barcode"
-                TextColor="DarkRed"
+                <StackLayout BackgroundColor="#1B1F35"
+                 Padding="10">
+                 <Label Text="Stock List Barcode"
+                TextColor="#E5EBFF"
                 HorizontalOptions="CenterAndExpand"
                 FontSize="24" />
-            <SearchBar Placeholder="Barcode"
+                    <SearchBar Placeholder="Barcode"    BackgroundColor="#E5EBFF"
                    TextChanged="SearchBar_TextChanged" />
-            <StackLayout Orientation="Horizontal"
+                    <StackLayout Orientation="Horizontal" 
                          HorizontalOptions="Center">
-                <Button x:Name="Excel"
+                        <Button x:Name="Excel"
                         Text="To Excel"
                         Clicked="ExportToExcel_Clicked" />
                         <Button x:Name="PDF"
@@ -48,7 +48,7 @@
                         Clicked="PDFExport_Activated" />
                         <Button Text="Sync"
                         Clicked="SfButton_ClickedAsync" />
-            </StackLayout>
+                </StackLayout>
                     <!--AllowSwiping="true"-->
                     <datagrid:SfDataGrid x:Name="dataGrid"
                      BackgroundColor="DimGray"

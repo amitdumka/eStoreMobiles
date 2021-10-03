@@ -8,8 +8,8 @@ xmlns:dataform="clr-namespace:Syncfusion.XForms.DataForm;assembly=Syncfusion.SfD
         <local:UserViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout BackgroundColor="LightPink" Padding="10">
-            <Label Text="User" TextColor="DarkBlue"
+        <StackLayout BackgroundColor="#1B1F35" Padding="10">
+            <Label Text="User" TextColor="AliceBlue"
                FontSize="Title"
                 HorizontalOptions="CenterAndExpand" />
             

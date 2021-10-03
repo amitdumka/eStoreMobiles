@@ -1,5 +1,7 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using eStore.Shared.Models.Payroll;
+using Syncfusion.XForms.DataForm;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,8 +18,14 @@ namespace eStoreMobile.Views
         {
             // Attendance at; at.
 
-            if (e.DataFormItem.Name == "IsTailoring")
-                e.DataFormItem.Editor = "Switch";
+            //if (e.DataFormItem.Name == "IsTailoring")
+            //    e.DataFormItem.Editor = "Switch";
+            if ( e.DataFormItem.Name.Equals ("IsTailoring") )
+            {
+                e.DataFormItem.LayoutOptions = LayoutType.Default;
+                ( e.DataFormItem as DataFormCheckBoxItem ).IsThreeState = false;
+                ( e.DataFormItem as DataFormCheckBoxItem ).Text = "Tailor";
+            }
             if (e.DataFormItem.Name == "IsReadOnly")
                 e.Cancel = true;
             if (e.DataFormItem.Name == "AttendanceId")
@@ -62,9 +70,9 @@ namespace eStoreMobile.Views
     }
     public class AttendanceViewModel
     {
-        private Attendance attendance { get; set; }
+        private AttendanceVM attendance { get; set; }
 
-        public Attendance Attendance
+        public AttendanceVM Attendance
         {
             get { return this.attendance; }
             set { this.attendance = value; }
@@ -72,7 +80,30 @@ namespace eStoreMobile.Views
 
         public AttendanceViewModel()
         {
-            this.attendance = new Attendance();
+            this.attendance = new AttendanceVM();
+            this.attendance.AttDate = DateTime.Today.Date;
         }
+    }
+    public class AttendanceVM
+    {
+        public int AttendanceId { get; set; }
+
+        [Display (Name = "Staff Name")]
+        public int EmployeeId { get; set; }
+
+        [DataType (DataType.Date), DisplayFormat (DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display (Name = "Attendance Date")]
+        public DateTime AttDate { get; set; }
+
+        [Display (Name = "Entry Time")]
+        public string EntryTime { get; set; }
+
+        public AttUnit Status { get; set; }
+        public string Remarks { get; set; }
+
+        [ DisplayOptions (ShowLabel = false)]
+
+        public bool IsTailoring { get; set; }
+        public int StoreId { get; set; }
     }
 }
