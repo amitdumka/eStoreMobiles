@@ -32,17 +32,3 @@ This template uses Shell, an app container that reduces the complexity of your a
 - An integrated search handler.
 
 Open AppShell.xaml to begin exploring. To learn more about Shell visit: https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/introduction
-
-Product unlock key:
-
-@31352e312e30m4UX/WWjT9RDxiqEoq97lf5Ds4qHPC4G4ZE1IMrIHHs=
-
-Exe CheckSum
-1FA24A4D19C526BBFCFADCA4D1F89639
-Zip CheckSum
-3CCC4F49F76E53E6DF4150CD86F54E1A
-
-
-Lic key: NTA3MzU4QDMxMzkyZTMyMmUzMG50Y25oZEhtbEdXbzY3TnFoZTJpd3dKb3pHVUQzdWhQUjBXUHMrMkRyaFU9
-unlock key: @31392e322e30XMIuIdFtq/6ZdeK4gOmWrv4A0jWkXJ8DsE2B667COzw=
-

@@ -15,7 +15,6 @@ namespace eStoreMobile.Core.RestApi
         private HttpClient client;
         private string restUrl;
         private string APIName;
-
         public RestService(string url, string name)
         {
             restUrl = url;

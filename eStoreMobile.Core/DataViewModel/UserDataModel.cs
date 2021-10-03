@@ -37,19 +37,13 @@ namespace eStoreMobile.Core.DataViewModel
 
         }
 
-        public async Task<bool> VerifyLoginAsync(string username, string password)
+        public async Task<User> VerifyLoginAsync(string username, string password)
         {
             
             using(_context = new eStoreDbContext())
             {
                 if ((await _context.Users.CountAsync()) > 0)
-                {
-                    var user = await _context.Users.Where(c => c.UserName == username && c.Password == password).FirstOrDefaultAsync();
-                    if (user != null)
-                        return true;
-                    else
-                        return false;
-                }
+                   return await _context.Users.Where(c => c.UserName == username && c.Password == password).FirstOrDefaultAsync();
                 else
                 {
                     return await VerifyLoginRemoteAsync(username, password);
@@ -58,31 +52,24 @@ namespace eStoreMobile.Core.DataViewModel
             
         }
 
-        public async Task<bool> VerifyLoginRemoteAsync(string username, string password)
+        public async Task<User> VerifyLoginRemoteAsync(string username, string password)
         {
             try
             {
                 if ( Users == null || Users.Count <= 0 )
-                {
                     Users = await GetUserListAsync (false);
-                }
+ 
                 Sync ();
-                if ( Users != null && Users.Count > 0 )
-                {
-                    var user = Users.Where (c => c.UserName == username && c.Password == password).FirstOrDefault ();
-
-                    if ( user != null )
-                        return true;
-                    else
-                        return false;
-                }
+                
+                if ( Users != null && Users.Count > 0 )                
+                    return  Users.Where (c => c.UserName == username && c.Password == password).FirstOrDefault ();
                 else
-                    return false;
+                    return null;
             }
             catch ( Exception ex )
             {
                 Debug.WriteLine (ex.Message);
-                return false;
+                return null;
             }
         }
 
