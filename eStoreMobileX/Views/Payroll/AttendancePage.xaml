@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pulltorefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms" xmlns:datagrid="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+    xmlns:local="clr-namespace:eStoreMobileX.ViewModel.Payroll"
+    Title="Attendance"
+    x:Class="eStoreMobileX.Views.Payroll.AttendancePage">
+    <ContentPage.BindingContext>
+        <local:AttendanceViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content BackgroundColor="#1B1F35">
+        <pulltorefresh:SfPullToRefresh BackgroundColor="#1B1F35" x:Name="pullToRefresh">
+            <pulltorefresh:SfPullToRefresh.PullableContent>
+                <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" Padding="5">
+                    <Label Text="Attendance" FontSize="Title" TextColor="Aqua" HorizontalTextAlignment="Center" TextDecorations="Underline" FontAttributes="Bold" />
+
+                    <StackLayout Margin="5" VerticalOptions="StartAndExpand" Padding="10">
+                       <datagrid:SfDataGrid ItemsSource="{Binding AttendanceList}"
+                                                    x:Name="dataGrid"
+                                                    BackgroundColor="#E5EBFF"
+                                                    
+                                                    AllowSwiping="true"
+                                                    AllowSorting="True"
+                                                    ColumnSizer="Star"
+                                                    SelectionMode="Single"
+                                                    AutoGenerateColumns="False"  HeightRequest="600" 
+                                                    VerticalOptions="StartAndExpand">
+                           
+                            <datagrid:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns" >
+                                <datagrid:GridTextColumn HeaderText="Id"
+                                     HeaderFontAttribute="Bold"  ColumnSizer="Star"
+                                     MappingName="EmployeeId" />
+                                <datagrid:GridTextColumn HeaderText="Name"
+                                        TextAlignment="Center"
+                                        HeaderFontAttribute="Bold"
+                                        HeaderTextAlignment="Center"
+                                        ColumnSizer="LastColumnFill"
+                                        MappingName="Employee.StaffName" />
+                                <datagrid:GridTextColumn HeaderText="Status"
+                                         HeaderFontAttribute="Bold"   ColumnSizer="LastColumnFill"
+                                         MappingName="Status" />
+                                <datagrid:GridTextColumn HeaderText="Time"
+                                         HeaderFontAttribute="Bold"  ColumnSizer="LastColumnFill"
+                                         MappingName="EntryTime" />
+                                <datagrid:GridTextColumn HeaderText="Remark"
+                                         HeaderFontAttribute="Bold"     ColumnSizer="LastColumnFill"
+                                         MappingName="Remarks" />
+                            </datagrid:SfDataGrid.Columns>
+                            <datagrid:SfDataGrid.SortColumnDescriptions>
+                                <datagrid:SortColumnDescription ColumnName="employee.category" />
+                            </datagrid:SfDataGrid.SortColumnDescriptions>
+
+                        </datagrid:SfDataGrid>
+                        
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="5" BackgroundColor="#E5EBFF">
+                        <Button Text="Add " x:Name="AddButton" CornerRadius="5" Clicked="AddButton_Clicked"/>
+                        <Button Text="Add Employee" x:Name="EmployeeButton" CornerRadius="3"  Clicked="EmployeeButton_Clicked"/>
+                    </StackLayout>
+                     </StackLayout>
+            </pulltorefresh:SfPullToRefresh.PullableContent>
+        </pulltorefresh:SfPullToRefresh>
+    </ContentPage.Content>
+</ContentPage>

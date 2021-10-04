@@ -1,30 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-xmlns:dataform="clr-namespace:Syncfusion.XForms.DataForm;assembly=Syncfusion.SfDataForm.XForms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:eStoreMobileX.ViewModel"
-             Title="Stock List"
-             x:Class="eStoreMobileX.Views.StockForm">
-    
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Export" />
-        <ToolbarItem Text="Sync"/>
-    </ContentPage.ToolbarItems>
-    <ContentPage.BindingContext>
-        <local:StockListViewModel/>
-    </ContentPage.BindingContext>
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Stock Form" VerticalOptions="Start"  TextColor="DarkBlue" FontSize="20"  HorizontalOptions="CenterAndExpand" />
-            <dataform:SfDataForm x:Name="dataForm" DataObject="{Binding StockList}" LayoutOptions="TextInputLayout" />
-                <StackLayout >
-                <Button Text="Save"/>
-                <Button Text="Sync"/>
-                <Button Text="Export"/>
-            </StackLayout>
-            <StackLayout>
+       <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:dataform="clr-namespace:Syncfusion.XForms.DataForm;assembly=Syncfusion.SfDataForm.XForms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:local="clr-namespace:eStoreMobileX.ViewModel"
+              xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+              xmlns:numberic="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
+              Title="Stock List"
+              x:Class="eStoreMobileX.Views.StockForm">
 
-            </StackLayout>
-        </StackLayout>
-    </ContentPage.Content>
-</ContentPage>
+              <ContentPage.ToolbarItems>
+                     <ToolbarItem Text="Export" />
+                     <ToolbarItem Text="Sync" />
+              </ContentPage.ToolbarItems>
+              <ContentPage.BindingContext>
+                     <local:StockListViewModel />
+              </ContentPage.BindingContext>
+              <ContentPage.Content>
+                     <StackLayout Padding="20">
+                            <Label Text="Stock Form"
+                                   VerticalOptions="Start"
+                                   TextColor="DarkBlue"
+                                   FontSize="20"
+                                   HorizontalOptions="CenterAndExpand" />
+                           
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label x:Name="barcode" Text=" BarCode : " />
+                                    <Label x:Name="codeType" Text="Type: "/>
+                                    <numberic:SfNumericTextBox x:Name="qty"/>
+                                 </StackLayout>
+                                  
+                            </StackLayout>
+                          <zxing:ZXingScannerView IsScanning="True"
+                                          OnScanResult="ZXingScannerView_OnScanResult"
+                                          BackgroundColor="AntiqueWhite" 
+                                          />
+                          <dataform:SfDataForm x:Name="dataForm" 
+                                   AutoGeneratingDataFormItem="DataForm_AutoGeneratingDataFormItem"
+                                   DataObject="{Binding StockList}"
+                                   LayoutOptions="TextInputLayout" />
+                            <StackLayout Orientation="Horizontal">
+                                   <Button Text="Save" />
+                                   <Button Text="Sync" />
+                                   <Button Text="Export" />
+                            </StackLayout>
+                     </StackLayout>
+              </ContentPage.Content>
+       </ContentPage>

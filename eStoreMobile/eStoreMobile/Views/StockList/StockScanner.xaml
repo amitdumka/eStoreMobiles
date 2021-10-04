@@ -3,7 +3,8 @@
 xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
 xmlns:numerictextbox="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="eStoreMobile.Views.StockScanner" xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms">
+             x:Class="eStoreMobile.Views.StockScanner" 
+             xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms">
     <ContentPage.Content>
         <StackLayout BackgroundColor="DarkGray" >
             <Frame BackgroundColor="DarkOrchid" Padding="20" CornerRadius="10" BorderColor="AntiqueWhite">

@@ -8,6 +8,9 @@
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DocumentationFile>bin\Debug\netstandard2.0\eStoreMobileX.xml</DocumentationFile>
+  </PropertyGroup>
 <ItemGroup>
 <PackageReference Include="Microsoft.Azure.Mobile.Client" Version="4.2.0" />
 <PackageReference Include="Microsoft.Azure.Mobile.Client.SQLiteStore" Version="4.2.0" />
@@ -133,6 +136,7 @@
 
 
 
+<PackageReference Include="Syncfusion.Xamarin.DataGridExport" Version="19.3.0.43" />
 </ItemGroup>
 
 <ItemGroup>
@@ -160,5 +164,14 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Views\Payroll\" />
+    <None Remove="ViewModel\Payroll\" />
+    <None Remove="Syncfusion.Xamarin.DataGridExport" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Payroll\" />
+    <Folder Include="ViewModel\Payroll\" />
+  </ItemGroup>
   <Import Project="..\eStoreMobile.Shared\eStoreMobile.Shared.projitems" Label="Shared" />
 </Project>

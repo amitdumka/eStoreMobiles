@@ -21,6 +21,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.19" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.19" />
     <PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />
+    <PackageReference Include="Syncfusion.Xamarin.DataGridExport" Version="19.3.0.43" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ApiSync\" />
@@ -29,6 +30,7 @@
   <ItemGroup>
     <None Remove="Microsoft.EntityFrameworkCore.Sqlite" />
     <None Remove="Microsoft.EntityFrameworkCore" />
+    <None Remove="Syncfusion.Xamarin.DataGridExport" />
   </ItemGroup>
   <Import Project="..\eStoreMobile.Shared\eStoreMobile.Shared.projitems" Label="Shared" />
 
