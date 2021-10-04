@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using eStoreMobile.Core.DataViewModel;
+﻿using eStoreMobile.Core.DataViewModel;
 using eStoreMobile.Core.Models;
-using eStoreMobileX.ViewModel;
 using Syncfusion.XForms.DataForm;
+using System;
+using System.Diagnostics;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,98 +11,99 @@ namespace eStoreMobileX.Views
     [XamlCompilation (XamlCompilationOptions.Compile)]
     public partial class StockForm : ContentPage
     {
-        string Barcode = "";
-        string CodeType = "";
-        decimal Qty = 0.0M;
-        StockListDataModel dm;
-        StockListViewModel sm;
+        private StockListDataModel dm;
+
         public StockForm()
         {
             InitializeComponent ();
-             dm = new StockListDataModel();
-            
+            dm = new StockListDataModel ();
         }
+
         private void ZXingScannerView_OnScanResult(ZXing.Result result)
         {
+            Device.BeginInvokeOnMainThread (() =>
+            {
+                barcode.Text = "Barcode: " + result.Text;
+                codeType.Text = "Type: " + result.BarcodeFormat.ToString ();
+                var model = dataForm.DataObject as StockList;
+                model.Barcode = result.Text;
+                model.Stock = 1;
+                model.Count = 1;
 
-           
-            Device.BeginInvokeOnMainThread(() =>
-           {
-               qty.Value = 0.0;
-               barcode.Text = "Barcode: " + result.Text;
-               codeType.Text = "Type: " + result.BarcodeFormat.ToString();
-               Barcode = result.Text;
-               CodeType = result.BarcodeFormat.ToString();
-               Qty = 0;
-           });
-            var data = dataForm.DataObject as StockList;
-            data.Barcode = result.Text;
-            dataForm.DataObject = data;
-            
+                dataForm.UpdateEditor ("Barcode");
+                dataForm.UpdateEditor ("Stock");
+                dataForm.UpdateEditor ("Count");
+            });
         }
+
         private void DataForm_AutoGeneratingDataFormItem(object sender, AutoGeneratingDataFormItemEventArgs e)
         {
-            if (e.DataFormItem.Name == "Count")
+            if ( e.DataFormItem.Name == "Count" )
                 e.Cancel = true;
-            else if(e.DataFormItem.Name == "LastAccess")
+            else if ( e.DataFormItem.Name == "LastAccess" )
                 e.DataFormItem.IsReadOnly = true;
         }
-        private void qty_ValueChanged(object sender, Syncfusion.SfNumericTextBox.XForms.ValueEventArgs e)
-        {
-            Qty = (decimal)e.Value;
 
-
-            Device.BeginInvokeOnMainThread(() =>
-           {
-               barcode.Text+= $"  Selected Qty: {Qty}";
-           });
-
-        }
         private async void Save_Clicked(object sender, EventArgs e)
         {
             try
             {
-
-                //Qty = (decimal) qty.Value;
-
-                if (string.IsNullOrEmpty(Barcode) || Qty == 0)
+                dataForm.Commit ();
+                var model = dataForm.DataObject as StockList;
+                if ( model != null )
                 {
-                    Device.BeginInvokeOnMainThread(() =>
-                   {
-                       barcode.Text = "Error: Barcode or Qty is missing ";
-                   });
-                    await DisplayAlert("Error", "Barcode or Qty is missing", "Ok");
-                }
-                else
-                {
-                    int ctr = 0;
-                    StockList stock;// = new StockList { Barcode = Barcode, Count = 1, LastAccess = DateTime.Now, Stock = Qty };
-                    stock = await dm.FindBarCodeAsync(Barcode);
-                    if (stock != null)
+                    if(string.IsNullOrEmpty(model.Barcode) || model.Stock<=0)
                     {
-                        stock.Count += 1;
-                        stock.Stock += Qty;
-                        stock.LastAccess = DateTime.Now;
-                        ctr = await dm.SaveAsync(stock, false);
+                       await DisplayAlert ("Alert", "Kindly verify details before adding...", "Ok'");
                     }
                     else
                     {
-                        stock = new StockList { Barcode = Barcode, Count = 1, LastAccess = DateTime.Now, Stock = (decimal)Qty };
-                        ctr = await dm.SaveAsync(stock, true);
+                        int ctr = 0;
+                        StockList stock;
+                        stock = await dm.FindBarCodeAsync (model.Barcode);
+                        if ( stock != null )
+                        {
+                            stock.Count += 1;
+                            stock.Stock += model.Stock;
+                            stock.LastAccess = DateTime.Now;
+                            ctr = await dm.SaveAsync (stock, false);
+                        }
+                        else
+                        {
+                            model.Count = 1;
+                            ctr = await dm.SaveAsync (model, true);
+                        }
+                       await DisplayAlert ("Alert", $"Save: Barcode {model.Barcode}, AddedQty: {model.Stock}  \n Status: {( ctr > 0 ? "Saved" : "Error" )} ", "OK");
+                        model.Barcode = "";
+                        model.Stock = 0;
+                        model.Count = 0;
+                        dataForm.UpdateEditor ("Barcode");
+                        dataForm.UpdateEditor ("Stock");
+                        dataForm.UpdateEditor ("Count");
                     }
-                    Device.BeginInvokeOnMainThread(() =>
-                   {
-                       barcode.Text = $"Save: Barcode {Barcode}, AddedQty: {Qty} TotalQty: {stock.Stock}   \n Status: {(ctr > 0 ? "Saved" : "Error")} ";
-                   });
-                    await DisplayAlert("Alert", $"Save: Barcode {Barcode}, AddedQty: {Qty} TotalQty: {stock.Stock}   \n Status: {(ctr > 0 ? "Saved" : "Error")} ", "OK");
                 }
+                
             }
-            catch (Exception ex)
+            catch ( Exception ex )
             {
-
-                await DisplayAlert("Error", "An error Occured.." + ex.Message, "OK");
-                Debug.WriteLine(ex.Message);
+                await DisplayAlert ("Error", "An error Occured.." + ex.Message, "OK");
+                Debug.WriteLine (ex.Message);
             }
+        }
+
+        private void List_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PDF_Export_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Excel_Export_Clicked(object sender, EventArgs e)
+        {
+
         }
     }
 }

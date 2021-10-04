@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:datagrid="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             xmlns:pulltoRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
+             xmlns:local="clr-namespace:eStoreMobileX.ViewModel"
+             x:Class="eStoreMobileX.Views.StockListView">
+    
+    <ContentView.BindingContext>
+        <local:StockListViewModel x:Name="viewModel" />
+    </ContentView.BindingContext>
+  <ContentView.Content>
+      <StackLayout>
+          <Label Text="Stock Barcod List!" />
+            <datagrid:SfDataGrid x:Name="dataGrid"
+                     BackgroundColor="DimGray"
+                     AllowSwiping="true"
+                     AllowSorting="True"
+                     ColumnSizer="Star"
+                     SelectionMode="Single"
+                     AutoGenerateColumns="False"
+                     VerticalOptions="FillAndExpand"
+                     HorizontalOptions="Center"
+                     VerticalOverScrollMode="Bounce"
+                     ItemsSource="{Binding  StockListCollection}">
+
+                <datagrid:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
+                    <datagrid:GridTextColumn HeaderText="Barcode"
+                                     HeaderFontAttribute="Bold"
+                                     MappingName="Barcode" />
+                    <datagrid:GridNumericColumn HeaderText="Stock"
+                                        TextAlignment="Center"
+                                        HeaderFontAttribute="Bold"
+                                        HeaderTextAlignment="Center"
+                                        ColumnSizer="Auto"
+                                        MappingName="Stock" />
+                    <datagrid:GridDateTimeColumn HeaderText="Date"
+                                         HeaderFontAttribute="Bold"
+                                         MappingName="LastAccess" />
+                </datagrid:SfDataGrid.Columns>
+
+
+                <datagrid:SfDataGrid.SortColumnDescriptions>
+                    <datagrid:SortColumnDescription ColumnName="Barcode" />
+                </datagrid:SfDataGrid.SortColumnDescriptions>
+            </datagrid:SfDataGrid>
+
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>

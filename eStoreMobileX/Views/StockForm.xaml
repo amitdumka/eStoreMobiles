@@ -9,8 +9,10 @@
               x:Class="eStoreMobileX.Views.StockForm">
 
               <ContentPage.ToolbarItems>
-                     <ToolbarItem Text="Export" />
-                     <ToolbarItem Text="Sync" />
+                    <ToolbarItem Text="List" Order="Secondary" Priority="0" x:Name="List" Clicked="List_Clicked" />
+                    <ToolbarItem Text="To Pdf" Order="Secondary" Priority="0" x:Name="PDF_Export" Clicked="PDF_Export_Clicked"/>
+                    <ToolbarItem Text="To Excel" Order="Secondary" Priority="0" x:Name="Excel_Export" Clicked="Excel_Export_Clicked"/>
+                    <ToolbarItem Text="Sync" Order="Primary" Priority="0"  x:Name="Sync" />
               </ContentPage.ToolbarItems>
               <ContentPage.BindingContext>
                      <local:StockListViewModel />
@@ -25,9 +27,8 @@
                            
                             <StackLayout>
                                 <StackLayout Orientation="Horizontal">
-                                    <Label x:Name="barcode" Text=" BarCode : " />
-                                    <Label x:Name="codeType" Text="Type: "/>
-                                    <numberic:SfNumericTextBox x:Name="qty"/>
+                                    <Label x:Name="barcode" Text=" BarCode : " TextColor="Blue" Margin="0,0,10,0" />
+                                    <Label x:Name="codeType" Text="Type: " TextColor="DarkCyan"/>
                                  </StackLayout>
                                   
                             </StackLayout>
@@ -35,14 +36,13 @@
                                           OnScanResult="ZXingScannerView_OnScanResult"
                                           BackgroundColor="AntiqueWhite" 
                                           />
-                          <dataform:SfDataForm x:Name="dataForm" 
+            <dataform:SfDataForm x:Name="dataForm"    NotifyPropertyChanges="True"
                                    AutoGeneratingDataFormItem="DataForm_AutoGeneratingDataFormItem"
                                    DataObject="{Binding StockList}"
                                    LayoutOptions="TextInputLayout" />
                             <StackLayout Orientation="Horizontal">
-                                   <Button Text="Save" />
-                                   <Button Text="Sync" />
-                                   <Button Text="Export" />
+                                   <Button Text="Save"  x:Name="SaveData" Clicked="Save_Clicked"/>
+                                   
                             </StackLayout>
                      </StackLayout>
               </ContentPage.Content>
