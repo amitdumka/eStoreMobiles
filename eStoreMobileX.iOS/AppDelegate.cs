@@ -1,3 +1,5 @@
+using  Syncfusion.XForms.iOS.Graphics;
+using Syncfusion.XForms.iOS.Graphics;
 using Foundation;
 using System;
 using System.Collections.Generic;
@@ -118,6 +120,22 @@ namespace eStoreMobileX.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init ();
+            SfExpanderRenderer.Init();
+            SfChartRenderer.Init();
+            SfGaugeRenderer.Init();
+            SfMapsRenderer.Init();
+            SfRatingRenderer.Init();
+            SfComboBoxRenderer.Init();
+            SfTextInputLayoutRenderer.Init();
+            SfAvatarViewRenderer.Init();
+            SfSegmentedControlRenderer.Init();
+            SfRadioButtonRenderer.Init();
+            SfListViewRenderer.Init();
+            Core.Init();
+            SfGradientViewRenderer.Init();
+            SfEffectsViewRenderer.Init();
+            SfBorderRenderer.Init();
+            SfButtonRenderer.Init();
             ZXing.Net.Mobile.Forms.iOS.Platform.Init();
             LoadApplication (new App ());
 

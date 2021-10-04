@@ -5,10 +5,6 @@ VisualStudioVersion = 16.0.31229.75
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eStoreMobileObSoulte", "eStoreMobile\eStoreMobile\eStoreMobileObSoulte.csproj", "{B8C71E91-3F75-46DC-9BB9-8B0035D6F7E2}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "eStore.Shared", "..\eStoreWeb\eStore.Shared\eStore.Shared.shproj", "{AD575A80-1A21-41CF-858C-41F0DD7EE827}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "eStore", "eStore", "{6644B74A-CF54-4EEE-85E2-1BE04D3194C9}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eStoreMobile.Core", "eStoreMobile.Core\eStoreMobile.Core.csproj", "{6D8B549C-4B05-43BD-8BF2-9718397AFCC3}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "eStoreMobile.Shared", "eStoreMobile.Shared\eStoreMobile.Shared.shproj", "{EF5CF715-48CA-477B-BB23-7F750BF970FA}"
@@ -382,7 +378,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B8C71E91-3F75-46DC-9BB9-8B0035D6F7E2} = {CCC3C0E1-6465-4B1A-BAAA-D591A1936A3D}
-		{AD575A80-1A21-41CF-858C-41F0DD7EE827} = {6644B74A-CF54-4EEE-85E2-1BE04D3194C9}
 		{6D8B549C-4B05-43BD-8BF2-9718397AFCC3} = {0926AED9-3F92-4FCA-91B9-825D769E7B87}
 		{EF5CF715-48CA-477B-BB23-7F750BF970FA} = {0926AED9-3F92-4FCA-91B9-825D769E7B87}
 	EndGlobalSection

@@ -3,6 +3,8 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:views="clr-namespace:eStoreMobileX.Views"
        xmlns:local="clr-namespace:eStoreMobileX.Views.Payroll"
+       xmlns:sfUI="clr-namespace:eStoreMobileX.Views"
+       
        Title="eStoreMobileX"
        x:Class="eStoreMobileX.AppShell">
 
@@ -20,6 +22,41 @@
     <FlyoutItem Title="Stock List" Icon="icon_about.png">
         <ShellContent Route="Stock" ContentTemplate="{DataTemplate views:StockListPage}" />
     </FlyoutItem>
+    <FlyoutItem Title="AboutUs" Icon="icon_about.png">
+        <ShellContent Route="AboutUs" ContentTemplate="{DataTemplate views:AboutUsPageWithCards}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Login" Icon="icon_about.png">
+        <ShellContent Route="Login" ContentTemplate="{DataTemplate views:LoginPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Reset" Icon="icon_about.png">
+        <ShellContent Route="Reset" ContentTemplate="{DataTemplate views:ResetPasswordPageWithGradient}" />
+    </FlyoutItem>
+
+
+    <FlyoutItem Title="Settings" Icon="icon_about.png">
+        <ShellContent Route="Settings" ContentTemplate="{DataTemplate views:SettingsPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Wallet" Icon="icon_about.png">
+        <ShellContent Route="Wallet" ContentTemplate="{DataTemplate views:MyWalletPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Contact" Icon="icon_about.png">
+        <ShellContent Route="Contactus" ContentTemplate="{DataTemplate views:ContactUsPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="D Cal" Icon="icon_about.png">
+        <ShellContent Route="DailyCal" ContentTemplate="{DataTemplate views:DailyCaloriesReportPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Emp" Icon="icon_about.png">
+        <ShellContent Route="Emp" ContentTemplate="{DataTemplate views:EmployeeProfilePage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Care" Icon="icon_about.png">
+        <ShellContent Route="Care" ContentTemplate="{DataTemplate views:HealthCarePage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="History" Icon="icon_about.png">
+        <ShellContent Route="Histriy" ContentTemplate="{DataTemplate views:CompanyHistoryPage}" />
+    </FlyoutItem>
+
+
+
     <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" >
     </MenuItem>
     

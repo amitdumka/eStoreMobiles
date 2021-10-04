@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="eStoreMobileX.Views.StockOverviewPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behavior="clr-namespace:eStoreMobileX.Behaviors"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:controls="clr-namespace:eStoreMobileX.Controls"
+    xmlns:expander="clr-namespace:Syncfusion.XForms.Expander;assembly=Syncfusion.Expander.XForms"
+    xmlns:template="clr-namespace:eStoreMobileX.Views.Templates"
+    xmlns:viewModel="clr-namespace:eStoreMobileX.ViewModels"
+    x:Name="stockOverviewPage"
+    BackgroundColor="{DynamicResource Gray-Bg}"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.BindingContext>
+        <viewModel:StockOverviewPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout x:Name="rootLayout" Spacing="0">
+
+                <!--  Title View  -->
+                <controls:TitleView
+                    Title="Stock"
+                    FontFamily="Montserrat-Medium"
+                    FontSize="16">
+                    <controls:TitleView.LeadingView>
+
+                        <buttons:SfButton
+                            Command="{Binding Path=BindingContext.MenuCommand, Source={x:Reference stockOverviewPage}}"
+                            FontSize="22"
+                            HorizontalOptions="Start"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource BurgerMenu}" />
+
+                    </controls:TitleView.LeadingView>
+
+                    <controls:TitleView.TrailingView>
+
+                        <border:SfBorder
+                            BackgroundColor="{DynamicResource Gray-200}"
+                            BorderColor="{DynamicResource Gray-Bg}"
+                            Style="{StaticResource ProfileBorderStyle}">
+                            <Image HeightRequest="40" WidthRequest="40">
+                                <Image.Source>
+                                    <UriImageSource
+                                        CacheValidity="14"
+                                        CachingEnabled="true"
+                                        Uri="{Binding Path=BindingContext.ProfileImage, Source={x:Reference stockOverviewPage}}" />
+                                </Image.Source>
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ProfileSelectedCommand}" CommandParameter="{Binding}" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </border:SfBorder>
+
+                    </controls:TitleView.TrailingView>
+                </controls:TitleView>
+
+                <ContentPresenter />
+
+                <StackLayout.BindingContext>
+                    <viewModel:StockOverviewPageViewModel />
+                </StackLayout.BindingContext>
+
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+
+    <ContentPage.Content>
+
+        <ScrollView>
+
+            <StackLayout
+                Margin="16"
+                Spacing="16"
+                VerticalOptions="FillAndExpand">
+
+                <Label
+                    FontFamily="Montserrat-Bold"
+                    FontSize="20"
+                    LineHeight="1.25"
+                    Text="18 September"
+                    TextColor="{DynamicResource Gray-900}" />
+
+                <StackLayout
+                    x:Name="stackLayout"
+                    BindableLayout.ItemsSource="{Binding Items}"
+                    Spacing="16"
+                    VerticalOptions="FillAndExpand">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+
+                            <controls:CustomShadowFrame
+                                Margin="4"
+                                Padding="0"
+                                BackgroundColor="{DynamicResource GrayShadowColor}"
+                                BorderColor="{DynamicResource GrayShadowColor}"
+                                BorderWidth="2"
+                                CornerRadius="4"
+                                HasShadow="True"
+                                Radius="4">
+
+                                <expander:SfExpander
+                                    x:Name="expander"
+                                    AnimationDuration="350"
+                                    AnimationEasing="Linear"
+                                    HeaderBackgroundColor="Transparent"
+                                    HeaderIconPosition="None"
+                                    IsExpanded="{Binding IsSelected}">
+
+                                    <expander:SfExpander.Header>
+                                        <Grid
+                                            Margin="2"
+                                            Padding="16"
+                                            RowDefinitions="Auto, Auto">
+
+                                            <Label
+                                                x:Name="categoryLabel"
+                                                FontFamily="Montserrat-Bold"
+                                                FontSize="14"
+                                                HorizontalOptions="Start"
+                                                HorizontalTextAlignment="Center"
+                                                LineHeight="1.25"
+                                                Text="{Binding Category}"
+                                                TextColor="{DynamicResource Gray-900}"
+                                                VerticalTextAlignment="Center" />
+
+                                            <Label
+                                                Grid.Column="1"
+                                                FontFamily="Montserrat-SemiBold"
+                                                FontSize="16"
+                                                HorizontalOptions="EndAndExpand"
+                                                LineHeight="1.25"
+                                                TextColor="{DynamicResource Green}">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="+" />
+                                                        <Span Text="{Binding CategoryValue}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+
+                                            <Label
+                                                Grid.Row="1"
+                                                FontFamily="Montserrat-Medium"
+                                                FontSize="12"
+                                                HorizontalOptions="Start"
+                                                HorizontalTextAlignment="Center"
+                                                LineHeight="1.25"
+                                                Text="{Binding SubCategory}"
+                                                TextColor="{DynamicResource Gray-700}"
+                                                VerticalTextAlignment="Center" />
+
+                                            <Label
+                                                Grid.Row="1"
+                                                Grid.Column="1"
+                                                FontFamily="Montserrat-SemiBold"
+                                                FontSize="14"
+                                                HorizontalOptions="EndAndExpand"
+                                                LineHeight="1.25"
+                                                Text="{Binding SubCategoryValue}"
+                                                TextColor="{DynamicResource Gray-800}" />
+                                        </Grid>
+                                    </expander:SfExpander.Header>
+
+                                    <expander:SfExpander.Content>
+                                        <StackLayout BackgroundColor="{StaticResource GrayShadowColor}" Spacing="8">
+
+                                            <BoxView HeightRequest="1" Color="{DynamicResource Gray-200}" />
+
+                                            <!--  Size variant buttons  -->
+                                            <buttons:SfSegmentedControl
+                                                x:Name="SegmentControl"
+                                                FontFamily="Montserrat-SemiBold"
+                                                FontSize="14"
+                                                ItemsSource="{Binding DataVariants}"
+                                                SegmentBackgroundColor="{DynamicResource GrayShadowColor}"
+                                                SegmentBorderColor="{DynamicResource GrayShadowColor}"
+                                                SegmentCornerRadius="16"
+                                                SegmentHeight="32"
+                                                SegmentPadding="16"
+                                                SegmentWidth="32"
+                                                SelectedIndex="1"
+                                                Style="{StaticResource SegmentedControlStyle}"
+                                                VerticalOptions="FillAndExpand">
+                                                <buttons:SfSegmentedControl.SelectionIndicatorSettings>
+                                                    <buttons:SelectionIndicatorSettings
+                                                        CornerRadius="16"
+                                                        StrokeThickness="0"
+                                                        Color="{DynamicResource PrimaryColor}" />
+                                                </buttons:SfSegmentedControl.SelectionIndicatorSettings>
+                                                <buttons:SfSegmentedControl.Behaviors>
+                                                    <behavior:SegmentedControlSelectionBehavior
+                                                        Command="{Binding BindingContext.DataVariantCommand, Source={x:Reference stockOverviewPage}}"
+                                                        CommandParameter="{Binding .}"
+                                                        ParentBindingContext="{Binding Path=BindingContext, Source={x:Reference stockOverviewPage}}" />
+                                                </buttons:SfSegmentedControl.Behaviors>
+                                            </buttons:SfSegmentedControl>
+
+                                            <BoxView HeightRequest="1" Color="{DynamicResource Gray-200}" />
+
+                                            <template:StockOverviewChartTemplate />
+
+                                        </StackLayout>
+                                    </expander:SfExpander.Content>
+
+                                    <expander:SfExpander.Behaviors>
+                                        <behavior:ExpanderCommandBehavior
+                                            ChildElement="{Binding Source={x:Reference stockOverviewPage}}"
+                                            Command="{Binding BindingContext.SelectionCommand, Source={x:Reference stockOverviewPage}}"
+                                            CommandParameter="{Binding .}" />
+                                    </expander:SfExpander.Behaviors>
+                                </expander:SfExpander>
+                            </controls:CustomShadowFrame>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
