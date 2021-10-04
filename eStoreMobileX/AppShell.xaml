@@ -2,20 +2,27 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:views="clr-namespace:eStoreMobileX.Views"
-       xmlns:local="clr-namespace:eStoreMobileX.Views"
+       xmlns:local="clr-namespace:eStoreMobileX.Views.Payroll"
        Title="eStoreMobileX"
        x:Class="eStoreMobileX.AppShell">
 
 
     <!-- Display a bottom tab bar containing two tabs -->
-    <FlyoutItem Title="Stock List" Icon="feed.png">
-        <ShellContent Route="StocKList" ContentTemplate="{DataTemplate local:StockForm}" />
+    <FlyoutItem Title="MainPage" Icon="feed.png">
+        <ShellContent Route="MainPage" ContentTemplate="{DataTemplate views:MainPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Attendance" Icon="feed.png">
+        <ShellContent Route="Attendance" ContentTemplate="{DataTemplate local:AttendancePage}" />
     </FlyoutItem>
     <FlyoutItem Title="Stock Scanner" Icon="icon_about.png">
-        <ShellContent Route="StockScanner" ContentTemplate="{DataTemplate local:MainPage}" />
+        <ShellContent Route="StockScanner" ContentTemplate="{DataTemplate views:StockForm}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Stock List" Icon="icon_about.png">
+        <ShellContent Route="Stock" ContentTemplate="{DataTemplate views:StockListPage}" />
     </FlyoutItem>
     <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" >
     </MenuItem>
+    
     <TabBar>
         <ShellContent Title="Main"
                       Icon="icon_feed.png"

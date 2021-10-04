@@ -173,5 +173,4 @@
     <Folder Include="Views\Payroll\" />
     <Folder Include="ViewModel\Payroll\" />
   </ItemGroup>
-  <Import Project="..\eStoreMobile.Shared\eStoreMobile.Shared.projitems" Label="Shared" />
 </Project>

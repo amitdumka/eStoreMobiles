@@ -20,7 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ObSolute", "ObSolute", "{CCC3C0E1-6465-4B1A-BAAA-D591A1936A3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eStoreMobileX", "eStoreMobileX\eStoreMobileX.csproj", "{65A0BCFE-9828-4750-8266-58C9FD522E2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eStoreMobileX", "eStoreMobileX\eStoreMobileX.csproj", "{65A0BCFE-9828-4750-8266-58C9FD522E2F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eStoreMobileX.Android", "eStoreMobileX.Android\eStoreMobileX.Android.csproj", "{50B231F0-E1E7-4F25-9542-899A18C48603}"
 EndProject
@@ -32,7 +32,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{0926AED9-3
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		eStoreMobile.Shared\eStoreMobile.Shared.projitems*{65a0bcfe-9828-4750-8266-58c9fd522e2f}*SharedItemsImports = 5
 		eStoreMobile.Shared\eStoreMobile.Shared.projitems*{6d8b549c-4b05-43bd-8bf2-9718397afcc3}*SharedItemsImports = 5
 		eStoreMobile.Shared\eStoreMobile.Shared.projitems*{ef5cf715-48ca-477b-bb23-7f750bf970fa}*SharedItemsImports = 13
 	EndGlobalSection

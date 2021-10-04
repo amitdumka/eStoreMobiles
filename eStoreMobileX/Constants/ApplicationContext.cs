@@ -1,6 +1,9 @@
 
 namespace eStoreMobileX
 {
+    /// <summary>
+    /// Applicatoin Information Logging
+    /// </summary>
   public static class ApplicationContext
     {
         public static string UserName { get; set; }
