@@ -9,8 +9,14 @@ using Syncfusion.SfDataGrid.XForms.Exporting;
 
 namespace eStoreMobileX.Views
 {
+    /// <summary>
+    /// Stock List Page: List of barcode store locally.
+    /// </summary>
     public partial class StockListPage : ContentPage
     {
+        /// <summary>
+        /// Default Initialzation of class
+        /// </summary>
         public StockListPage()
         {
             InitializeComponent();
@@ -25,28 +31,12 @@ namespace eStoreMobileX.Views
 
         void Excel_Clicked(System.Object sender, System.EventArgs e)
         {
-            DataGridExcelExportingController excelExport = new DataGridExcelExportingController();
-            var excelEngine = excelExport.ExportToExcel(this.dataGrid);
-            var workbook = excelEngine.Excel.Workbooks[0];
-            MemoryStream stream = new MemoryStream();
-            workbook.SaveAs(stream);
-            workbook.Close();
-            excelEngine.Dispose();
-
-            DependencyService.Get<ISave>().Save("StockBarcodeList.xlsx", "application/msexcel", stream);
+            viewModel.ToExcel(this.dataGrid);
         }
 
         void PDF_Clicked(System.Object sender, System.EventArgs e)
         {
-            DataGridPdfExportingController pdfExport = new DataGridPdfExportingController();
-            MemoryStream stream = new MemoryStream();
-            var doc = pdfExport.ExportToPdf(this.dataGrid, new DataGridPdfExportOption() { FitAllColumnsInOnePage = true });
-            doc.Save(stream);
-            doc.Close(true);
-            if (Device.OS == TargetPlatform.WinPhone || Device.OS == TargetPlatform.Windows)
-                DependencyService.Get<ISaveWindowsPhone>().Save("DataGrid.pdf", "application/pdf", stream);
-            else
-                DependencyService.Get<ISave>().Save("StockBarcodeList.pdf", "application/pdf", stream);
+            viewModel.ToPDF(this.dataGrid);
 
         }
 

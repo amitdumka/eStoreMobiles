@@ -19,7 +19,8 @@ namespace eStoreMobileX
             InitializeComponent ();
             Routing.RegisterRoute (nameof (MainPage), typeof (MainPage));
             Routing.RegisterRoute (nameof (StockForm), typeof (StockForm));
-            
+            Routing.RegisterRoute(nameof(StockListPage), typeof(StockListPage));
+
         }
         private async void OnMenuItemClicked(object sender, EventArgs e)
         {

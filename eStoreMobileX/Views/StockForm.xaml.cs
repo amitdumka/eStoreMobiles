@@ -91,19 +91,30 @@ namespace eStoreMobileX.Views
             }
         }
 
-        private void List_Clicked(object sender, EventArgs e)
+        private async void List_Clicked(object sender, EventArgs e)
         {
+            try
+            {
+                await Shell.Current.GoToAsync(nameof(StockListPage));
+            }
+            catch (Exception ex)
+            {
 
+                await DisplayAlert("Alert", "Error: " + ex.Message, "Ok");
+            }
+            
         }
 
-        private void PDF_Export_Clicked(object sender, EventArgs e)
+        private async void Sync_Clicked(object sender, EventArgs e)
         {
-
-        }
-
-        private void Excel_Export_Clicked(object sender, EventArgs e)
-        {
-
+            var res = await DisplayAlert("Alert", "Do you want to upload to server?", "Ok", "Cancel");
+            if (res)
+            {
+               
+                _= dm.SyncUpAsync();
+            }
+            
+            
         }
     }
 }

@@ -9,13 +9,13 @@
               x:Class="eStoreMobileX.Views.StockForm">
 
               <ContentPage.ToolbarItems>
-                    <ToolbarItem Text="List" Order="Secondary" Priority="0" x:Name="List" Clicked="List_Clicked" />
-                    <ToolbarItem Text="To Pdf" Order="Secondary" Priority="0" x:Name="PDF_Export" Clicked="PDF_Export_Clicked"/>
-                    <ToolbarItem Text="To Excel" Order="Secondary" Priority="0" x:Name="Excel_Export" Clicked="Excel_Export_Clicked"/>
-                    <ToolbarItem Text="Sync" Order="Primary" Priority="0"  x:Name="Sync" />
+                    <ToolbarItem Text="List" Order="Default" Priority="0" x:Name="List" Clicked="List_Clicked" />
+                    <!--<ToolbarItem Text="To Pdf" Order="Secondary" Priority="0" x:Name="PDF_Export" Clicked="PDF_Export_Clicked"/>
+                    <ToolbarItem Text="To Excel" Order="Secondary" Priority="0" x:Name="Excel_Export" Clicked="Excel_Export_Clicked"/>-->
+                    <ToolbarItem Text="Sync" Order="Default" Priority="0"  x:Name="Sync" Clicked="Sync_Clicked"/>
               </ContentPage.ToolbarItems>
               <ContentPage.BindingContext>
-                     <local:StockListViewModel />
+                     <local:StockListViewModel x:Name="viewModel" />
               </ContentPage.BindingContext>
               <ContentPage.Content>
                      <StackLayout Padding="20">
