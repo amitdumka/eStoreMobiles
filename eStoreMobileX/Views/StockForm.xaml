@@ -22,6 +22,9 @@ xmlns:dataform="clr-namespace:Syncfusion.XForms.DataForm;assembly=Syncfusion.SfD
                 <Button Text="Sync"/>
                 <Button Text="Export"/>
             </StackLayout>
+            <StackLayout>
+
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

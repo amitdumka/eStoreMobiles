@@ -15,7 +15,6 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -46,7 +45,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\eStoreMobileX\eStoreMobileX.csproj">
-      <Project>{2549C2E8-38C9-4C78-BBF2-EC15416A2E9A}</Project>
+      <Project>{65A0BCFE-9828-4750-8266-58C9FD522E2F}</Project>
       <Name>eStoreMobileX</Name>
     </ProjectReference>
   </ItemGroup>

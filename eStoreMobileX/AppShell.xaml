@@ -5,8 +5,8 @@
        xmlns:local="clr-namespace:eStoreMobileX.Views"
        Title="eStoreMobileX"
        x:Class="eStoreMobileX.AppShell">
-    
-    
+
+
     <!-- Display a bottom tab bar containing two tabs -->
     <FlyoutItem Title="Stock List" Icon="feed.png">
         <ShellContent Route="StocKList" ContentTemplate="{DataTemplate local:StockForm}" />
