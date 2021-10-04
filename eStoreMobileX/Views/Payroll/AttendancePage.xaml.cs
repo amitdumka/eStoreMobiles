@@ -17,9 +17,17 @@ namespace eStoreMobileX.Views.Payroll
 
         }
 
-        private void AddAttendance_Clicked(object sender, EventArgs e)
+        private  async void AddAttendance_Clicked(object sender, EventArgs e)
         {
+            try
+            {
+                await Shell.Current.GoToAsync(nameof(AttendanceEditorPage));
+            }
+            catch (Exception ex)
+            {
 
+                await DisplayAlert("Alert", "Error: " + ex.Message, "Ok");
+            }
         }
 
         private void Emp_Clicked(object sender, EventArgs e)

@@ -22,6 +22,7 @@ namespace eStoreMobileX
             Routing.RegisterRoute (nameof (StockForm), typeof (StockForm));
             Routing.RegisterRoute(nameof(StockListPage), typeof(StockListPage));
             Routing.RegisterRoute(nameof(AttendancePage), typeof(AttendancePage));
+            Routing.RegisterRoute(nameof(AttendanceEditorPage), typeof(AttendanceEditorPage));
             //Remove when Auth is implemented.
             ApplicationContext.EmpId = 3;
             ApplicationContext.IsLoggedIn = true;
