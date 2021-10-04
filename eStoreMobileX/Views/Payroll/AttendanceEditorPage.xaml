@@ -15,7 +15,7 @@
         <StackLayout Padding="10">
             <Label x:Name="title_label" Text="New Attendance"                             
                             TextColor="DarkOliveGreen"  FontSize="20"  HorizontalOptions="CenterAndExpand" Margin="10" />
-               <dataform:SfDataForm  
+            <dataform:SfDataForm    NotifyPropertyChanges="True"
                          VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
                          AutoGeneratingDataFormItem="dataForm_AutoGeneratingDataFormItem"                       
                         x:Name="dataForm" DataObject="{Binding Attendance}" LayoutOptions="TextInputLayout"  ShowHelperText="False" >

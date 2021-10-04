@@ -2,9 +2,19 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="eStoreMobileX.Views.MainPage">
-
-	<Label Text="Welcome to Syncfusion Xamarin.Forms!" 
-           VerticalOptions="Center" 
-           HorizontalOptions="Center" />
+    <StackLayout>
+        <Label Text="eStore Mobile" TextColor="DarkGoldenrod" FontSize="Header" BackgroundColor="AliceBlue" 
+           VerticalOptions="Center" Margin="10" 
+           HorizontalOptions="CenterAndExpand" />
+        <Label Text="Aprajita Retails" FontSize="Title"  TextColor="IndianRed"
+               
+           HorizontalOptions="CenterAndExpand"
+               />
+        <Label Text="Bhagalpur Road, Dumka" FontSize="Medium"  TextColor="IndianRed"
+               
+           HorizontalOptions="CenterAndExpand"
+               />
+    </StackLayout>
+	
 
 </ContentPage>
