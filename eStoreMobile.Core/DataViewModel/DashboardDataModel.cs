@@ -21,6 +21,8 @@ namespace eStoreMobile.Core.DataViewModel
             
         }
 
+
+
     }
     
 }
