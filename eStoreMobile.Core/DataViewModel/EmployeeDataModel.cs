@@ -45,12 +45,13 @@ namespace eStoreMobile.Core.DataViewModel
             {
                 if (Employees == null || Employees.Count <= 0)
                     Employees = await service.RefreshDataAsync();
+
                 Employees = Employees.OrderBy(c => c.EmployeeId).ToList();
                 foreach (var emp in Employees)
                 {
                     emp.EmployeeId = 0;
                 }
-                _ = await _context.Database.ExecuteSqlCommandAsync("Drop table Employees; ALTER TABLE Employees AUTO_INCREMENT = 0;");
+               // _ = await _context.Database.ExecuteSqlCommandAsync("Delete table Employees; ALTER TABLE Employees AUTO_INCREMENT = 0;");
                 await _context.Employees.AddRangeAsync(Employees);
                 int record = await _context.SaveChangesAsync();
                 Debug.WriteLine("No of Record added: " + record);
@@ -62,13 +63,7 @@ namespace eStoreMobile.Core.DataViewModel
         {
             var list = GetEmployeeNameList(storeId, working);
             if(list==null || list.Count <= 0)
-            {
-               if(await Sync())
-                {
-                    list = GetEmployeeNameList(storeId, working);
-                }
-
-            }
+                await Sync();
             return list;
         }
 

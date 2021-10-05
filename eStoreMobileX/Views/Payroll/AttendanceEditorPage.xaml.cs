@@ -99,7 +99,7 @@ namespace eStoreMobileX.Views.Payroll
                 {
                     Name = "EmployeeId",
                     Editor = "DropDown",
-                    ItemsSource =( await GetEmpList()),
+                    ItemsSource = (await GetEmpList()),
                     //ItemsSource =( await GetEmpList()),
                     PlaceHolderText = "Select a Employee"
                 };
