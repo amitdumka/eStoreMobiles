@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace eStoreMobileX.Views.Payroll
@@ -15,6 +15,13 @@ namespace eStoreMobileX.Views.Payroll
         private void ToolbarItem_Clicked(object sender, EventArgs e)
         {
 
+        }
+        async void pullToRefresh_Refreshing(System.Object sender, System.EventArgs e)
+        {
+            pullToRefresh.IsRefreshing = true;
+            await Task.Delay(1200);
+            this.viewModel.ItemsSourceRefresh();
+            pullToRefresh.IsRefreshing = false;
         }
 
         private  async void AddAttendance_Clicked(object sender, EventArgs e)

@@ -65,7 +65,7 @@ namespace eStoreMobile.Core.DataViewModel
         {
             var list = GetEmployeeNameList(storeId, working);
             if(list==null || list.Count <= 0)
-                await Sync();
+                await Sync().ConfigureAwait(false);
             return list;
         }
 

@@ -40,6 +40,8 @@ namespace eStoreMobileX.ViewModel
             {
                 dm = new StoreDataModel();// (ApplicationContext.EmpId, ApplicationContext.Role);
                 List<Store> Data = await dm.GetStores(true);
+                if (Data == null  ||Data.Count<=0)
+                    Data = await dm.GetStores(false);
                 if (Data != null)
                 {
                     stores.Clear();
