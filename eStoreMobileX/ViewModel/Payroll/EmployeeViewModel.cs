@@ -8,29 +8,22 @@ namespace eStoreMobileX.ViewModel.Payroll
 {
     public class EmployeeViewModel
     {
-        private int StoreId = 1;
-        private ObservableCollection<Employee> employees;
-        private Employee employee;
+        private readonly int StoreId = 1;
+
         //private EmployeeVM employeeVM { get; set; }
         EmployeeDataModel dm;
-        public ObservableCollection<Employee> EmployeeList
-        {
-            get { return employees; }
-            set { this.employees = value; }
-        }
-        public Employee Employee
-        {
-            get { return employee; }
-            set { this.employee = value; }
-        }
+        public ObservableCollection<Employee> EmployeeList { get; set; }
+        public Employee Employee { get; set; }
 
         public EmployeeViewModel()
         {
        
-            employees= new ObservableCollection<Employee>();
-            this.employee = new Employee();
-            this.employee.JoiningDate = DateTime.Today.Date;
-            this.employee.DateOfBirth = DateTime.Today.AddYears(-18).Date;
+            EmployeeList= new ObservableCollection<Employee>();
+            this.Employee = new Employee
+            {
+                JoiningDate = DateTime.Today.Date,
+                DateOfBirth = DateTime.Today.AddYears(-18).Date
+            };
             //Enable if required.
             //this.attendance = new Attendance ();
             this.LoadData();
@@ -44,10 +37,10 @@ namespace eStoreMobileX.ViewModel.Payroll
                 if (Data == null ||Data.Count<=0) Data = await dm.GetEmployees(StoreId, false);
                 if (Data != null)
                 {
-                    employees.Clear();
+                    EmployeeList.Clear();
                     foreach (var item in Data)
                     {
-                        employees.Add(item);
+                        EmployeeList.Add(item);
                     }
                 }
                 

@@ -13,19 +13,17 @@ namespace eStoreMobileX.ViewModel
     public class StockListViewModel
     {
         public StockList StockList { get; set; }
-        private ObservableCollection<StockList> stockLists;
-        private StockListDataModel dm;
-        public ObservableCollection<StockList> StockListCollection
-        {
-            get { return stockLists; }
-            set { this.stockLists = value; }
-        }
+
+        private readonly StockListDataModel dm;
+        public ObservableCollection<StockList> StockListCollection { get; set; }
 
         public StockListViewModel()
         {
-            StockList = new StockList();
-            StockList.LastAccess = DateTime.Now.Date;
-            stockLists = new ObservableCollection<StockList>();
+            StockList = new StockList
+            {
+                LastAccess = DateTime.Now.Date
+            };
+            StockListCollection = new ObservableCollection<StockList>();
             dm = new StockListDataModel();
             this.LoadData();
         }
@@ -33,10 +31,10 @@ namespace eStoreMobileX.ViewModel
         private async void LoadData()
         {
             List<StockList> Data = await dm.RefreshDataAsync();
-            stockLists.Clear();
+            StockListCollection.Clear();
             foreach (var item in Data)
             {
-                stockLists.Add(item);
+                StockListCollection.Add(item);
             }
         }
 

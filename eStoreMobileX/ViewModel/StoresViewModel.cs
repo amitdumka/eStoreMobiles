@@ -9,7 +9,7 @@ namespace eStoreMobileX.ViewModel
     public class StoresViewModel
     {
         private ObservableCollection<Store> stores;
-        private Store store;
+
         //private StoreVM StoreVM { get; set; }
         StoreDataModel dm;
         public ObservableCollection<Store> StoreList
@@ -17,11 +17,7 @@ namespace eStoreMobileX.ViewModel
             get { return stores; }
             set { this.stores = value; }
         }
-        public Store Store
-        {
-            get { return store; }
-            set { this.store = value; }
-        }
+        public Store Store { get; set; }
 
         internal async void SyncUp()
         {
@@ -32,9 +28,11 @@ namespace eStoreMobileX.ViewModel
         {
             
             stores = new ObservableCollection<Store>();
-            this.store = new Store();
-            this.store.OpeningDate = DateTime.Today.Date;
-            
+            this.Store = new Store
+            {
+                OpeningDate = DateTime.Today.Date
+            };
+
             //Enable if required.
             //this.attendance = new Attendance ();
             this.LoadData();

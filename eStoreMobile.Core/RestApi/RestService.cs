@@ -11,10 +11,10 @@ namespace eStoreMobile.Core.RestApi
 {
     public class RestSingleService
     {
-        private JsonSerializerOptions serializerOptions;
-        private HttpClient client;
-        private string restUrl;
-        private string APIName;
+        private readonly JsonSerializerOptions serializerOptions;
+        private readonly HttpClient client;
+        private readonly string restUrl;
+        private readonly string APIName;
         public RestSingleService(string url, string name)
         {
             restUrl = url;

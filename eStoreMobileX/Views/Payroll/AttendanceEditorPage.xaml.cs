@@ -12,7 +12,7 @@ namespace eStoreMobileX.Views.Payroll
 {
     public partial class AttendanceEditorPage : ContentPage
     {
-        private List<DropListVM> empList;
+        private readonly List<DropListVM> empList;
         public AttendanceEditorPage()
         {
             InitializeComponent();

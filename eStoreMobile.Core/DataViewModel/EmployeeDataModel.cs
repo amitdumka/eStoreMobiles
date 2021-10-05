@@ -57,7 +57,7 @@ namespace eStoreMobile.Core.DataViewModel
                 await _context.Employees.AddRangeAsync(Employees);
                 int record = await _context.SaveChangesAsync();
                 Debug.WriteLine("No of Record added: " + record);
-                return record > 0 ? true : false;
+                return record > 0;
             }
         }
 

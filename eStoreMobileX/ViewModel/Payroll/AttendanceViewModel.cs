@@ -18,7 +18,7 @@ namespace eStoreMobileX.ViewModel.Payroll
     /// </summary>
     public class AttendanceViewModel
     {
-        private int StoreId = 1;
+        private readonly int StoreId = 1;
         private ObservableCollection<Attendance> attendances;
         private Attendance attendance;
         private AttendanceVM attendanceVM { get; set; }
@@ -40,8 +40,10 @@ namespace eStoreMobileX.ViewModel.Payroll
         public AttendanceViewModel()
         {
             attendances = new ObservableCollection<Attendance>();
-            this.attendanceVM = new AttendanceVM();
-            this.attendanceVM.AttDate = DateTime.Today.Date;
+            this.attendanceVM = new AttendanceVM
+            {
+                AttDate = DateTime.Today.Date
+            };
             //Enable if required.
             //this.attendance = new Attendance ();
             this.LoadData();
