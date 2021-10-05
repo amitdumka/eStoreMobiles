@@ -1,5 +1,8 @@
-﻿using eStoreMobileX.Validators;
+﻿using eStoreMobile.Core.DataViewModel;
+using eStoreMobileX.Validators;
 using eStoreMobileX.Validators.Rules;
+using System;
+using System.Diagnostics;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -30,6 +33,8 @@ namespace eStoreMobileX.ViewModels
             this.SignUpCommand = new Command(this.SignUpClicked);
             this.ForgotPasswordCommand = new Command(this.ForgotPasswordClicked);
             this.SocialMediaLoginCommand = new Command(this.SocialLoggedIn);
+            this.Email.Value = "Admin@estore.in";
+            this.password.Value = "Admin";
         }
 
         #endregion
@@ -120,7 +125,40 @@ namespace eStoreMobileX.ViewModels
         {
             if (this.AreFieldsValid())
             {
-                // Do Something
+                DoLogin();
+            }
+        }
+        private async void DoLogin()
+        {
+            UserDataModel vm = new UserDataModel();
+            try
+            {
+                var result = await vm.VerifyLoginAsync(Email.Value, Password.Value);
+                if (result != null)
+                {
+                    ApplicationContext.EmpId = (int)result.EmployeeId;
+                    ApplicationContext.IsLoggedIn = true;
+                    ApplicationContext.Role = result.UserType;
+                    ApplicationContext.UserName = result.UserName;
+                    ApplicationContext.StoreId = result.StoreId;
+
+                    Application.Current.MainPage = new AppShell();
+                }
+                else
+                {
+                    ApplicationContext.EmpId = -1;// (int) result.EmployeeId;
+                    ApplicationContext.IsLoggedIn = false;
+                    ApplicationContext.Role = EmpType.Others;
+                    ApplicationContext.UserName = "";
+                    Debug.WriteLine(" Login Failed");
+                    await Application.Current.MainPage.DisplayAlert("Error", "Username and password not found!", "Ok");
+                }
+
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("LPVM:\t" + e.Message);
+                await Application.Current.MainPage.DisplayAlert("Error", e.Message, "Ok");
             }
         }
 

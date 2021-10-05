@@ -166,12 +166,6 @@
     <EmbeddedResource Update="Views\Dumps\PhotosPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Auth\ForgotPasswordPageWithGradient.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Auth\LoginPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Views\Dumps\NoInternetConnectionPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
@@ -181,13 +175,7 @@
     <EmbeddedResource Update="Views\Dumps\RecentChatPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Auth\ResetPasswordPageWithGradient.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Views\Dumps\SettingsPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Auth\SignUpPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Dumps\SomethingWentWrongPage.xaml">
@@ -226,16 +214,11 @@
     <EmbeddedResource Update="Views\Dumps\Templates\NavigationTileTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Payroll\AddAttendanceView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\UserEditor.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\eStoreMobile.Core\eStoreMobile.Core.csproj" />
+    <ProjectReference Include="..\..\eStoreMobileX\eStoreMobileX.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -272,5 +255,9 @@
     <Compile Update="Views\Dumps\PhotosPage.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\" />
   </ItemGroup>
 </Project>
