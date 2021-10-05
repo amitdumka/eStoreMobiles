@@ -25,12 +25,12 @@
     <FlyoutItem Title="AboutUs" Icon="icon_about.png">
         <ShellContent Route="AboutUs" ContentTemplate="{DataTemplate views:AboutUsPageWithCards}" />
     </FlyoutItem>
-    <!--<FlyoutItem Title="Login" Icon="icon_about.png">
-        <ShellContent Route="Login" ContentTemplate="{DataTemplate views:LoginPage}" />
+    <FlyoutItem Title="Stores" Icon="icon_about.png">
+        <ShellContent Route="Stores" ContentTemplate="{DataTemplate views:StoresPage}" />
     </FlyoutItem>
-    <FlyoutItem Title="Reset" Icon="icon_about.png">
-        <ShellContent Route="Reset" ContentTemplate="{DataTemplate views:ResetPasswordPageWithGradient}" />
-    </FlyoutItem>-->
+    <FlyoutItem Title="Employees" Icon="icon_about.png">
+        <ShellContent Route="Employees" ContentTemplate="{DataTemplate local:EmployeesPage}" />
+    </FlyoutItem>
 
 
     <FlyoutItem Title="Settings" Icon="icon_about.png">

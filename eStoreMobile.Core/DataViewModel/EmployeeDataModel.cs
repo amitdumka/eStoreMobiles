@@ -34,7 +34,7 @@ namespace eStoreMobile.Core.DataViewModel
             else
             {
                 Employees = await service.RefreshDataAsync ();
-                Sync ();
+                _=Sync ();
                 return Employees;
             }
         }
@@ -43,6 +43,8 @@ namespace eStoreMobile.Core.DataViewModel
         {
             using (_context = new eStoreDbContext())
             {
+                Employees = await _context.Employees.ToListAsync();
+
                 if (Employees == null || Employees.Count <= 0)
                     Employees = await service.RefreshDataAsync();
 

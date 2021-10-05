@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pulltorefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms" 
+    xmlns:datagrid="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+    xmlns:local="clr-namespace:eStoreMobileX.ViewModel.Payroll"
+    Title="Employee"    
+    x:Class="eStoreMobileX.Views.Payroll.EmployeesPage">
+     <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+ Add"  />
+        <ToolbarItem Text="Attendance" Order="Secondary" Priority="0"  />
+        <ToolbarItem Text="Add Attedance" Order="Secondary" Priority="0" />
+        <ToolbarItem Text=" Sync Up" Order="Secondary"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.BindingContext>
+        <local:EmployeeViewModel x:Name="viewModel" />
+    </ContentPage.BindingContext>
+    <ContentPage.Content BackgroundColor="#1B1F35">
+        <pulltorefresh:SfPullToRefresh BackgroundColor="#1B1F35" x:Name="pullToRefresh">
+            <pulltorefresh:SfPullToRefresh.PullableContent>
+                <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" Padding="5">
+                    <Label Text="Attendance" FontSize="Title" TextColor="Aqua" HorizontalTextAlignment="Center" TextDecorations="Underline" FontAttributes="Bold" />
+
+                    <StackLayout Margin="5" VerticalOptions="StartAndExpand" Padding="10">
+                       <datagrid:SfDataGrid ItemsSource="{Binding EmployeeList}"
+                                                    x:Name="dataGrid"
+                                                    BackgroundColor="#E5EBFF"
+                                                    
+                                                    AllowSwiping="true"
+                                                    AllowSorting="True"
+                                                    ColumnSizer="Star"
+                                                    SelectionMode="Single"
+                                                    AutoGenerateColumns="False"  HeightRequest="600" 
+                                                    VerticalOptions="StartAndExpand">
+                           
+                            <datagrid:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns" >
+                                <datagrid:GridTextColumn HeaderText="Id"
+                                     HeaderFontAttribute="Bold"  ColumnSizer="Star"
+                                     MappingName="EmployeeId" />
+                                <datagrid:GridTextColumn HeaderText="Name"
+                                        TextAlignment="Center"
+                                        HeaderFontAttribute="Bold"
+                                        HeaderTextAlignment="Center"
+                                        ColumnSizer="LastColumnFill"
+                                        MappingName="StaffName" />
+                                <datagrid:GridTextColumn HeaderText="City"
+                                         HeaderFontAttribute="Bold"   ColumnSizer="LastColumnFill"
+                                         MappingName="City" />
+                                <datagrid:GridTextColumn HeaderText="Mobile"
+                                         HeaderFontAttribute="Bold"  ColumnSizer="LastColumnFill"
+                                         MappingName="MobileNo" />
+                                <datagrid:GridSwitchColumn HeaderText="Working"
+                                         HeaderFontAttribute="Bold"     ColumnSizer="LastColumnFill"
+                                         MappingName="IsWorking" />
+                                <datagrid:GridTextColumn HeaderText="Category"
+                                         HeaderFontAttribute="Bold"     ColumnSizer="LastColumnFill"
+                                         MappingName="Category" />
+                            </datagrid:SfDataGrid.Columns>
+                            <datagrid:SfDataGrid.SortColumnDescriptions>
+                                <datagrid:SortColumnDescription ColumnName="employee.category" />
+                            </datagrid:SfDataGrid.SortColumnDescriptions>
+                        </datagrid:SfDataGrid>
+                    </StackLayout>
+                     </StackLayout>
+            </pulltorefresh:SfPullToRefresh.PullableContent>
+        </pulltorefresh:SfPullToRefresh>
+    </ContentPage.Content>
+</ContentPage>

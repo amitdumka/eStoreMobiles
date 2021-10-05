@@ -25,14 +25,17 @@ namespace eStoreMobileX
             Routing.RegisterRoute(nameof(AttendanceEditorPage), typeof(AttendanceEditorPage));
             Routing.RegisterRoute(nameof(AboutUsPageWithCards), typeof(AboutUsPageWithCards));
             Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
-            Routing.RegisterRoute(nameof(ResetPasswordPageWithGradient), typeof(ResetPasswordPageWithGradient));
-            Routing.RegisterRoute(nameof(ContactUsPage), typeof(ContactUsPage));
-            Routing.RegisterRoute(nameof(EmployeeProfilePage), typeof(EmployeeProfilePage));
-            Routing.RegisterRoute(nameof(DailyCaloriesReportPage), typeof(DailyCaloriesReportPage));
-            Routing.RegisterRoute(nameof(DailyTimelinePage), typeof(DailyTimelinePage));
-            Routing.RegisterRoute(nameof(HealthCarePage), typeof(HealthCarePage));
+            Routing.RegisterRoute(nameof(StoresPage), typeof(StoresPage));
+            Routing.RegisterRoute(nameof(EmployeesPage), typeof(EmployeesPage));
 
-            Routing.RegisterRoute(nameof(MyWalletPage), typeof(MyWalletPage));
+            //Routing.RegisterRoute(nameof(ResetPasswordPageWithGradient), typeof(ResetPasswordPageWithGradient));
+            //Routing.RegisterRoute(nameof(ContactUsPage), typeof(ContactUsPage));
+            //Routing.RegisterRoute(nameof(EmployeeProfilePage), typeof(EmployeeProfilePage));
+            //Routing.RegisterRoute(nameof(DailyCaloriesReportPage), typeof(DailyCaloriesReportPage));
+            //Routing.RegisterRoute(nameof(DailyTimelinePage), typeof(DailyTimelinePage));
+            //Routing.RegisterRoute(nameof(HealthCarePage), typeof(HealthCarePage));
+
+            //Routing.RegisterRoute(nameof(MyWalletPage), typeof(MyWalletPage));
             Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
 
             //Remove when Auth is implemented.
