@@ -15,7 +15,7 @@ namespace eStoreMobile.Core.DataViewModel
         private RestApi.RestService<Store> service;
         private eStoreDbContext _context;
 
-        
+
         public StoreDataModel()
         {
             service = new RestApi.RestService<Store>(Constants.StoreUrl, "Store");
@@ -33,30 +33,47 @@ namespace eStoreMobile.Core.DataViewModel
             else
             {
                 Stores = await service.RefreshDataAsync();
-                _ = Sync();
                 return Stores;
             }
         }
 
         public async Task<bool> Sync()
         {
-            using (_context = new eStoreDbContext())
+            try
             {
-                Stores = await _context.Stores.ToListAsync();
-
-                if (Stores == null || Stores.Count <= 0)
-                    Stores = await service.RefreshDataAsync();
-
-                Stores = Stores.OrderBy(c => c.StoreId).ToList();
-                foreach (var str in Stores)
+                using (_context = new eStoreDbContext())
                 {
-                    str.StoreId = 0;
+                    Stores = await _context.Stores.ToListAsync();
+
+                    if (Stores == null || Stores.Count <= 0)
+                        Stores = await service.RefreshDataAsync();
+
+                    Stores = Stores.OrderBy(c => c.StoreId).ToList();
+                    foreach (var str in Stores)
+                    {
+                        str.StoreId = 0;
+                          
+                        str.UserId = "AutoAdmin";
+                    }
+                    // _ = await _context.Database.ExecuteSqlCommandAsync("Delete table Stores; ALTER TABLE Stores AUTO_INCREMENT = 0;");
+                    if (Stores.Count <= 1)
+                    {
+                       await _context.Stores.AddAsync(Stores[0]);
+
+                    }
+                    else
+                    await _context.Stores.AddRangeAsync(Stores);
+                    int record = await _context.SaveChangesAsync();
+                    Debug.WriteLine("No of Record added: " + record);
+                    return record > 0 ? true : false;
                 }
-                // _ = await _context.Database.ExecuteSqlCommandAsync("Delete table Stores; ALTER TABLE Stores AUTO_INCREMENT = 0;");
-                await _context.Stores.AddRangeAsync(Stores);
-                int record = await _context.SaveChangesAsync();
-                Debug.WriteLine("No of Record added: " + record);
-                return record > 0 ? true : false;
+
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(ex.Message);
+                return  false;
             }
         }
 
@@ -112,7 +129,8 @@ namespace eStoreMobile.Core.DataViewModel
                 return true;
             return false;
         }
-        public void GetStoreById(int id) {
+        public void GetStoreById(int id)
+        {
 
         }
         public void GetStoreByName(string storeName) { }

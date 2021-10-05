@@ -23,6 +23,11 @@ namespace eStoreMobileX.ViewModel
             set { this.store = value; }
         }
 
+        internal async void SyncUp()
+        {
+           await dm.Sync();
+        }
+
         public StoresViewModel()
         {
             
@@ -50,10 +55,7 @@ namespace eStoreMobileX.ViewModel
                         stores.Add(item);
                     }
                 }
-                else
-                {
-                    _ = dm.Sync();
-                }
+                
 
             }
             catch (Exception e)

@@ -11,7 +11,7 @@
         <ToolbarItem Text="+ Add"  />
         <ToolbarItem Text="Attendance" Order="Secondary" Priority="0"  />
         <ToolbarItem Text="Add Attedance" Order="Secondary" Priority="0" />
-        <ToolbarItem Text=" Sync Up" Order="Secondary"/>
+        <ToolbarItem Text=" Sync Up" Order="Secondary" Clicked="SyncUp_Clicked"/>
     </ContentPage.ToolbarItems>
     <ContentPage.BindingContext>
         <local:EmployeeViewModel x:Name="viewModel" />

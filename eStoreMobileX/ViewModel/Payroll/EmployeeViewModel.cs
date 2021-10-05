@@ -50,10 +50,6 @@ namespace eStoreMobileX.ViewModel.Payroll
                         employees.Add(item);
                     }
                 }
-                else
-                {
-                    _=dm.Sync();
-                }
                 
             }
             catch (Exception e)
@@ -68,6 +64,11 @@ namespace eStoreMobileX.ViewModel.Payroll
         public void ItemsSourceRefresh()
         {
             LoadData();
+        }
+
+        public async void SyncUp()
+        {
+            await dm.Sync();
         }
     }
 }

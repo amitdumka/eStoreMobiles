@@ -34,7 +34,7 @@ namespace eStoreMobile.Core.DataViewModel
             else
             {
                 Employees = await service.RefreshDataAsync ();
-                _=Sync ();
+               
                 return Employees;
             }
         }

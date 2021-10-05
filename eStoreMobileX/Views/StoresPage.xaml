@@ -10,13 +10,13 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="+ Add"  />
 
-        <ToolbarItem Text=" Sync Up" Order="Secondary"  />
+        <ToolbarItem Text=" Sync Up" Order="Secondary" Clicked="SyncUp_Clicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.BindingContext>
         <local:StoresViewModel x:Name="viewModel" />
     </ContentPage.BindingContext>
     <ContentPage.Content BackgroundColor="#1B1F35">
-        <pulltorefresh:SfPullToRefresh BackgroundColor="#1B1F35" x:Name="pullToRefresh">
+        <pulltorefresh:SfPullToRefresh BackgroundColor="#1B1F35" x:Name="pullToRefresh" Refreshing="pullToRefresh_Refreshing">
             <pulltorefresh:SfPullToRefresh.PullableContent>
                 <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" Padding="5">
                     <Label Text="Stores" FontSize="Title" TextColor="Aqua" HorizontalTextAlignment="Center" TextDecorations="Underline" FontAttributes="Bold" />
@@ -49,9 +49,9 @@
                                 <datagrid:GridTextColumn HeaderText="OpeningDate"
                                          HeaderFontAttribute="Bold"  ColumnSizer="LastColumnFill"
                                          MappingName="OpeningDate" />
-                                <datagrid:GridTextColumn HeaderText="GST"
+                                <datagrid:GridTextColumn HeaderText="GSTIN"
                                          HeaderFontAttribute="Bold"     ColumnSizer="LastColumnFill"
-                                         MappingName="GSTNo" />
+                                         MappingName="GSTNO" />
                             </datagrid:SfDataGrid.Columns>
                             <datagrid:SfDataGrid.SortColumnDescriptions>
                                 <datagrid:SortColumnDescription ColumnName="employee.category" />

@@ -18,5 +18,10 @@ namespace eStoreMobileX.Views
             this.viewModel.ItemsSourceRefresh();
             pullToRefresh.IsRefreshing = false;
         }
+
+        private void SyncUp_Clicked(object sender, EventArgs e)
+        {
+            this.viewModel.SyncUp();
+        }
     }
 }
