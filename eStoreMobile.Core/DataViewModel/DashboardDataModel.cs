@@ -14,12 +14,18 @@ namespace eStoreMobile.Core.DataViewModel
             service = new RestApi.RestService<MasterViewReport>(Constants.MasterViewUrl, "MasterView");
         }
 
-        public async Task<MasterViewReport> GetReport(int storeid, bool local = false)
+        public async Task<MasterViewReport> GetReportAsync(int storeid, bool local = false)
         {
             MasterReport = (await service.RefreshDataAsync())[0];
             return MasterReport;
-            
         }
+
+        public async Task<DailySaleReport> GetSaleReportAsync(int storeid, bool local = false)
+        {
+            return MasterReport.SaleReport = (await service.GetByUrl(Constants.MasterViewUrl + "/salereport")).SaleReport;
+        }
+
+
 
 
 

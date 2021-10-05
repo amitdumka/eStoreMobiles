@@ -225,6 +225,51 @@ namespace eStoreMobile.Core.RestApi
 
             return Items;
         }
+
+        //Customer Url based.
+        public async Task<T> GetByUrl(string url)
+        {
+            Uri uri = new Uri(string.Format(url, string.Empty));
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    return JsonSerializer.Deserialize<T>(content, serializerOptions);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
+
+            return default(T);
+        }
+
+        public async Task<T> PostByUrl(string url, string queryParams)
+        {
+            Uri uri = new Uri(string.Format(url, string.Empty));
+            try
+            {
+                StringContent qParams = new StringContent(queryParams, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(uri, qParams);
+                
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    return JsonSerializer.Deserialize<T>(content, serializerOptions);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
+
+            return default(T);
+        }
+
+
     }
 
     public interface IRestService<T>

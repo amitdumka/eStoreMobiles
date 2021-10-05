@@ -25,18 +25,18 @@
     <FlyoutItem Title="AboutUs" Icon="icon_about.png">
         <ShellContent Route="AboutUs" ContentTemplate="{DataTemplate views:AboutUsPageWithCards}" />
     </FlyoutItem>
-    <FlyoutItem Title="Login" Icon="icon_about.png">
+    <!--<FlyoutItem Title="Login" Icon="icon_about.png">
         <ShellContent Route="Login" ContentTemplate="{DataTemplate views:LoginPage}" />
     </FlyoutItem>
     <FlyoutItem Title="Reset" Icon="icon_about.png">
         <ShellContent Route="Reset" ContentTemplate="{DataTemplate views:ResetPasswordPageWithGradient}" />
-    </FlyoutItem>
+    </FlyoutItem>-->
 
 
     <FlyoutItem Title="Settings" Icon="icon_about.png">
         <ShellContent Route="Settings" ContentTemplate="{DataTemplate views:SettingsPage}" />
     </FlyoutItem>
-    <FlyoutItem Title="Wallet" Icon="icon_about.png">
+    <!--<FlyoutItem Title="Wallet" Icon="icon_about.png">
         <ShellContent Route="Wallet" ContentTemplate="{DataTemplate views:MyWalletPage}" />
     </FlyoutItem>
     <FlyoutItem Title="Contact" Icon="icon_about.png">
@@ -53,7 +53,7 @@
     </FlyoutItem>
     <FlyoutItem Title="History" Icon="icon_about.png">
         <ShellContent Route="Histriy" ContentTemplate="{DataTemplate views:CompanyHistoryPage}" />
-    </FlyoutItem>
+    </FlyoutItem>-->
 
 
 

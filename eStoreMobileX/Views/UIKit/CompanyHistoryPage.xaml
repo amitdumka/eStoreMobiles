@@ -34,7 +34,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Templates/CompanyHistoryTemplates.xaml" />
+                <ResourceDictionary Source="../Templates/CompanyHistoryTemplates.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <local:CompanyHistoryDataSelectors
                 x:Key="CompanyHistoryTemplate"
