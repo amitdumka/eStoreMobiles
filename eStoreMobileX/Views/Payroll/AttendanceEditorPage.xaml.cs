@@ -1,17 +1,28 @@
 ﻿using eStore.Shared.Models.Payroll;
 using eStoreMobile.Core.DataViewModel;
+using eStoreMobile.Core.Models.Dtos;
 using eStoreMobileX.ViewModel.Payroll;
 using Syncfusion.XForms.DataForm;
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace eStoreMobileX.Views.Payroll
 {
     public partial class AttendanceEditorPage : ContentPage
     {
+        private List<DropListVM> empList;
         public AttendanceEditorPage()
         {
             InitializeComponent();
+            _ = viewModel.LoadEmployeeList();
+        }
+
+        private async Task<List<DropListVM>> GetEmpList()
+        {
+            if (empList != null && empList.Count > 0) return empList;
+            else return await viewModel.LoadEmployeeList();
         }
 
         private async void SaveAttendance_Clicked(System.Object sender, System.EventArgs e)
@@ -66,7 +77,7 @@ namespace eStoreMobileX.Views.Payroll
             }
         }
 
-        private void dataForm_AutoGeneratingDataFormItem(object sender, Syncfusion.XForms.DataForm.AutoGeneratingDataFormItemEventArgs e)
+        private async void dataForm_AutoGeneratingDataFormItem(object sender, Syncfusion.XForms.DataForm.AutoGeneratingDataFormItemEventArgs e)
         {
             // Attendance at; at.
 
@@ -84,11 +95,12 @@ namespace eStoreMobileX.Views.Payroll
                 e.Cancel = true;
             if (e.DataFormItem.Name == "EmployeeId")
             {
-               e.DataFormItem= new DataFormDropDownItem()
+                e.DataFormItem = new DataFormDropDownItem()
                 {
                     Name = "EmployeeId",
                     Editor = "DropDown",
-                    
+                    ItemsSource =( await GetEmpList()),
+                    //ItemsSource =( await GetEmpList()),
                     PlaceHolderText = "Select a Employee"
                 };
             }

@@ -41,6 +41,7 @@ namespace eStoreMobile.Core
         public static readonly string EnumUrl = $"{BaseAddress}/enumvalue";
         public static readonly string RoleUrl = $"{BaseAddress}/roles";
         public static readonly string MasterViewUrl = $"{BaseAddress}/masterReport";
+        public static readonly string SyncServerUrl = $"{BaseAddress}/syncServer";
 
     }
 

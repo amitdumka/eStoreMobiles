@@ -9,6 +9,7 @@ using eStore.Shared.Models.Payroll;
 using Syncfusion.XForms.DataForm;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using eStoreMobile.Core.Models.Dtos;
 
 namespace eStoreMobileX.ViewModel.Payroll
 {
@@ -21,6 +22,8 @@ namespace eStoreMobileX.ViewModel.Payroll
         private ObservableCollection<Attendance> attendances;
         private Attendance attendance;
         private AttendanceVM attendanceVM { get; set; }
+        AttendanceDataModel dm;
+        private List<DropListVM> empList;
 
         public AttendanceVM Attendance
         {
@@ -44,12 +47,19 @@ namespace eStoreMobileX.ViewModel.Payroll
             this.LoadData();
         }
 
+        public async System.Threading.Tasks.Task<List<DropListVM>> LoadEmployeeList()
+        {
+            EmployeeDataModel eDM = new EmployeeDataModel();
+            if (empList == null || empList.Count <= 0)
+                empList = await eDM.GetEmployeeListAsync(ApplicationContext.StoreId);
+            return empList;
+        }
+
         private async void LoadData()
         {
             try
             {
-
-                AttendanceDataModel dm = new AttendanceDataModel(ApplicationContext.EmpId, ApplicationContext.Role);
+                dm = new AttendanceDataModel(ApplicationContext.EmpId, ApplicationContext.Role);
                 List<Attendance> Data = await dm.GetAttendances(StoreId, false);
                 attendances.Clear();
                 foreach (var item in Data)

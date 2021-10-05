@@ -1,5 +1,6 @@
 ﻿using eStore.Shared.Models.Payroll;
 using eStoreMobile.Core.Database;
+using eStoreMobile.Core.Models.Dtos;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -38,33 +39,57 @@ namespace eStoreMobile.Core.DataViewModel
             }
         }
 
-        public async void Sync()
+        public async Task<bool> Sync()
         {
             using (_context = new eStoreDbContext())
             {
                 if (Employees == null || Employees.Count <= 0)
                     Employees = await service.RefreshDataAsync();
-
+                Employees = Employees.OrderBy(c => c.EmployeeId).ToList();
+                foreach (var emp in Employees)
+                {
+                    emp.EmployeeId = 0;
+                }
+                _ = await _context.Database.ExecuteSqlCommandAsync("Drop table Employees; ALTER TABLE Employees AUTO_INCREMENT = 0;");
                 await _context.Employees.AddRangeAsync(Employees);
                 int record = await _context.SaveChangesAsync();
                 Debug.WriteLine("No of Record added: " + record);
+                return record > 0 ? true : false;
             }
         }
 
-        public async Task<Dictionary<int, string>> GetEmployeeNameList(int storeId,bool working=true)
+        public async Task<List<DropListVM>> GetEmployeeListAsync(int storeId, bool working = true)
         {
-            using (_context = new eStoreDbContext()) {
+            var list = GetEmployeeNameList(storeId, working);
+            if(list==null || list.Count <= 0)
+            {
+               if(await Sync())
+                {
+                    list = GetEmployeeNameList(storeId, working);
+                }
+
+            }
+            return list;
+        }
+
+
+        public List<DropListVM> GetEmployeeNameList(int storeId, bool working = true)
+        {
+            using (_context = new eStoreDbContext())
+            {
                 //var list=await eStoreDatabase.Database.Table<Employee> ().Where (c => c.StoreId == storeId && c.IsWorking == working).ToListAsync ();
                 if (working)
                 {
-                    var list = await _context.Employees.Where(c => c.StoreId == storeId && c.IsWorking).Select(c => new { c.EmployeeId, c.StaffName }).ToDictionaryAsync(c=>c.EmployeeId,c=>c.StaffName);
-                        return list;
+                    var list = _context.Employees.Where(c => c.StoreId == storeId && c.IsWorking).Select(c => new DropListVM { Value = c.EmployeeId, Label = c.StaffName }).ToList();
+
+                    return list;
                 }
                 else
                 {
-                    var list = await _context.Employees.Where(c => c.StoreId == storeId ).Select (c => new { c.EmployeeId, c.StaffName }).ToDictionaryAsync (t => t.EmployeeId, t => t.StaffName);
+                    var list = _context.Employees.Where(c => c.StoreId == storeId).Select(c => new DropListVM { Value = c.EmployeeId, Label = c.StaffName }).ToList();
                     return list;
-                } }
+                }
+            }
 
         }
 
