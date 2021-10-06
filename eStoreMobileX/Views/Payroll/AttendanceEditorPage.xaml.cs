@@ -51,14 +51,14 @@ namespace eStoreMobileX.Views.Payroll
                             IsTailoring = data.IsTailoring,
                             StoreId = ApplicationContext.StoreId,
                             Remarks = data.Remarks,
-                            UserId = "X_" + ApplicationContext.UserName 
+                            UserId = "X_" + ApplicationContext.UserName
                         };
                         AttendanceDataModel dm = new AttendanceDataModel(ApplicationContext.EmpId, ApplicationContext.Role);
-                        int status=await dm.SaveAttendance(att, true);
+                        int status = await dm.SaveAttendance(att, true);
                         if (status > 0)
                         {
-                            
-                            await DisplayAlert("Info", "Attendance is saved!.", "Ok"); 
+
+                            await DisplayAlert("Info", "Attendance is saved!.", "Ok");
                         }
 
                         else
@@ -80,43 +80,55 @@ namespace eStoreMobileX.Views.Payroll
         private async void dataForm_AutoGeneratingDataFormItem(object sender, Syncfusion.XForms.DataForm.AutoGeneratingDataFormItemEventArgs e)
         {
             // Attendance at; at.
-
+            e.DataFormItem.TextInputLayoutSettings = new Syncfusion.XForms.DataForm.TextInputLayoutSettings()
+            {
+                OutlineCornerRadius = 30
+            };
             //if (e.DataFormItem.Name == "IsTailoring")
             //    e.DataFormItem.Editor = "Switch";
             if (e.DataFormItem.Name.Equals("IsTailoring"))
             {
-                
+
                 e.DataFormItem.LayoutOptions = LayoutType.Default;
                 (e.DataFormItem as DataFormCheckBoxItem).IsThreeState = false;
                 (e.DataFormItem as DataFormCheckBoxItem).Text = "Tailor";
-                
+
             }
 
-            if (e.DataFormItem.Name == "IsReadOnly")
+            else if (e.DataFormItem.Name == "IsReadOnly")
                 e.Cancel = true;
-            if (e.DataFormItem.Name == "AttendanceId")
+            else if (e.DataFormItem.Name == "AttendanceId")
                 e.Cancel = true;
-            if (e.DataFormItem.Name == "EmployeeId")
+            else if (e.DataFormItem.Name == "EmployeeId")
             {
+                e.DataFormItem.TextInputLayoutSettings = new Syncfusion.XForms.DataForm.TextInputLayoutSettings()
+                {
+                    OutlineCornerRadius = 30
+                };
                 e.DataFormItem = new DataFormDropDownItem()
                 {
                     Name = "EmployeeId",
                     Editor = "DropDown",
-                    LabelText="Employee"  ,
+                    LabelText = "Employee",
                     ItemsSource = (await GetEmpList()),
-                    PlaceHolderText = "Select a Employee"
+                    PlaceHolderText = "Select a Employee",
+                    LayoutOptions = LayoutType.TextInputLayout
                 };
                 (e.DataFormItem as DataFormDropDownItem).DisplayMemberPath = nameof(DropListVM.Label);
                 (e.DataFormItem as DataFormDropDownItem).SelectedValuePath = nameof(DropListVM.Value);
             }
-            if (e.DataFormItem.Name == "Employee")
+            else if (e.DataFormItem.Name == "Employee")
                 e.Cancel = true;
-            if (e.DataFormItem.Name == "Store")
+            else if (e.DataFormItem.Name == "Store")
                 e.Cancel = true;
-            if (e.DataFormItem.Name == "StoreId")
+            else if (e.DataFormItem.Name == "StoreId")
                 e.Cancel = true;
-            if (e.DataFormItem.Name == "UserId")
-                e.Cancel = true;
+            else if (e.DataFormItem.Name == "UserId")
+            {
+                    
+                     e.Cancel = true;
+            }
+
         }
     }
 }
