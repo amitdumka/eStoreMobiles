@@ -4,11 +4,11 @@
        xmlns:views="clr-namespace:eStoreMobileX.Views"
        xmlns:local="clr-namespace:eStoreMobileX.Views.Payroll"
        xmlns:sfUI="clr-namespace:eStoreMobileX.Views"
-       
+       FlyoutBackgroundImage="LoginBackground.png"
+       FlyoutBackgroundImageAspect="AspectFill"
        Title="eStoreMobileX"
        x:Class="eStoreMobileX.AppShell">
-
-
+    
     <!-- Display a bottom tab bar containing two tabs -->
     <FlyoutItem Title="MainPage" Icon="feed.png">
         <ShellContent Route="MainPage" ContentTemplate="{DataTemplate views:MainPage}" />
@@ -36,36 +36,25 @@
     <FlyoutItem Title="Settings" Icon="icon_about.png">
         <ShellContent Route="Settings" ContentTemplate="{DataTemplate views:SettingsPage}" />
     </FlyoutItem>
-    <!--<FlyoutItem Title="Wallet" Icon="icon_about.png">
-        <ShellContent Route="Wallet" ContentTemplate="{DataTemplate views:MyWalletPage}" />
+    <FlyoutItem Title="Sub">
+        <Tab>
+            <ShellContent Title="Main"
+                      Icon="icon_feed.png"
+                      ContentTemplate="{DataTemplate views:MainPage}" />
+            <ShellContent Title="Stock List"
+                      Icon="icon_about.png"
+                      ContentTemplate="{DataTemplate views:StockForm}" />
+        </Tab>
     </FlyoutItem>
-    <FlyoutItem Title="Contact" Icon="icon_about.png">
-        <ShellContent Route="Contactus" ContentTemplate="{DataTemplate views:ContactUsPage}" />
-    </FlyoutItem>
-    <FlyoutItem Title="D Cal" Icon="icon_about.png">
-        <ShellContent Route="DailyCal" ContentTemplate="{DataTemplate views:DailyCaloriesReportPage}" />
-    </FlyoutItem>
-    <FlyoutItem Title="Emp" Icon="icon_about.png">
-        <ShellContent Route="Emp" ContentTemplate="{DataTemplate views:EmployeeProfilePage}" />
-    </FlyoutItem>
-    <FlyoutItem Title="Care" Icon="icon_about.png">
-        <ShellContent Route="Care" ContentTemplate="{DataTemplate views:HealthCarePage}" />
-    </FlyoutItem>
-    <FlyoutItem Title="History" Icon="icon_about.png">
-        <ShellContent Route="Histriy" ContentTemplate="{DataTemplate views:CompanyHistoryPage}" />
-    </FlyoutItem>-->
-
-
-
-    <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
-    </MenuItem>
-    
     <TabBar>
-        <ShellContent Title="Main"
+        <ShellContent Title="Dashboard"
                       Icon="icon_feed.png"
                       ContentTemplate="{DataTemplate views:MainPage}" />
         <ShellContent Title="Stock List"
                       Icon="icon_about.png"
                       ContentTemplate="{DataTemplate views:StockForm}" />
     </TabBar>
+    <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
+    </MenuItem>
+
 </Shell>
