@@ -54,7 +54,7 @@
                                          MappingName="GSTNO" />
                             </datagrid:SfDataGrid.Columns>
                             <datagrid:SfDataGrid.SortColumnDescriptions>
-                                <datagrid:SortColumnDescription ColumnName="employee.category" />
+                                <datagrid:SortColumnDescription ColumnName="City" />
                             </datagrid:SfDataGrid.SortColumnDescriptions>
                         </datagrid:SfDataGrid>
                     </StackLayout>

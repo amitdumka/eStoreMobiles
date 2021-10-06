@@ -34,7 +34,11 @@ namespace eStoreMobileX.ViewModel.Payroll
             {
                 dm = new EmployeeDataModel();// (ApplicationContext.EmpId, ApplicationContext.Role);
                 List<Employee> Data = await dm.GetEmployees(StoreId, true);
-                if (Data == null ||Data.Count<=0) Data = await dm.GetEmployees(StoreId, false);
+
+                if (Data == null || Data.Count <= 0) {
+                    Data = await dm.GetEmployees(StoreId, false);
+                    await App.Current.MainPage.DisplayAlert("Info", "Loading Data from server...", "Ok");
+                }
                 if (Data != null)
                 {
                     EmployeeList.Clear();

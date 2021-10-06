@@ -63,7 +63,7 @@ namespace eStore.Shared.Models.Payroll
         
         public ICollection<Salesman> Salesmen { get; set; }
         public ICollection<Attendance> Attendances { get; set; }
-        public virtual EmployeeUser User { get; set; }
+        //public virtual EmployeeUser User { get; set; }
 
         public string PrintIt()
         {

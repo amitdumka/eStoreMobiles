@@ -82,17 +82,19 @@ namespace eStoreMobile.Core.DataViewModel
             {
                 using (_context = new eStoreDbContext())
                 {
-                    if (Attendances == null || Attendances.Count <= 0)
-                        Attendances = await service.RefreshDataAsync();
+                   
+                    Attendances = await service.RefreshDataAsync();
                     Attendances = Attendances.OrderBy(c => c.EmployeeId).ToList();
                     foreach (var item in Attendances)
                     {
-                        item.Employee.EmployeeId = 0;
-                        item.EmployeeId = 0;
-                        _context.Employees.Add(item.Employee);
+                        //item.Employee.EmployeeId = 0;
+                        //item.EmployeeId = 0;
+                        //_context.Employees.Add(item.Employee);
                         item.AttendanceId = 0;
-                        _context.Attendances.Add(item);
+                       // _context.Attendances.Add(item);
                     }
+                     _context.Database.ExecuteSqlCommand("Delete from Attendances; UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='Attendances';");
+                    await _context.AddRangeAsync(Attendances);
                     int record = _context.SaveChanges();
                     Debug.WriteLine("No of Record added: " + record);
                 }

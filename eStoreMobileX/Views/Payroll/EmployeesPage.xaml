@@ -58,7 +58,7 @@
                                          MappingName="Category" />
                             </datagrid:SfDataGrid.Columns>
                             <datagrid:SfDataGrid.SortColumnDescriptions>
-                                <datagrid:SortColumnDescription ColumnName="employee.category" />
+                                <datagrid:SortColumnDescription ColumnName="Category" />
                             </datagrid:SfDataGrid.SortColumnDescriptions>
                         </datagrid:SfDataGrid>
                     </StackLayout>

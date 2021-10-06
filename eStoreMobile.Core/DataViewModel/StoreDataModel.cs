@@ -55,7 +55,7 @@ namespace eStoreMobile.Core.DataViewModel
                           
                         str.UserId = "AutoAdmin";
                     }
-                    // _ = await _context.Database.ExecuteSqlCommandAsync("Delete table Stores; ALTER TABLE Stores AUTO_INCREMENT = 0;");
+                     _context.Database.ExecuteSqlCommand("Delete from Stores; UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='Stores';");
                     if (Stores.Count <= 1)
                     {
                        await _context.Stores.AddAsync(Stores[0]);

@@ -41,24 +41,42 @@ namespace eStoreMobile.Core.DataViewModel
 
         public async Task<bool> Sync()
         {
-            using (_context = new eStoreDbContext())
+            try
             {
-                Employees = await _context.Employees.ToListAsync();
 
-                if (Employees == null || Employees.Count <= 0)
+                using (_context = new eStoreDbContext())
+                {
                     Employees = await service.RefreshDataAsync();
 
-                Employees = Employees.OrderBy(c => c.EmployeeId).ToList();
-                foreach (var emp in Employees)
-                {
-                    emp.EmployeeId = 0;
+                    Employees = Employees.OrderBy(c => c.EmployeeId).ToList();
+                    int ctr = _context.Employees.Count();
+                    if (ctr > 0)
+                    {
+                        int x =  _context.Database.ExecuteSqlCommand("Delete from Employees; UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='Employees';");
+                        Debug.WriteLine("No of Record deelte: " + x);
+                    }
+                    int record = 0;
+                    foreach (var emp in Employees)
+                    {
+                        emp.EmployeeId = 0;
+                        emp.Store = null;
+                    }
+
+
+                    await _context.Employees.AddRangeAsync(Employees);
+                     record = await _context.SaveChangesAsync();
+                    Debug.WriteLine("No of Record added: " + record);
+                    return record > 0;
                 }
-               // _ = await _context.Database.ExecuteSqlCommandAsync("Delete table Employees; ALTER TABLE Employees AUTO_INCREMENT = 0;");
-                await _context.Employees.AddRangeAsync(Employees);
-                int record = await _context.SaveChangesAsync();
-                Debug.WriteLine("No of Record added: " + record);
-                return record > 0;
+
             }
+            catch (System.Exception ex)
+            {
+
+                Debug.WriteLine(ex.Message+"\n"+ex.InnerException); 
+                return false;
+            }
+        
         }
 
         public async Task<List<DropListVM>> GetEmployeeListAsync(int storeId, bool working = true)
