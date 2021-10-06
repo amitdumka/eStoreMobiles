@@ -85,7 +85,6 @@ namespace eStoreMobile.Core.DataViewModel
                     if (Attendances == null || Attendances.Count <= 0)
                         Attendances = await service.RefreshDataAsync();
                     Attendances = Attendances.OrderBy(c => c.EmployeeId).ToList();
-
                     foreach (var item in Attendances)
                     {
                         item.Employee.EmployeeId = 0;
@@ -94,21 +93,14 @@ namespace eStoreMobile.Core.DataViewModel
                         item.AttendanceId = 0;
                         _context.Attendances.Add(item);
                     }
-
-
                     int record = _context.SaveChanges();
-
-
-
                     Debug.WriteLine("No of Record added: " + record);
                 }
             }
             catch (System.Exception ex)
             {
-
                 Debug.WriteLine(ex.Message);
             }
-
         }
 
         public async Task<Attendance> GetAttendanceByIdAsync(int id, bool local = false)
