@@ -85,10 +85,13 @@ namespace eStoreMobileX.Views.Payroll
             //    e.DataFormItem.Editor = "Switch";
             if (e.DataFormItem.Name.Equals("IsTailoring"))
             {
+                
                 e.DataFormItem.LayoutOptions = LayoutType.Default;
                 (e.DataFormItem as DataFormCheckBoxItem).IsThreeState = false;
                 (e.DataFormItem as DataFormCheckBoxItem).Text = "Tailor";
+                
             }
+
             if (e.DataFormItem.Name == "IsReadOnly")
                 e.Cancel = true;
             if (e.DataFormItem.Name == "AttendanceId")
@@ -99,10 +102,12 @@ namespace eStoreMobileX.Views.Payroll
                 {
                     Name = "EmployeeId",
                     Editor = "DropDown",
+                    LabelText="Employee"  ,
                     ItemsSource = (await GetEmpList()),
-                    //ItemsSource =( await GetEmpList()),
                     PlaceHolderText = "Select a Employee"
                 };
+                (e.DataFormItem as DataFormDropDownItem).DisplayMemberPath = nameof(DropListVM.Label);
+                (e.DataFormItem as DataFormDropDownItem).SelectedValuePath = nameof(DropListVM.Value);
             }
             if (e.DataFormItem.Name == "Employee")
                 e.Cancel = true;
