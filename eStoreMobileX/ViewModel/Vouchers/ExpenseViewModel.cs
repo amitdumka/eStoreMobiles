@@ -3,22 +3,20 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using eStore.Shared.Models.Accounts;
 using eStoreMobile.Core.DataViewModel;
-using System.Threading.Tasks;
-
 
 namespace eStoreMobileX.ViewModel.Vouchers
 {
-    public class PaymentViewModel 
+    public class ExpenseViewModel
     {
 
-        public ObservableCollection<Payment> ItemList { get; set; }
-        public Payment Item { get; set; }
-        private PaymentDataModel dm = new PaymentDataModel();
-        public PaymentViewModel()
+        public ObservableCollection<Expense> ItemList { get; set; }
+        public Expense Item { get; set; }
+        private ExpenseDataModel dm = new ExpenseDataModel();
+        public ExpenseViewModel()
         {
 
-            ItemList = new ObservableCollection<Payment>();
-            this.Item = new Payment
+            ItemList = new ObservableCollection<Expense>();
+            this.Item = new Expense
             {
                 OnDate = DateTime.Today.Date,
                 StoreId = ApplicationContext.StoreId,
@@ -34,8 +32,8 @@ namespace eStoreMobileX.ViewModel.Vouchers
         {
             try
             {
-                dm = new PaymentDataModel();// (ApplicationContext.EmpId, ApplicationContext.Role);
-                List<Payment> Data = await dm.GetItemsAsync(ApplicationContext.StoreId, true);
+                dm = new ExpenseDataModel();// (ApplicationContext.EmpId, ApplicationContext.Role);
+                List<Expense> Data = await dm.GetItemsAsync(ApplicationContext.StoreId, true);
 
                 if (Data == null || Data.Count <= 0)
                 {
@@ -66,11 +64,13 @@ namespace eStoreMobileX.ViewModel.Vouchers
             LoadData();
         }
 
-        public async void SavePayment(Payment payment)
+
+
+        public async void SaveExpense(Expense Expense)
         {
-            if (await dm.SaveAsync(payment, true))
+            if (await dm.SaveAsync(Expense, true))
             {
-                await App.Current.MainPage.DisplayAlert("Alert", "Payment is salved!", "Ok");
+                await App.Current.MainPage.DisplayAlert("Alert", "Expense is salved!", "Ok");
             }
             else
             {

@@ -305,6 +305,7 @@
     <None Remove="Views\StockList\" />
     <None Remove="ViewModel\Dashboards\" />
     <None Remove="ViewModel\Vouchers\" />
+    <None Remove="Views\Vochers\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -332,5 +333,6 @@
     <Folder Include="Views\StockList\" />
     <Folder Include="ViewModel\Dashboards\" />
     <Folder Include="ViewModel\Vouchers\" />
+    <Folder Include="Views\Vochers\" />
   </ItemGroup>
 </Project>

@@ -9,6 +9,7 @@ using Xamarin.Forms;
 
 namespace eStoreMobile.Core.RestApi
 {
+
     public class RestSingleService
     {
         private readonly JsonSerializerOptions serializerOptions;
@@ -73,7 +74,6 @@ namespace eStoreMobile.Core.RestApi
 
     }
 
-
     public class RestService<T>
     {
         private JsonSerializerOptions serializerOptions;
@@ -133,7 +133,7 @@ namespace eStoreMobile.Core.RestApi
             }
             return false;
         }
-
+        //TODO: here need to implement to take store id as optional paramater. 
         public async Task<List<T>> RefreshDataAsync()
         {
             List<T> Items = new List<T> ();
