@@ -18,9 +18,7 @@ namespace eStoreMobileX.Views.Vochers
             await Task.Delay(1200);
             this.viewModel.ItemsSourceRefresh();
             pullToRefresh.IsRefreshing = false;
-            Expense p;
-             p.OnDate, p.Remarks, p.ExpenseId, p.PayMode,
-                p.PaymentDetails
+            
 
         }
     }
