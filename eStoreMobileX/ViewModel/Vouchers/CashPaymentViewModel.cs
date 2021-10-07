@@ -7,18 +7,18 @@ using System.Collections.ObjectModel;
 
 namespace eStoreMobileX.ViewModel.Vouchers
 {
-    public class PaymentViewModel
+    public class CashPaymentViewModel
     {
-        public ObservableCollection<Payment> ItemList { get; set; }
-        public Payment Item { get; set; }
-        private PaymentDataModel dm = new PaymentDataModel();
+        public ObservableCollection<CashPayment> ItemList { get; set; }
+        public CashPayment Item { get; set; }
+        private CashPaymentDataModel dm = new CashPaymentDataModel();
 
-        public PaymentViewModel()
+        public  CashPaymentViewModel()
         {
-            ItemList = new ObservableCollection<Payment>();
-            this.Item = new Payment
+            ItemList = new ObservableCollection<CashPayment>();
+            this.Item = new CashPayment
             {
-                OnDate = DateTime.Today.Date,
+                PaymentDate = DateTime.Today.Date,
                 StoreId = ApplicationContext.StoreId,
                 UserId = ApplicationContext.UserName,
                 IsReadOnly = false,
@@ -33,8 +33,8 @@ namespace eStoreMobileX.ViewModel.Vouchers
         {
             try
             {
-                dm = new PaymentDataModel();// (ApplicationContext.EmpId, ApplicationContext.Role);
-                List<Payment> Data = await dm.GetItemsAsync(ApplicationContext.StoreId, true);
+                dm = new CashPaymentDataModel();// (ApplicationContext.EmpId, ApplicationContext.Role);
+                List<CashPayment> Data = await dm.GetItemsAsync(ApplicationContext.StoreId, true);
 
                 if (Data == null || Data.Count <= 0)
                 {
@@ -64,7 +64,7 @@ namespace eStoreMobileX.ViewModel.Vouchers
             LoadData();
         }
 
-        public async void SavePayment(Payment payment)
+        public async void SavePayment(CashPayment payment)
         {
             if (await dm.SaveAsync(payment, true))
             {
@@ -76,7 +76,4 @@ namespace eStoreMobileX.ViewModel.Vouchers
             }
         }
     }
-
-
-
 }

@@ -16,7 +16,7 @@ namespace eStoreMobile.Core.DataViewModel
 
         public ExpenseDataModel()
         {
-            service = new RestApi.RestService<Expense>(Constants.EmployeeUrl, "Expense");
+            service = new RestApi.RestService<Expense>(Constants.ExpenseUrl, "Expense");
         }
 
         public async Task<List<Expense>> GetItemsAsync(int storeid, bool local = false)
@@ -45,4 +45,5 @@ namespace eStoreMobile.Core.DataViewModel
 
 
     }
+
 }

@@ -7,16 +7,16 @@ using System.Collections.ObjectModel;
 
 namespace eStoreMobileX.ViewModel.Vouchers
 {
-    public class PaymentViewModel
+    public class ReceiptViewModel
     {
-        public ObservableCollection<Payment> ItemList { get; set; }
-        public Payment Item { get; set; }
-        private PaymentDataModel dm = new PaymentDataModel();
+        public ObservableCollection<Receipt> ItemList { get; set; }
+        public Receipt Item { get; set; }
+        private ReceiptDataModel dm = new ReceiptDataModel();
 
-        public PaymentViewModel()
+        public ReceiptViewModel()
         {
-            ItemList = new ObservableCollection<Payment>();
-            this.Item = new Payment
+            ItemList = new ObservableCollection<Receipt>();
+            this.Item = new Receipt
             {
                 OnDate = DateTime.Today.Date,
                 StoreId = ApplicationContext.StoreId,
@@ -33,8 +33,8 @@ namespace eStoreMobileX.ViewModel.Vouchers
         {
             try
             {
-                dm = new PaymentDataModel();// (ApplicationContext.EmpId, ApplicationContext.Role);
-                List<Payment> Data = await dm.GetItemsAsync(ApplicationContext.StoreId, true);
+                dm = new ReceiptDataModel();// (ApplicationContext.EmpId, ApplicationContext.Role);
+                List<Receipt> Data = await dm.GetItemsAsync(ApplicationContext.StoreId, true);
 
                 if (Data == null || Data.Count <= 0)
                 {
@@ -64,11 +64,11 @@ namespace eStoreMobileX.ViewModel.Vouchers
             LoadData();
         }
 
-        public async void SavePayment(Payment payment)
+        public async void SavePayment(Receipt payment)
         {
             if (await dm.SaveAsync(payment, true))
             {
-                await App.Current.MainPage.DisplayAlert("Alert", "Payment is salved!", "Ok");
+                await App.Current.MainPage.DisplayAlert("Alert", "Receipt is salved!", "Ok");
             }
             else
             {

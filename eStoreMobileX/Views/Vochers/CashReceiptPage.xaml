@@ -5,23 +5,23 @@
     xmlns:pulltorefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms" 
     xmlns:datagrid="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
     xmlns:local="clr-namespace:eStoreMobileX.ViewModel.Vouchers"
-    Title="Payment"    
-    x:Class="eStoreMobileX.Views.Vochers.PaymentPage">
+    Title="Cash Receipt"    
+    x:Class="eStoreMobileX.Views.Vochers.CashReceiptPage">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="+ Add"/>
         <!--<ToolbarItem Text=" Sync Up" Order="Secondary" Clicked="SyncUp_Clicked"/>-->
     </ContentPage.ToolbarItems>
     <ContentPage.BindingContext>
-        <local:PaymentViewModel x:Name="viewModel" />
+        <local:CashReceiptViewModel x:Name="viewModel" />
     </ContentPage.BindingContext>
     <ContentPage.Content BackgroundColor="#1B1F35">
-        <pulltorefresh:SfPullToRefresh BackgroundColor="#1B1F35" x:Name="pullToRefresh">
+        <pulltorefresh:SfPullToRefresh BackgroundColor="BurlyWood" x:Name="pullToRefresh">
             <pulltorefresh:SfPullToRefresh.PullableContent>
-                <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" Padding="5">
-                    <Label Text="Payments" FontSize="Title" TextColor="Aqua" HorizontalTextAlignment="Center" TextDecorations="Underline" FontAttributes="Bold" />
+                <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" Padding="1">
+                    <Label Text="Cash Receipts" FontSize="Title" TextColor="IndianRed" HorizontalTextAlignment="Center" TextDecorations="Underline" FontAttributes="Bold" />
 
-                    <StackLayout Margin="5" VerticalOptions="StartAndExpand" Padding="10">
+                    <StackLayout Margin="0" VerticalOptions="StartAndExpand" Padding="5">
                        <datagrid:SfDataGrid ItemsSource="{Binding ItemList}"
                                                     x:Name="dataGrid"
                                                     BackgroundColor="#E5EBFF"
@@ -37,26 +37,26 @@
             
                                 <datagrid:GridTextColumn HeaderText="Id"
                                      HeaderFontAttribute="Bold"  ColumnSizer="Star"
-                                     MappingName="PaymentId" />
+                                     MappingName="CashReceiptId" />
 
-                                <datagrid:GridTextColumn HeaderText="PaymentSlipNo"
+                                <datagrid:GridTextColumn HeaderText="SlipNo"
                                         TextAlignment="Center"
                                         HeaderFontAttribute="Bold"
                                         HeaderTextAlignment="Center"
                                         ColumnSizer="LastColumnFill"
-                                        MappingName="PaymentSlipNo" />
+                                        MappingName="SlipNo" />
 
                                 <datagrid:GridDateTimeColumn HeaderText="Date"
                                          HeaderFontAttribute="Bold"   ColumnSizer="LastColumnFill"
-                                         MappingName="OnDate" />
+                                         MappingName="InwardDate" />
 
                                 <datagrid:GridTextColumn HeaderText="Party"
                                          HeaderFontAttribute="Bold"  ColumnSizer="LastColumnFill"
-                                         MappingName="PartyName" />
+                                         MappingName="ReceiptFrom" />
 
-                                <datagrid:GridTextColumn HeaderText="Mode"
+                                <!--<datagrid:GridTextColumn HeaderText="Mode"
                                          HeaderFontAttribute="Bold"     ColumnSizer="LastColumnFill"
-                                         MappingName="PayMode" />
+                                         MappingName="PayMode" />-->
                                 <datagrid:GridTextColumn HeaderText="Amount"
                                          HeaderFontAttribute="Bold"     ColumnSizer="LastColumnFill"
                                          MappingName="Amount" />
@@ -67,7 +67,7 @@
 
                             </datagrid:SfDataGrid.Columns>
                             <datagrid:SfDataGrid.SortColumnDescriptions>
-                                <datagrid:SortColumnDescription ColumnName="PaymentSlipNo" />
+                                <datagrid:SortColumnDescription ColumnName="InwardDate" />
                             </datagrid:SfDataGrid.SortColumnDescriptions>
                         </datagrid:SfDataGrid>
                     </StackLayout>

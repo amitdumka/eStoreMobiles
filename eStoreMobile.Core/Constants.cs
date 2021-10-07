@@ -46,6 +46,15 @@ namespace eStoreMobile.Core
         public static readonly string BankUrl = $"{BaseAddress}/banks";
         public static readonly string SalesmanUrl = $"{BaseAddress}/Salesmen";
 
+
+        //Vouchers
+        public static readonly string ExpenseUrl = $"{BaseAddress}/expenses";
+        public static readonly string PaymentUrl = $"{BaseAddress}/payments";
+       
+        public static readonly string ReceiptsUrl = $"{BaseAddress}/receipts";
+        public static readonly string CashPaymentUrl = $"{BaseAddress}/cashPayments";
+
+        public static readonly string CashReceiptsUrl = $"{BaseAddress}/cashReceipts";
     }
 
 }

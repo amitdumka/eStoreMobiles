@@ -4,12 +4,62 @@
        xmlns:views="clr-namespace:eStoreMobileX.Views"
        xmlns:local="clr-namespace:eStoreMobileX.Views.Payroll"
        xmlns:vouchers="clr-namespace:eStoreMobileX.Views.Vochers"
-       xmlns:sfUI="clr-namespace:eStoreMobileX.Views"
        FlyoutBackgroundImage="TheArvindStore005.png"
        FlyoutBackgroundImageAspect="AspectFill"
-       Title="eStoreMobileX"
+       FlyoutHeaderBehavior="CollapseOnScroll"
+       Title="eStore"
        x:Class="eStoreMobileX.AppShell">
     
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+               
+                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+               
+                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+            </Style>
+            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+            <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
+    
+            <Style TargetType="Label"  Class="FlyoutItemLabelStyle">
+                    <Setter Property="TextColor"  Value="Red" />
+            </Style>
+            <!--<Style Class="FlyoutItemLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White"></Setter>
+            </Style>-->
+    
+        </ResourceDictionary>
+    </Shell.Resources>
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <Grid BackgroundColor="WhiteSmoke"
+                  HeightRequest="190">
+                <Image Aspect="AspectFill"
+                       Source="Aprajita_Retails.jpg"
+                       Opacity="0.6" />
+                <Label Text="eStore"
+                       TextColor="IndianRed"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center" />
+            </Grid>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+    <Shell.FlyoutFooterTemplate>
+        <DataTemplate>
+            <StackLayout>
+                <Label Text="eStore Mobile UI" Margin="10"
+                       TextColor="GhostWhite"
+                       HorizontalOptions="Center" />
+            </StackLayout>
+        </DataTemplate>
+    </Shell.FlyoutFooterTemplate>
+
     <!-- Display a bottom tab bar containing two tabs -->
     <FlyoutItem Title="MainPage" Icon="feed.png">
         <ShellContent Route="MainPage" ContentTemplate="{DataTemplate views:MainPage}" />
@@ -20,32 +70,40 @@
     <FlyoutItem Title="Stock Scanner" Icon="icon_about.png">
         <ShellContent Route="StockScanner" ContentTemplate="{DataTemplate views:StockForm}" />
     </FlyoutItem>
-    <FlyoutItem Title="Stock List" Icon="icon_about.png">
+    <!--<FlyoutItem Title="Stock List" Icon="icon_about.png">
         <ShellContent Route="Stock" ContentTemplate="{DataTemplate views:StockListPage}" />
     </FlyoutItem>
     <FlyoutItem Title="AboutUs" Icon="icon_about.png">
         <ShellContent Route="AboutUs" ContentTemplate="{DataTemplate views:AboutUsPageWithCards}" />
-    </FlyoutItem>
+    </FlyoutItem>-->
     <FlyoutItem Title="Stores" Icon="icon_about.png">
+
         <ShellContent Route="Stores" ContentTemplate="{DataTemplate views:StoresPage}" />
     </FlyoutItem>
     <FlyoutItem Title="Employees" Icon="icon_about.png">
         <ShellContent Route="Employees" ContentTemplate="{DataTemplate local:EmployeesPage}" />
     </FlyoutItem>
-
-
     <FlyoutItem Title="Settings" Icon="icon_about.png">
         <ShellContent Route="Settings" ContentTemplate="{DataTemplate views:SettingsPage}" />
     </FlyoutItem>
-    <FlyoutItem Title="Voucher">
-        <Tab>
-            <ShellContent Title="Payment"
+    <FlyoutItem Title="Receipts" Icon="icon_about.png">
+        <ShellContent Route="Receipts" ContentTemplate="{DataTemplate vouchers:ReceiptPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Cash Receipts" Icon="icon_about.png">
+        <ShellContent Route="CashReceipts" ContentTemplate="{DataTemplate vouchers:CashReceiptPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Cash Expenses" Icon="icon_about.png">
+        <ShellContent Route="CashExp" ContentTemplate="{DataTemplate vouchers:CashPaymentPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Voucher" FlyoutDisplayOptions="AsMultipleItems">
+        <!--<Tab Title="Vouchers">-->
+        <ShellContent Title="Payment"
                       Icon="icon_feed.png"
                       ContentTemplate="{DataTemplate vouchers:PaymentPage}" />
-            <ShellContent Title="Expense"
+        <ShellContent Title="Expense"
                       Icon="icon_about.png"
                       ContentTemplate="{DataTemplate vouchers:ExpensePage}" />
-        </Tab>
+        <!--</Tab>-->
     </FlyoutItem>
     <TabBar>
         <ShellContent Title="Dashboard"
@@ -57,5 +115,4 @@
     </TabBar>
     <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
     </MenuItem>
-
 </Shell>

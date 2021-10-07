@@ -16,7 +16,7 @@ namespace eStoreMobile.Core.DataViewModel
 
         public PaymentDataModel()
         {
-            service = new RestApi.RestService<Payment>(Constants.EmployeeUrl, "Payment");
+            service = new RestApi.RestService<Payment>(Constants.PaymentUrl, "Payment");
         }
 
         public async Task<List<Payment>> GetItemsAsync(int storeid, bool local = false)
@@ -55,4 +55,43 @@ namespace eStoreMobile.Core.DataViewModel
         public Task<bool> Delete(int id);
         public Task<bool> IsExists(int id);    
     }
+    public class CashPaymentDataModel
+    {
+        public List<CashPayment> Payments { get; set; }
+        private RestApi.RestService<CashPayment> service;
+        private eStoreDbContext _context;
+
+
+        public CashPaymentDataModel()
+        {
+            service = new RestApi.RestService<CashPayment>(Constants.CashPaymentUrl, "Payment");
+        }
+
+        public async Task<List<CashPayment>> GetItemsAsync(int storeid, bool local = false)
+        {
+            return (await service.RefreshDataAsync()).Where(c => c.StoreId == storeid).ToList();
+        }
+        public async Task<List<CashPayment>> FindAsync(int storeid, string query, bool local = false)
+        {
+            return (await service.FindAsync(query)).Where(c => c.StoreId == storeid).ToList();
+        }
+
+        public async Task<CashPayment> GetByIdAsync(int id)
+        {
+            return await service.GetByIdAsync(id);
+        }
+
+        public async Task<bool> SaveAsync(CashPayment item, bool isNew = true, bool local = false)
+        {
+            return await service.SaveAsync(item, isNew);
+        }
+
+        public async Task<bool> DeleteAsync(int id)
+        {
+            return await service.DeleteAsync(id);
+        }
+
+
+    }
+
 }

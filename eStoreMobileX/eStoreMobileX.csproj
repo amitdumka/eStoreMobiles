@@ -156,6 +156,15 @@
     <Compile Update="AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Vochers\CashPaymentPage.xaml.cs">
+      <DependentUpon>CashPaymentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Vochers\CashReceiptPage.xaml.cs">
+      <DependentUpon>CashReceiptPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Vochers\ReceiptPage.xaml.cs">
+      <DependentUpon>ReceiptPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -332,7 +341,5 @@
     <Folder Include="Views\UIKit\" />
     <Folder Include="Views\StockList\" />
     <Folder Include="ViewModel\Dashboards\" />
-    <Folder Include="ViewModel\Vouchers\" />
-    <Folder Include="Views\Vochers\" />
   </ItemGroup>
 </Project>

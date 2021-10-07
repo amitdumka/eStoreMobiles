@@ -49,7 +49,7 @@ xmlns:calendar="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.S
                                     HorizontalOptions="CenterAndExpand" />
                         <Label Text="Aprajita Retails" FontSize="Title"  TextColor="IndianRed"      
                                     HorizontalOptions="CenterAndExpand" />
-                        <Label Text="Bhagalpur Road, Dumka" FontSize="Medium"  TextColor="IndianRed"    Margin="0,0,10,0"
+                        <Label Text="Bhagalpur Road, Dumka" FontSize="Medium"  TextColor="IndianRed"    Margin="0,0,15,0"
                                     HorizontalOptions="CenterAndExpand" />
                         </StackLayout>
                     </cardView:SfCardView>

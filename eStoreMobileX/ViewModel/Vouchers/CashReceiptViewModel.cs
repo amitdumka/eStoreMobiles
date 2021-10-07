@@ -7,18 +7,18 @@ using System.Collections.ObjectModel;
 
 namespace eStoreMobileX.ViewModel.Vouchers
 {
-    public class PaymentViewModel
+    public class CashReceiptViewModel
     {
-        public ObservableCollection<Payment> ItemList { get; set; }
-        public Payment Item { get; set; }
-        private PaymentDataModel dm = new PaymentDataModel();
+        public ObservableCollection<CashReceipt> ItemList { get; set; }
+        public CashReceipt Item { get; set; }
+        private CashReceiptDataModel dm = new CashReceiptDataModel();
 
-        public PaymentViewModel()
+        public CashReceiptViewModel()
         {
-            ItemList = new ObservableCollection<Payment>();
-            this.Item = new Payment
+            ItemList = new ObservableCollection<CashReceipt>();
+            this.Item = new CashReceipt
             {
-                OnDate = DateTime.Today.Date,
+                InwardDate = DateTime.Today.Date,
                 StoreId = ApplicationContext.StoreId,
                 UserId = ApplicationContext.UserName,
                 IsReadOnly = false,
@@ -33,8 +33,8 @@ namespace eStoreMobileX.ViewModel.Vouchers
         {
             try
             {
-                dm = new PaymentDataModel();// (ApplicationContext.EmpId, ApplicationContext.Role);
-                List<Payment> Data = await dm.GetItemsAsync(ApplicationContext.StoreId, true);
+                dm = new CashReceiptDataModel();// (ApplicationContext.EmpId, ApplicationContext.Role);
+                List<CashReceipt> Data = await dm.GetItemsAsync(ApplicationContext.StoreId, true);
 
                 if (Data == null || Data.Count <= 0)
                 {
@@ -64,11 +64,11 @@ namespace eStoreMobileX.ViewModel.Vouchers
             LoadData();
         }
 
-        public async void SavePayment(Payment payment)
+        public async void SavePayment(CashReceipt payment)
         {
             if (await dm.SaveAsync(payment, true))
             {
-                await App.Current.MainPage.DisplayAlert("Alert", "Payment is salved!", "Ok");
+                await App.Current.MainPage.DisplayAlert("Alert", "Receipt is salved!", "Ok");
             }
             else
             {

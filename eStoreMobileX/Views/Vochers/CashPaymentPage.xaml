@@ -6,20 +6,20 @@
     xmlns:datagrid="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
     xmlns:local="clr-namespace:eStoreMobileX.ViewModel.Vouchers"
     Title="Payment"    
-    x:Class="eStoreMobileX.Views.Vochers.PaymentPage">
+    x:Class="eStoreMobileX.Views.Vochers.CashPaymentPage">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="+ Add"/>
         <!--<ToolbarItem Text=" Sync Up" Order="Secondary" Clicked="SyncUp_Clicked"/>-->
     </ContentPage.ToolbarItems>
     <ContentPage.BindingContext>
-        <local:PaymentViewModel x:Name="viewModel" />
+        <local:CashPaymentViewModel x:Name="viewModel" />
     </ContentPage.BindingContext>
     <ContentPage.Content BackgroundColor="#1B1F35">
         <pulltorefresh:SfPullToRefresh BackgroundColor="#1B1F35" x:Name="pullToRefresh">
             <pulltorefresh:SfPullToRefresh.PullableContent>
                 <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" Padding="5">
-                    <Label Text="Payments" FontSize="Title" TextColor="Aqua" HorizontalTextAlignment="Center" TextDecorations="Underline" FontAttributes="Bold" />
+                    <Label Text="Cash Payments" FontSize="Title" TextColor="Aqua" HorizontalTextAlignment="Center" TextDecorations="Underline" FontAttributes="Bold" />
 
                     <StackLayout Margin="5" VerticalOptions="StartAndExpand" Padding="10">
                        <datagrid:SfDataGrid ItemsSource="{Binding ItemList}"
@@ -37,26 +37,26 @@
             
                                 <datagrid:GridTextColumn HeaderText="Id"
                                      HeaderFontAttribute="Bold"  ColumnSizer="Star"
-                                     MappingName="PaymentId" />
+                                     MappingName="CashPaymentId" />
 
                                 <datagrid:GridTextColumn HeaderText="PaymentSlipNo"
                                         TextAlignment="Center"
                                         HeaderFontAttribute="Bold"
                                         HeaderTextAlignment="Center"
                                         ColumnSizer="LastColumnFill"
-                                        MappingName="PaymentSlipNo" />
+                                        MappingName="SlipNo" />
 
                                 <datagrid:GridDateTimeColumn HeaderText="Date"
                                          HeaderFontAttribute="Bold"   ColumnSizer="LastColumnFill"
-                                         MappingName="OnDate" />
+                                         MappingName="PaymentDate" />
 
                                 <datagrid:GridTextColumn HeaderText="Party"
                                          HeaderFontAttribute="Bold"  ColumnSizer="LastColumnFill"
-                                         MappingName="PartyName" />
+                                         MappingName="PaidTo" />
 
-                                <datagrid:GridTextColumn HeaderText="Mode"
+                                <!--<datagrid:GridTextColumn HeaderText="Mode"
                                          HeaderFontAttribute="Bold"     ColumnSizer="LastColumnFill"
-                                         MappingName="PayMode" />
+                                         MappingName="PayMode" />-->
                                 <datagrid:GridTextColumn HeaderText="Amount"
                                          HeaderFontAttribute="Bold"     ColumnSizer="LastColumnFill"
                                          MappingName="Amount" />
@@ -67,7 +67,7 @@
 
                             </datagrid:SfDataGrid.Columns>
                             <datagrid:SfDataGrid.SortColumnDescriptions>
-                                <datagrid:SortColumnDescription ColumnName="PaymentSlipNo" />
+                                <datagrid:SortColumnDescription ColumnName="PaymentDate" />
                             </datagrid:SfDataGrid.SortColumnDescriptions>
                         </datagrid:SfDataGrid>
                     </StackLayout>
