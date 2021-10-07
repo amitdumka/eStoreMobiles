@@ -11,20 +11,21 @@
         <local:ExpenseViewModel x:Name="viewModel" />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        
-        <StackLayout Padding="10">
+        <ScrollView>
+            <StackLayout Padding="10">
             <Label x:Name="title_label" Text="New Expense"                             
                             TextColor="DarkOliveGreen"  FontSize="20"  HorizontalOptions="CenterAndExpand" Margin="10" />
+            
             <dataform:SfDataForm    NotifyPropertyChanges="True"
                          VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
                          AutoGeneratingDataFormItem="dataForm_AutoGeneratingDataFormItem"                       
-                        x:Name="dataForm" DataObject="{Binding Item}" LayoutOptions="Default"  ShowHelperText="False" >
+                        x:Name="dataForm" DataObject="{Binding Item}" LayoutOptions="TextInputLayout"  ShowHelperText="False" >
             </dataform:SfDataForm>
             <StackLayout>
                 <Button Text="Save" x:Name="SaveExpense" Clicked="SaveExpense_Clicked"/>
             </StackLayout>
-
+            
         </StackLayout>
-
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

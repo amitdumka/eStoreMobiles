@@ -77,17 +77,17 @@ namespace eStore.Shared.Models.Accounts
         [Display(Name = "Party")]
         public int? PartyId { get; set; }
 
-        [Display(Name = "Leger")]
-        public int? LedgerEnteryId { get; set; }
+        //[Display(Name = "Leger")]
+        //public int? LedgerEnteryId { get; set; }
 
-        [DefaultValue(false), Display(Name = "Cash")]
-        public bool IsCash { get; set; }
+        //[DefaultValue(false), Display(Name = "Cash")]
+        //public bool IsCash { get; set; }
 
-        [DefaultValue(false), Display(Name = "ON")]
-        public bool? IsOn { get; set; }
+        //[DefaultValue(false), Display(Name = "ON")]
+        //public bool? IsOn { get; set; }
 
-        [DefaultValue(true), Display(Name = "Dyn")]
-        public bool IsDyn { get; set; }
+        //[DefaultValue(true), Display(Name = "Dyn")]
+        //public bool IsDyn { get; set; }
 
         [DefaultValue(1), Display(Name = "Store")]
         public int StoreId { get; set; }

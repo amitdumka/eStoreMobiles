@@ -35,13 +35,16 @@ namespace eStoreMobileX.Views.Vochers
 
                 else if (e.DataFormItem.Name.Equals("IsOn") || e.DataFormItem.Name.Equals("IsDyn") || e.DataFormItem.Name.Equals("IsCash"))
                 {
-                   
+                    e.Cancel=true;
                     e.DataFormItem.LayoutOptions = LayoutType.Default;
                     (e.DataFormItem as DataFormCheckBoxItem).IsThreeState = false;
                     (e.DataFormItem as DataFormCheckBoxItem).Text = " ";
 
 
                 }
+                else if (e.DataFormItem.Name == "ExpenseId") e.Cancel = true;
+                else if (e.DataFormItem.Name == "ExpenseId") e.Cancel = true;
+
                 else if (e.DataFormItem.Name == "EmployeeId")
                 {
 

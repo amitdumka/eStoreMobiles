@@ -14,7 +14,7 @@ namespace eStore.Shared.Models.Accounts
         [Display (Name = "Paid By")]
         public int EmployeeId { get; set; }
 
-       // public virtual Employee PaidBy { get; set; }
+        public virtual Employee PaidBy { get; set; }
     }
     public class ExpenseVM : BasicVoucherVM
     {
@@ -27,6 +27,6 @@ namespace eStore.Shared.Models.Accounts
         [Display(Name = "Paid By")]
         public int EmployeeId { get; set; }
 
-        public virtual Employee PaidBy { get; set; }
+       // public virtual Employee PaidBy { get; set; }
     }
 }
