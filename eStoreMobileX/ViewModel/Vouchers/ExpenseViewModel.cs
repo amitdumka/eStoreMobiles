@@ -10,13 +10,13 @@ namespace eStoreMobileX.ViewModel.Vouchers
     {
 
         public ObservableCollection<Expense> ItemList { get; set; }
-        public Expense Item { get; set; }
+        public ExpenseVM Item { get; set; }
         private ExpenseDataModel dm = new ExpenseDataModel();
         public ExpenseViewModel()
         {
 
             ItemList = new ObservableCollection<Expense>();
-            this.Item = new Expense
+            this.Item = new ExpenseVM
             {
                 OnDate = DateTime.Today.Date,
                 StoreId = ApplicationContext.StoreId,

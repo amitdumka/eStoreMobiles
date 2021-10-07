@@ -10,13 +10,13 @@ namespace eStoreMobileX.ViewModel.Vouchers
     public class ReceiptViewModel
     {
         public ObservableCollection<Receipt> ItemList { get; set; }
-        public Receipt Item { get; set; }
+        public ReceiptVM Item { get; set; }
         private ReceiptDataModel dm = new ReceiptDataModel();
 
         public ReceiptViewModel()
         {
             ItemList = new ObservableCollection<Receipt>();
-            this.Item = new Receipt
+            this.Item = new ReceiptVM
             {
                 OnDate = DateTime.Today.Date,
                 StoreId = ApplicationContext.StoreId,

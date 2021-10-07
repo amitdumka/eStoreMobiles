@@ -21,5 +21,18 @@ namespace eStoreMobileX.Views.Vochers
             
 
         }
+
+        private async void AddExp_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                await Shell.Current.GoToAsync(nameof(ExpenseEditorPage));
+            }
+            catch (Exception ex)
+            {
+
+                await DisplayAlert("Alert", "Error: " + ex.Message, "Ok");
+            }
+        }
     }
 }

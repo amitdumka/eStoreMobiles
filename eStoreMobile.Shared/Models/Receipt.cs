@@ -12,4 +12,14 @@ namespace eStore.Shared.Models.Accounts
         [Display (Name = "Receipt Slip No ")]
         public string RecieptSlipNo { get; set; }
     }
+    public class ReceiptVM : BasicVoucherVM
+    {
+        public int ReceiptId { get; set; }
+
+        [Display(Name = "Receipt From ")]
+        public new string PartyName { get; set; }
+
+        [Display(Name = "Receipt Slip No ")]
+        public string RecieptSlipNo { get; set; }
+    }
 }

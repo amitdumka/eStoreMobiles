@@ -10,13 +10,13 @@ namespace eStoreMobileX.ViewModel.Vouchers
     public class CashPaymentViewModel
     {
         public ObservableCollection<CashPayment> ItemList { get; set; }
-        public CashPayment Item { get; set; }
+        public CashPaymentVM Item { get; set; }
         private CashPaymentDataModel dm = new CashPaymentDataModel();
 
         public  CashPaymentViewModel()
         {
             ItemList = new ObservableCollection<CashPayment>();
-            this.Item = new CashPayment
+            this.Item = new CashPaymentVM
             {
                 PaymentDate = DateTime.Today.Date,
                 StoreId = ApplicationContext.StoreId,

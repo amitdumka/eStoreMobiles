@@ -16,4 +16,17 @@ namespace eStore.Shared.Models.Accounts
 
         public virtual Employee PaidBy { get; set; }
     }
+    public class ExpenseVM : BasicVoucherVM
+    {
+        public int ExpenseId { get; set; }
+        public string Particulars { get; set; }
+
+        [Display(Name = "Paid To")]
+        public new string PartyName { get; set; }
+
+        [Display(Name = "Paid By")]
+        public int EmployeeId { get; set; }
+
+        public virtual Employee PaidBy { get; set; }
+    }
 }

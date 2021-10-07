@@ -10,13 +10,13 @@ namespace eStoreMobileX.ViewModel.Vouchers
     public class CashReceiptViewModel
     {
         public ObservableCollection<CashReceipt> ItemList { get; set; }
-        public CashReceipt Item { get; set; }
+        public CashReceiptVM Item { get; set; }
         private CashReceiptDataModel dm = new CashReceiptDataModel();
 
         public CashReceiptViewModel()
         {
             ItemList = new ObservableCollection<CashReceipt>();
-            this.Item = new CashReceipt
+            this.Item = new CashReceiptVM
             {
                 InwardDate = DateTime.Today.Date,
                 StoreId = ApplicationContext.StoreId,
