@@ -304,6 +304,7 @@
     <None Remove="Views\UIKit\" />
     <None Remove="Views\StockList\" />
     <None Remove="ViewModel\Dashboards\" />
+    <None Remove="ViewModel\Vouchers\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -330,5 +331,6 @@
     <Folder Include="Views\UIKit\" />
     <Folder Include="Views\StockList\" />
     <Folder Include="ViewModel\Dashboards\" />
+    <Folder Include="ViewModel\Vouchers\" />
   </ItemGroup>
 </Project>

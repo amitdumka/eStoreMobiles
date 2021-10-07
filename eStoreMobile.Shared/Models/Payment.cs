@@ -12,4 +12,17 @@ namespace eStore.Shared.Models.Accounts
         [Display (Name = "Payment Slip No")]
         public string PaymentSlipNo { get; set; }
     }
+
+    public class PaymentVM : BasicVoucherVM
+    {
+        public int PaymentId { get; set; }
+
+        [Display(Name = "Paid To")]
+        public new string PartyName { get; set; }
+
+        [Display(Name = "Payment Slip No")]
+        public string PaymentSlipNo { get; set; }
+    }
+
+
 }
