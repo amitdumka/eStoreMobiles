@@ -79,7 +79,7 @@ namespace eStoreMobileX.Models.About
         {
             get
             {
-                return App.ImageServerPath + this.image;
+                return this.image;//App.ImageServerPath + this.image;
             }
 
             set

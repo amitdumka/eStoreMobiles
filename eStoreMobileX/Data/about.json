@@ -2,17 +2,17 @@
   "productDescription": "eStore Mobile X, is a mobile UI for Web based SRP eStore. AKS Labs(India), had made this app for retails garments chain!.",
   "productIcon": "Icon.png",
   "productVersion": "2.0",
-  "bannerImage": "Mask.png",
+  "bannerImage": "TheArvindStore004.jpg",
 
   "employeeDetails": [
     {
       "employeeName": "Amit Kumar",
-      "image": "ProfileImage1.png",
+      "image": "Amit.jpg",
       "designation": "M.D."
     },
     {
       "employeeName": "Shalini Sah",
-      "image": "ProfileImage10.png",
+      "image": "Shalini.jpg",
       "designation": "VP Operations"
     }
   ]

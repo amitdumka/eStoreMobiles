@@ -59,7 +59,7 @@ namespace eStoreMobileX.ViewModels.About
         {
             get
             {
-                return App.ImageServerPath + this.bannerImage;
+                return this.bannerImage; //App.ImageServerPath + this.bannerImage;
             }
 
             set

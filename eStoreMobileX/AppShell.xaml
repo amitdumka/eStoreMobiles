@@ -4,7 +4,7 @@
        xmlns:views="clr-namespace:eStoreMobileX.Views"
        xmlns:local="clr-namespace:eStoreMobileX.Views.Payroll"
        xmlns:sfUI="clr-namespace:eStoreMobileX.Views"
-       FlyoutBackgroundImage="LoginBackground.png"
+       FlyoutBackgroundImage="TheArvindStore005.png"
        FlyoutBackgroundImageAspect="AspectFill"
        Title="eStoreMobileX"
        x:Class="eStoreMobileX.AppShell">
