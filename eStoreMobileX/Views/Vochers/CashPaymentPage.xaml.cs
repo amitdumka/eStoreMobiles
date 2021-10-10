@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using eStore.Shared.Models.Accounts;
+using eStoreMobileX.Views.Vochers.Editors;
 using Xamarin.Forms;
 
 namespace eStoreMobileX.Views.Vochers
@@ -20,6 +21,18 @@ namespace eStoreMobileX.Views.Vochers
             pullToRefresh.IsRefreshing = false;
             
            
+        }
+
+        async void ToolbarItem_Clicked(System.Object sender, System.EventArgs e)
+        {
+            try
+            {
+                await Shell.Current.GoToAsync(nameof(CashPaymentEditorPage));
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Alert", "Error: " + ex.Message, "Ok");
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using eStoreMobileX.Views;
 using eStoreMobileX.Views.Payroll;
 using eStoreMobileX.Views.Vochers;
+using eStoreMobileX.Views.Vochers.Editors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,13 +33,13 @@ namespace eStoreMobileX
             Routing.RegisterRoute(nameof(ExpensePage), typeof(ExpensePage));
             Routing.RegisterRoute(nameof(ExpenseEditorPage), typeof(ExpenseEditorPage));
             Routing.RegisterRoute(nameof(PaymentPage), typeof(PaymentPage));
-            //Routing.RegisterRoute(nameof(PaymentEditorPage), typeof(PaymentEditoPage));
+            Routing.RegisterRoute(nameof(PaymentEditorPage), typeof(PaymentEditorPage));
             Routing.RegisterRoute(nameof(CashPaymentPage), typeof(CashPaymentPage));
-            //Routing.RegisterRoute(nameof(CashPaymentEditorPage), typeof(PaymentEditoPage));
+            Routing.RegisterRoute(nameof(CashPaymentEditorPage), typeof(CashPaymentEditorPage));
             Routing.RegisterRoute(nameof(ReceiptPage), typeof(ReceiptPage));
-            //Routing.RegisterRoute(nameof(ReceiptEditorPage), typeof(ReceiptEditoPage));
+            Routing.RegisterRoute(nameof(ReceiptEditorPage), typeof(ReceiptEditorPage));
             Routing.RegisterRoute(nameof(CashReceiptPage), typeof(CashReceiptPage));
-            //Routing.RegisterRoute(nameof(CashReceiptEditorPage), typeof(CashReceiptEditoPage));
+            Routing.RegisterRoute(nameof(CashReceiptEditorPage), typeof(CashReceiptEditorPage));
 
             //Routing.RegisterRoute(nameof(ResetPasswordPageWithGradient), typeof(ResetPasswordPageWithGradient));
             //Routing.RegisterRoute(nameof(ContactUsPage), typeof(ContactUsPage));

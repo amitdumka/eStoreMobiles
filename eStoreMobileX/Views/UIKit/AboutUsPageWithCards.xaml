@@ -60,14 +60,15 @@
                     Aspect="AspectFit"
                     BackgroundColor="{DynamicResource Gray-Bg}"
                     HeightRequest="253"
-                    HorizontalOptions="Fill">
-                    <Image.Source>
+                    Source="{Binding BannerImage}"
+                    HorizontalOptions="Fill"/>
+                <!--<Image.Source>
                         <UriImageSource
                             CacheValidity="14"
                             CachingEnabled="true"
                             Uri="{Binding BannerImage}" />
-                    </Image.Source>
-                </Image>
+                    </Image.Source>-->
+
 
                 <!--  Product name and description  -->
                 <control:CustomShadowFrame

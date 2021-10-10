@@ -9,7 +9,7 @@
     x:Class="eStoreMobileX.Views.Vochers.CashPaymentPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="+ Add"/>
+        <ToolbarItem Text="+ Add" Clicked="ToolbarItem_Clicked"/>
         <!--<ToolbarItem Text=" Sync Up" Order="Secondary" Clicked="SyncUp_Clicked"/>-->
     </ContentPage.ToolbarItems>
     <ContentPage.BindingContext>

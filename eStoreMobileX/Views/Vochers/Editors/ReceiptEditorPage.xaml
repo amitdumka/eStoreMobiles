@@ -2,8 +2,31 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:dataform="clr-namespace:Syncfusion.XForms.DataForm;assembly=Syncfusion.SfDataForm.XForms"
+             xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+             xmlns:local="clr-namespace:eStoreMobileX.ViewModel.Vouchers"
+             Title="Edit Receipt"
     x:Class="eStoreMobileX.Views.Vochers.Editors.ReceiptEditorPage">
+    <ContentPage.BindingContext>
+        <local:ReceiptViewModel x:Name="viewModel" />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        
+        <ScrollView>
+            <StackLayout Padding="10">
+            <Label x:Name="title_label" Text="New Receipt"                             
+                            TextColor="DarkOliveGreen"  FontSize="20"  HorizontalOptions="CenterAndExpand" Margin="10" />
+            
+            <dataform:SfDataForm    NotifyPropertyChanges="True"
+                         VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                         AutoGeneratingDataFormItem="dataForm_AutoGeneratingDataFormItem"                       
+                        x:Name="dataForm" DataObject="{Binding Item}" LayoutOptions="TextInputLayout"  ShowHelperText="False" >
+            </dataform:SfDataForm>
+            <StackLayout>
+                <Button Text="Save" x:Name="SaveData" Clicked="SaveData_Clicked"/>
+            </StackLayout>
+            
+        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

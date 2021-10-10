@@ -41,5 +41,5 @@
 	<uses-permission android:name="android.permission.WRITE_CONTACTS" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.WRITE_SMS" />
-	<application android:label="eStoreMobileX.Android" android:icon="@drawable/icon"></application>
+	<application android:label="eStore-mX" android:icon="@drawable/icon"></application>
 </manifest>

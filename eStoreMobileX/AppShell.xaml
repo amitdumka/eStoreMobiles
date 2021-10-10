@@ -9,30 +9,31 @@
        FlyoutHeaderBehavior="CollapseOnScroll"
        Title="eStore"
        x:Class="eStoreMobileX.AppShell">
-    
+
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
-               
+
                 <Setter Property="Shell.ForegroundColor" Value="White" />
-                <Setter Property="Shell.TitleColor" Value="White" />
+               <Setter Property="Shell.TitleColor" Value="White" />
                 <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
                 <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
-               
+
                 <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
                 <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
                 <Setter Property="Shell.TabBarTitleColor" Value="White"/>
             </Style>
-            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+           <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
             <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
-    
+
             <Style TargetType="Label"  Class="FlyoutItemLabelStyle">
-                    <Setter Property="TextColor"  Value="Red" />
+                <Setter Property="TextColor"  Value="White" />
+                <Setter Property="FontAttributes"  Value="Italic" />
             </Style>
             <!--<Style Class="FlyoutItemLabelStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="White"></Setter>
             </Style>-->
-    
+
         </ResourceDictionary>
     </Shell.Resources>
     <Shell.FlyoutHeaderTemplate>
@@ -72,29 +73,29 @@
     </FlyoutItem>
     <!--<FlyoutItem Title="Stock List" Icon="icon_about.png">
         <ShellContent Route="Stock" ContentTemplate="{DataTemplate views:StockListPage}" />
-    </FlyoutItem>
+    </FlyoutItem>-->
     <FlyoutItem Title="AboutUs" Icon="icon_about.png">
         <ShellContent Route="AboutUs" ContentTemplate="{DataTemplate views:AboutUsPageWithCards}" />
-    </FlyoutItem>-->
+    </FlyoutItem>
     <FlyoutItem Title="Stores" Icon="icon_about.png">
-
         <ShellContent Route="Stores" ContentTemplate="{DataTemplate views:StoresPage}" />
     </FlyoutItem>
+
     <FlyoutItem Title="Employees" Icon="icon_about.png">
         <ShellContent Route="Employees" ContentTemplate="{DataTemplate local:EmployeesPage}" />
     </FlyoutItem>
     <FlyoutItem Title="Settings" Icon="icon_about.png">
         <ShellContent Route="Settings" ContentTemplate="{DataTemplate views:SettingsPage}" />
     </FlyoutItem>
-    <FlyoutItem Title="Receipts" Icon="icon_about.png">
-        <ShellContent Route="Receipts" ContentTemplate="{DataTemplate vouchers:ReceiptPage}" />
+
+
+    <FlyoutItem Title="Cash" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="Cash Receipts" Route="CashReceipts" ContentTemplate="{DataTemplate vouchers:CashReceiptPage}" Icon="icon_about.png" />
+        <ShellContent Title="Cash Expenses" Route="CashExp" ContentTemplate="{DataTemplate vouchers:CashPaymentPage}" Icon="icon_about.png" />
+
     </FlyoutItem>
-    <FlyoutItem Title="Cash Receipts" Icon="icon_about.png">
-        <ShellContent Route="CashReceipts" ContentTemplate="{DataTemplate vouchers:CashReceiptPage}" />
-    </FlyoutItem>
-    <FlyoutItem Title="Cash Expenses" Icon="icon_about.png">
-        <ShellContent Route="CashExp" ContentTemplate="{DataTemplate vouchers:CashPaymentPage}" />
-    </FlyoutItem>
+
+
     <FlyoutItem Title="Voucher" FlyoutDisplayOptions="AsMultipleItems">
         <!--<Tab Title="Vouchers">-->
         <ShellContent Title="Payment"
@@ -103,8 +104,10 @@
         <ShellContent Title="Expense"
                       Icon="icon_about.png"
                       ContentTemplate="{DataTemplate vouchers:ExpensePage}" />
+        <ShellContent Route="Receipts" ContentTemplate="{DataTemplate vouchers:ReceiptPage}" Title="Receipts" Icon="icon_about.png" />
         <!--</Tab>-->
     </FlyoutItem>
+
     <TabBar>
         <ShellContent Title="Dashboard"
                       Icon="icon_feed.png"

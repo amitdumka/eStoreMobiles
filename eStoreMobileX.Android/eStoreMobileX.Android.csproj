@@ -17,6 +17,15 @@
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <PackageVersion>2.0</PackageVersion>
+    <Authors>Amit Kumar (AKS Labs[India])</Authors>
+    <Copyright>AKS Labs (India)</Copyright>
+    <Owners>Amit Kumar</Owners>
+    <PackageProjectUrl>https://www.aprajitaretails.in</PackageProjectUrl>
+    <PackageReleaseNotes>It is for only Aprajita Retails, Dumka owners and employee only </PackageReleaseNotes>
+    <Summary>eStore Mobile UI for eStore Web</Summary>
+    <Title>eStore Mobile X</Title>
+    <Description>A SRP for Aprajita Retails , Dumka Sote</Description>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
