@@ -18,8 +18,6 @@ namespace eStoreMobileX.Views.Vochers
             await Task.Delay(1200);
             this.viewModel.ItemsSourceRefresh();
             pullToRefresh.IsRefreshing = false;
-            
-
         }
 
         private async void AddExp_Clicked(object sender, EventArgs e)
@@ -30,7 +28,6 @@ namespace eStoreMobileX.Views.Vochers
             }
             catch (Exception ex)
             {
-
                 await DisplayAlert("Alert", "Error: " + ex.Message, "Ok");
             }
         }

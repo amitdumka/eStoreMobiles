@@ -288,9 +288,6 @@
     <EmbeddedResource Update="Views\UIKit\StockOverviewPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Vochers\ExpenseEditorPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -318,6 +315,7 @@
     <None Remove="ViewModel\Dashboards\" />
     <None Remove="ViewModel\Vouchers\" />
     <None Remove="Views\Vochers\" />
+    <None Remove="Views\Vochers\Editors\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -344,5 +342,12 @@
     <Folder Include="Views\UIKit\" />
     <Folder Include="Views\StockList\" />
     <Folder Include="ViewModel\Dashboards\" />
+    <Folder Include="Views\Vochers\Editors\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Views\Vochers\CashPaymentEditorPage">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
 </Project>

@@ -64,9 +64,9 @@ namespace eStoreMobileX.ViewModel.Vouchers
             LoadData();
         }
 
-        public async void SavePayment(Receipt payment)
+        public async void SavePayment(Receipt payment, bool isNew=true)
         {
-            if (await dm.SaveAsync(payment, true))
+            if (await dm.SaveAsync(payment, isNew))
             {
                 await App.Current.MainPage.DisplayAlert("Alert", "Receipt is salved!", "Ok");
             }

@@ -1,4 +1,5 @@
-﻿using Syncfusion.XForms.DataForm;
+﻿using eStore.Shared.Models.Accounts;
+using Syncfusion.XForms.DataForm;
 using System;
 
 using Xamarin.Forms;
@@ -16,6 +17,17 @@ namespace eStoreMobileX.Views.Vochers
 
         private void SaveExpense_Clicked(object sender, EventArgs e)
         {
+            dataForm.Commit();
+            var data = dataForm.DataObject as ExpenseVM;
+
+            Expense expense = new Expense { Amount = data.Amount, EmployeeId = data.EmployeeId,
+               EntryStatus=EntryStatus.Added, IsCash=false, IsDyn=false, IsOn=false, IsReadOnly=false,
+               UserId=ApplicationContext.UserName, StoreId=ApplicationContext.StoreId,
+               OnDate=data.OnDate, PayMode=data.PayMode, Remarks=data.Remarks, Particulars=data.Particulars,
+               PaymentDetails=data.PaymentDetails, PartyId=data.PartyId, PartyName=data.PartyName,
+               BankAccountId=data.BankAccountId
+            };
+            viewModel.SaveExpense(expense);
         }
 
         private void dataForm_AutoGeneratingDataFormItem(object sender, Syncfusion.XForms.DataForm.AutoGeneratingDataFormItemEventArgs e)

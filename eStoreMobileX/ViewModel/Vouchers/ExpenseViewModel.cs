@@ -64,11 +64,9 @@ namespace eStoreMobileX.ViewModel.Vouchers
             LoadData();
         }
 
-
-
-        public async void SaveExpense(Expense Expense)
+        public async void SaveExpense(Expense Expense, bool isNew=true)
         {
-            if (await dm.SaveAsync(Expense, true))
+            if (await dm.SaveAsync(Expense, isNew))
             {
                 await App.Current.MainPage.DisplayAlert("Alert", "Expense is salved!", "Ok");
             }
