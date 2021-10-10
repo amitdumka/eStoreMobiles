@@ -20,50 +20,29 @@ namespace eStoreMobileX.Views.Vochers.Editors
                 {
                     OutlineCornerRadius = 30
                 };
-                if (e.DataFormItem.Name == "Party" || e.DataFormItem.Name == "LedgerEntry")
+               
+                if (e.DataFormItem.Name == "CashPaymentId"|| e.DataFormItem.Name == "Mode") e.Cancel = true;
+                
+                else if (e.DataFormItem.Name == "IsReadOnly" || e.DataFormItem.Name == "EntryStatus")
+                    e.Cancel = true;
+                else if (e.DataFormItem.Name == "Store"||e.DataFormItem.Name == "StoreId" ||e.DataFormItem.Name == "UserId")
                 {
                     e.Cancel = true;
                 }
-                else if (e.DataFormItem.Name == "PaidBy" || e.DataFormItem.Name == "FromAccount")
-                    e.Cancel = true;
-
-                else if (e.DataFormItem.Name.Equals("IsOn") || e.DataFormItem.Name.Equals("IsDyn") || e.DataFormItem.Name.Equals("IsCash"))
-                {
-                    e.Cancel = true;
-                    e.DataFormItem.LayoutOptions = LayoutType.Default;
-                    (e.DataFormItem as DataFormCheckBoxItem).IsThreeState = false;
-                    (e.DataFormItem as DataFormCheckBoxItem).Text = " ";
-
-
-                }
-                else if (e.DataFormItem.Name == "ExpenseId") e.Cancel = true;
-                else if (e.DataFormItem.Name == "ExpenseId") e.Cancel = true;
-
-                else if (e.DataFormItem.Name == "EmployeeId")
+                else if (e.DataFormItem.Name == "TranscationModeId")
                 {
 
                     e.DataFormItem = new DataFormDropDownItem()
                     {
-                        Name = "EmployeeId",
+                        Name = "TranscationModeId",
                         Editor = "DropDown",
-                        LabelText = "Paid By",
+                        LabelText = "Mode",
                         // ItemsSource = (await GetEmpList()),
-                        PlaceHolderText = "Select a Employee",
+                        PlaceHolderText = "Select a Mode",
                         LayoutOptions = LayoutType.TextInputLayout
                     };
                     //(e.DataFormItem as DataFormDropDownItem).DisplayMemberPath = nameof(DropListVM.Label);
                     //(e.DataFormItem as DataFormDropDownItem).SelectedValuePath = nameof(DropListVM.Value);
-                }
-
-                else if (e.DataFormItem.Name == "IsReadOnly" || e.DataFormItem.Name == "EntryStatus")
-                    e.Cancel = true;
-                else if (e.DataFormItem.Name == "Store")
-                    e.Cancel = true;
-                else if (e.DataFormItem.Name == "StoreId")
-                    e.Cancel = true;
-                else if (e.DataFormItem.Name == "UserId")
-                {
-                    e.Cancel = true;
                 }
             }
             catch (Exception ex)

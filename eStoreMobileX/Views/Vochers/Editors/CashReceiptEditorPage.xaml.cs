@@ -47,26 +47,30 @@ namespace eStoreMobileX.Views.Vochers.Editors
                 {
                     OutlineCornerRadius = 30
                 };
-                if (e.DataFormItem.Name == "Party" || e.DataFormItem.Name == "LedgerEntry")
-                {
-                    e.Cancel = true;
-                }
-                else if (e.DataFormItem.Name == "PaidBy" || e.DataFormItem.Name == "FromAccount")
-                    e.Cancel = true;
+                if (e.DataFormItem.Name == "CashRecieptId" || e.DataFormItem.Name == "Mode") e.Cancel = true;
 
-               
-                else if (e.DataFormItem.Name == "CashRecieptId") e.Cancel = true;
-             
                 else if (e.DataFormItem.Name == "IsReadOnly" || e.DataFormItem.Name == "EntryStatus")
                     e.Cancel = true;
-                else if (e.DataFormItem.Name == "Store")
-                    e.Cancel = true;
-                else if (e.DataFormItem.Name == "StoreId")
-                    e.Cancel = true;
-                else if (e.DataFormItem.Name == "UserId")
+                else if (e.DataFormItem.Name == "Store" || e.DataFormItem.Name == "StoreId" || e.DataFormItem.Name == "UserId")
                 {
                     e.Cancel = true;
                 }
+                else if (e.DataFormItem.Name == "TranscationModeId")
+                {
+
+                    e.DataFormItem = new DataFormDropDownItem()
+                    {
+                        Name = "TranscationModeId",
+                        Editor = "DropDown",
+                        LabelText = "Mode",
+                        // ItemsSource = (await GetEmpList()),
+                        PlaceHolderText = "Select a Mode",
+                        LayoutOptions = LayoutType.TextInputLayout
+                    };
+                    //(e.DataFormItem as DataFormDropDownItem).DisplayMemberPath = nameof(DropListVM.Label);
+                    //(e.DataFormItem as DataFormDropDownItem).SelectedValuePath = nameof(DropListVM.Value);
+                }
+
             }
             catch (Exception ex)
             {

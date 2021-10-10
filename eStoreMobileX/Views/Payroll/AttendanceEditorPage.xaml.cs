@@ -36,7 +36,6 @@ namespace eStoreMobileX.Views.Payroll
                 {
                     bool flag = true;
                     if (data.AttDate == null) flag = false;
-                    //if (data.EmployeeId <= 0) flag = false;
                     if (string.IsNullOrEmpty(data.EntryTime)) flag = false;
                     if (flag)
                     {

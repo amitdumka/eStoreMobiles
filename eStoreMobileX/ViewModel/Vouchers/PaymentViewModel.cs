@@ -10,19 +10,19 @@ namespace eStoreMobileX.ViewModel.Vouchers
     public class PaymentViewModel
     {
         public ObservableCollection<Payment> ItemList { get; set; }
-        public Payment Item { get; set; }
+        public PaymentVM Item { get; set; }
         private PaymentDataModel dm = new PaymentDataModel();
 
         public PaymentViewModel()
         {
             ItemList = new ObservableCollection<Payment>();
-            this.Item = new Payment
+            this.Item = new PaymentVM
             {
                 OnDate = DateTime.Today.Date,
                 StoreId = ApplicationContext.StoreId,
                 UserId = ApplicationContext.UserName,
                 IsReadOnly = false,
-                EntryStatus = EntryStatus.Added,
+                EntryStatus = EntryStatus.Added
             };
             //Enable if required.
             //this.attendance = new Attendance ();

@@ -66,18 +66,30 @@ namespace eStoreMobileX.Views.Vochers.Editors
 
                 }
                 else if (e.DataFormItem.Name == "ReceiptId") e.Cancel = true;
-                else if (e.DataFormItem.Name == "ReceiptId") e.Cancel = true;
-
-                else if (e.DataFormItem.Name == "EmployeeId")
+                else if (e.DataFormItem.Name == "PartyId")
                 {
-
                     e.DataFormItem = new DataFormDropDownItem()
                     {
-                        Name = "EmployeeId",
+                        Name = "PartyId",
                         Editor = "DropDown",
-                        LabelText = "Paid By",
+                        LabelText = "Party",
                         // ItemsSource = (await GetEmpList()),
-                        PlaceHolderText = "Select a Employee",
+                        PlaceHolderText = "Select a Party",
+                        LayoutOptions = LayoutType.TextInputLayout
+                    };
+                    //(e.DataFormItem as DataFormDropDownItem).DisplayMemberPath = nameof(DropListVM.Label);
+                    //(e.DataFormItem as DataFormDropDownItem).SelectedValuePath = nameof(DropListVM.Value);
+                }
+                else if (e.DataFormItem.Name == "BankAccountId")
+                {
+                    
+                    e.DataFormItem = new DataFormDropDownItem()
+                    {
+                        Name = "BankAccountId",
+                        Editor = "DropDown",
+                        LabelText = "Account",
+                        // ItemsSource = (await GetEmpList()),
+                        PlaceHolderText = "Select a Account No",
                         LayoutOptions = LayoutType.TextInputLayout
                     };
                     //(e.DataFormItem as DataFormDropDownItem).DisplayMemberPath = nameof(DropListVM.Label);
