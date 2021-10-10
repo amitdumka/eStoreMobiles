@@ -11,6 +11,7 @@ namespace eStoreMobileX.Views.Vochers.Editors
         public ReceiptEditorPage()
         {
             InitializeComponent();
+            
         }
 
         void SaveData_Clicked(System.Object sender, System.EventArgs e)

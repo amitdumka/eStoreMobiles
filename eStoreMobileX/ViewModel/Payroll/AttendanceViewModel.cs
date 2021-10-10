@@ -3,12 +3,8 @@ using eStoreMobile.Core.DataViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System;
 using System.ComponentModel.DataAnnotations;
-using eStore.Shared.Models.Payroll;
 using Syncfusion.XForms.DataForm;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 using eStoreMobile.Core.Models.Dtos;
 
 namespace eStoreMobileX.ViewModel.Payroll

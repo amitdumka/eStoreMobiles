@@ -1,6 +1,7 @@
 ﻿//using System;
 using eStore.Shared.Models.Accounts;
 using eStoreMobile.Core.DataViewModel;
+using eStoreMobile.Core.Models.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,7 +13,15 @@ namespace eStoreMobileX.ViewModel.Vouchers
         public ObservableCollection<CashReceipt> ItemList { get; set; }
         public CashReceiptVM Item { get; set; }
         private CashReceiptDataModel dm = new CashReceiptDataModel();
+        private List<DropListVM> modeList;
 
+        public async System.Threading.Tasks.Task<List<DropListVM>> LoadModeList()
+        {
+            TranscationModeViewModel eDM = new TranscationModeViewModel();
+            if (modeList == null || modeList.Count <= 0)
+                modeList = await eDM.GetTranscationModeListAsync();
+            return modeList;
+        }
         public CashReceiptViewModel()
         {
             ItemList = new ObservableCollection<CashReceipt>();

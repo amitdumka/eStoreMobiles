@@ -5,7 +5,7 @@
              xmlns:dataform="clr-namespace:Syncfusion.XForms.DataForm;assembly=Syncfusion.SfDataForm.XForms"
              xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
              xmlns:local="clr-namespace:eStoreMobileX.ViewModel.Vouchers"
-             Title="Edit Expense"
+             Title="Edit Payment"
              x:Class="eStoreMobileX.Views.Vochers.Editors.PaymentEditorPage">
     <ContentPage.BindingContext>
         <local:PaymentViewModel x:Name="viewModel" />

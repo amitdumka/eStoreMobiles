@@ -5,7 +5,7 @@
     xmlns:pulltorefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms" 
     xmlns:datagrid="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
     xmlns:local="clr-namespace:eStoreMobileX.ViewModel.Vouchers"
-    Title="Payment"    
+    Title="Expense"    
     x:Class="eStoreMobileX.Views.Vochers.ExpensePage">
 
     <ContentPage.ToolbarItems>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using eStore.Shared.Models.Accounts;
 using eStoreMobile.Core.DataViewModel;
+using eStoreMobile.Core.Models.Dtos;
 
 namespace eStoreMobileX.ViewModel.Vouchers
 {
@@ -12,6 +13,16 @@ namespace eStoreMobileX.ViewModel.Vouchers
         public ObservableCollection<Expense> ItemList { get; set; }
         public ExpenseVM Item { get; set; }
         private ExpenseDataModel dm = new ExpenseDataModel();
+        private List<DropListVM> empList;
+
+        public async System.Threading.Tasks.Task<List<DropListVM>> LoadEmployeeList()
+        {
+            EmployeeDataModel eDM = new EmployeeDataModel();
+            if (empList == null || empList.Count <= 0)
+                empList = await eDM.GetEmployeeListAsync(ApplicationContext.StoreId);
+            return empList;
+        }
+
         public ExpenseViewModel()
         {
 
