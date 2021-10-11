@@ -14,6 +14,16 @@ namespace eStoreMobileX.ViewModel.Vouchers
         public PaymentVM Item { get; set; }
         private PaymentDataModel dm = new PaymentDataModel();
         private List<DropListVM> empList;
+        private List<DropListVM> partyList;
+        private List<DropListVM> accountList;
+
+        public async System.Threading.Tasks.Task<List<DropListVM>> LoadAccountList()
+        {
+            BankAccountDataModel eDM = new BankAccountDataModel();
+            if (accountList == null || accountList.Count <= 0)
+                accountList = await eDM.GetBankAccountListAsync();
+            return accountList;
+        }
 
         public async System.Threading.Tasks.Task<List<DropListVM>> LoadEmployeeList()
         {
@@ -21,6 +31,13 @@ namespace eStoreMobileX.ViewModel.Vouchers
             if (empList == null || empList.Count <= 0)
                 empList = await eDM.GetEmployeeListAsync(ApplicationContext.StoreId);
             return empList;
+        }
+        public async System.Threading.Tasks.Task<List<DropListVM>> LoadPartyList()
+        {
+            PartyDataModel eDM = new PartyDataModel();
+            if (partyList == null || partyList.Count <= 0)
+                partyList = await eDM.GetPartyListAsync();
+            return partyList;
         }
 
         public PaymentViewModel()

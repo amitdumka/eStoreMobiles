@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using eStoreMobileX.Views;
+using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
 namespace eStoreMobileX.ViewModels
@@ -144,6 +145,11 @@ namespace eStoreMobileX.ViewModels
         private void LogoutClicked(object obj)
         {
             // Do something
+            ApplicationContext.EmpId = -1;
+            ApplicationContext.UserName = "";
+            ApplicationContext.IsLoggedIn = false;
+            ApplicationContext.Role = EmpType.Others;
+            App.Current.MainPage = new LoginPage();
         }
 
         #endregion

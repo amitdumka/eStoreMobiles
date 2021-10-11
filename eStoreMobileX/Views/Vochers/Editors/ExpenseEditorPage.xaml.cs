@@ -1,4 +1,5 @@
 ﻿using eStore.Shared.Models.Accounts;
+using eStoreMobile.Core.Models.Dtos;
 using Syncfusion.XForms.DataForm;
 using System;
 
@@ -13,6 +14,9 @@ namespace eStoreMobileX.Views.Vochers
         public ExpenseEditorPage()
         {
             InitializeComponent();
+            _ = viewModel.LoadEmployeeList();
+            _ = viewModel.LoadPartyList();
+            _ = viewModel.LoadAccountList();
         }
 
         private void SaveExpense_Clicked(object sender, EventArgs e)
@@ -30,7 +34,7 @@ namespace eStoreMobileX.Views.Vochers
             viewModel.SaveExpense(expense);
         }
 
-        private void dataForm_AutoGeneratingDataFormItem(object sender, Syncfusion.XForms.DataForm.AutoGeneratingDataFormItemEventArgs e)
+        private async void dataForm_AutoGeneratingDataFormItem(object sender, Syncfusion.XForms.DataForm.AutoGeneratingDataFormItemEventArgs e)
         {
             try
             {
@@ -55,8 +59,6 @@ namespace eStoreMobileX.Views.Vochers
 
                 }
                 else if (e.DataFormItem.Name == "ExpenseId") e.Cancel = true;
-                else if (e.DataFormItem.Name == "ExpenseId") e.Cancel = true;
-
                 else if (e.DataFormItem.Name == "EmployeeId")
                 {
 
@@ -65,14 +67,42 @@ namespace eStoreMobileX.Views.Vochers
                         Name = "EmployeeId",
                         Editor = "DropDown",
                         LabelText = "Paid By",
-                        // ItemsSource = (await GetEmpList()),
+                         ItemsSource = (await viewModel.LoadEmployeeList()),
                         PlaceHolderText = "Select a Employee",
                         LayoutOptions = LayoutType.TextInputLayout
                     };
-                    //(e.DataFormItem as DataFormDropDownItem).DisplayMemberPath = nameof(DropListVM.Label);
-                    //(e.DataFormItem as DataFormDropDownItem).SelectedValuePath = nameof(DropListVM.Value);
+                    (e.DataFormItem as DataFormDropDownItem).DisplayMemberPath = nameof(DropListVM.Label);
+                    (e.DataFormItem as DataFormDropDownItem).SelectedValuePath = nameof(DropListVM.Value);
                 }
+                else if (e.DataFormItem.Name == "PartyId")
+                {
+                    e.DataFormItem = new DataFormDropDownItem()
+                    {
+                        Name = "PartyId",
+                        Editor = "DropDown",
+                        LabelText = "Party",
+                         ItemsSource = (await viewModel.LoadPartyList()),
+                        PlaceHolderText = "Select a Party",
+                        LayoutOptions = LayoutType.TextInputLayout
+                    };
+                    (e.DataFormItem as DataFormDropDownItem).DisplayMemberPath = nameof(DropListVM.Label);
+                    (e.DataFormItem as DataFormDropDownItem).SelectedValuePath = nameof(DropListVM.Value);
+                }
+                else if (e.DataFormItem.Name == "BankAccountId")
+                {
 
+                    e.DataFormItem = new DataFormDropDownItem()
+                    {
+                        Name = "BankAccountId",
+                        Editor = "DropDown",
+                        LabelText = "Account",
+                         ItemsSource = (await viewModel.LoadAccountList()),
+                        PlaceHolderText = "Select a Account No",
+                        LayoutOptions = LayoutType.TextInputLayout
+                    };
+                    (e.DataFormItem as DataFormDropDownItem).DisplayMemberPath = nameof(DropListVM.Label);
+                   (e.DataFormItem as DataFormDropDownItem).SelectedValuePath = nameof(DropListVM.Value);
+                }
                 else if (e.DataFormItem.Name == "IsReadOnly" || e.DataFormItem.Name == "EntryStatus")
                     e.Cancel = true;
                 else if (e.DataFormItem.Name == "Store")

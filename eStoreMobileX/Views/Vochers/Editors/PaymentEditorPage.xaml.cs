@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using eStore.Shared.Models.Accounts;
+using eStoreMobile.Core.Models.Dtos;
 using Syncfusion.XForms.DataForm;
 using Xamarin.Forms;
 
@@ -40,7 +41,7 @@ namespace eStoreMobileX.Views.Vochers.Editors
             viewModel.SavePayment(Payment);
         }
 
-        private void dataForm_AutoGeneratingDataFormItem(object sender, Syncfusion.XForms.DataForm.AutoGeneratingDataFormItemEventArgs e)
+        private async void dataForm_AutoGeneratingDataFormItem(object sender, Syncfusion.XForms.DataForm.AutoGeneratingDataFormItemEventArgs e)
         {
             try
             {
@@ -65,21 +66,34 @@ namespace eStoreMobileX.Views.Vochers.Editors
 
                 }
                 else if (e.DataFormItem.Name == "PaymentId") e.Cancel = true;
+                else if (e.DataFormItem.Name == "EmployeeId")
+                {
+
+                    e.DataFormItem = new DataFormDropDownItem()
+                    {
+                        Name = "EmployeeId",
+                        Editor = "DropDown",
+                        LabelText = "Paid By",
+                        ItemsSource = (await viewModel.LoadEmployeeList()),
+                        PlaceHolderText = "Select a Employee",
+                        LayoutOptions = LayoutType.TextInputLayout
+                    };
+                    (e.DataFormItem as DataFormDropDownItem).DisplayMemberPath = nameof(DropListVM.Label);
+                    (e.DataFormItem as DataFormDropDownItem).SelectedValuePath = nameof(DropListVM.Value);
+                }
                 else if (e.DataFormItem.Name == "PartyId")
                 {
-                    PaymentVM c;
-                    
                     e.DataFormItem = new DataFormDropDownItem()
                     {
                         Name = "PartyId",
                         Editor = "DropDown",
                         LabelText = "Party",
-                        // ItemsSource = (await GetEmpList()),
+                        ItemsSource = (await viewModel.LoadPartyList()),
                         PlaceHolderText = "Select a Party",
                         LayoutOptions = LayoutType.TextInputLayout
                     };
-                    //(e.DataFormItem as DataFormDropDownItem).DisplayMemberPath = nameof(DropListVM.Label);
-                    //(e.DataFormItem as DataFormDropDownItem).SelectedValuePath = nameof(DropListVM.Value);
+                    (e.DataFormItem as DataFormDropDownItem).DisplayMemberPath = nameof(DropListVM.Label);
+                    (e.DataFormItem as DataFormDropDownItem).SelectedValuePath = nameof(DropListVM.Value);
                 }
                 else if (e.DataFormItem.Name == "BankAccountId")
                 {
@@ -89,12 +103,12 @@ namespace eStoreMobileX.Views.Vochers.Editors
                         Name = "BankAccountId",
                         Editor = "DropDown",
                         LabelText = "Account",
-                        // ItemsSource = (await GetEmpList()),
+                        ItemsSource = (await viewModel.LoadAccountList()),
                         PlaceHolderText = "Select a Account No",
                         LayoutOptions = LayoutType.TextInputLayout
                     };
-                    //(e.DataFormItem as DataFormDropDownItem).DisplayMemberPath = nameof(DropListVM.Label);
-                    //(e.DataFormItem as DataFormDropDownItem).SelectedValuePath = nameof(DropListVM.Value);
+                    (e.DataFormItem as DataFormDropDownItem).DisplayMemberPath = nameof(DropListVM.Label);
+                    (e.DataFormItem as DataFormDropDownItem).SelectedValuePath = nameof(DropListVM.Value);
                 }
 
 

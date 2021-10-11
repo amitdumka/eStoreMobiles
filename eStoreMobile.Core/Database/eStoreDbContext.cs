@@ -8,6 +8,7 @@ using eStore.Shared.Models.Common;
 using eStore.Shared.Models.Banking;
 using eStore.Shared.Models.Accounts.Expenses;
 using eStore.Shared.Models.Purchases;
+using eStore.Shared.Models.Accounts;
 
 namespace eStoreMobile.Core.Database
 {
@@ -45,10 +46,14 @@ namespace eStoreMobile.Core.Database
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<Category> Categories { get; set; }
 
+        public DbSet<Party> Parties { get; set; }
+        public DbSet<LedgerMaster> LedgerMasters { get; set; }
+        public DbSet<LedgerType> LedgerTypes { get; set; }
+
        
         //public ICollection<BankAccountInfo> BankAccounts { get; set; }
         //public ICollection<Areas.Uploader.Models.BankSetting> BankSettings { get; set; }
-        //public ICollection<Areas.Accountings.Models.BankAccount> BankAcc { get; set; }
+        public DbSet<BankAccount> BankAccounts { get; set; }
 
 
 

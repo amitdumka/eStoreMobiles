@@ -10,12 +10,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace eStoreMobile.Core.DataViewModel
 {
-    public class TranscationModeViewModel
+    public class TranscationModeDataModel
     {
         public List<TranscationMode> TranscationModes { get; set; }
         private RestApi.RestService<TranscationMode> service;
         private eStoreDbContext _context;
-        public TranscationModeViewModel()
+        public TranscationModeDataModel()
         {
             service = new RestApi.RestService<TranscationMode>(Constants.TranscationModeUrl, "TrabscationMode");
         }

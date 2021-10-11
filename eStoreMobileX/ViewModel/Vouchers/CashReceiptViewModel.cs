@@ -17,7 +17,7 @@ namespace eStoreMobileX.ViewModel.Vouchers
 
         public async System.Threading.Tasks.Task<List<DropListVM>> LoadModeList()
         {
-            TranscationModeViewModel eDM = new TranscationModeViewModel();
+            TranscationModeDataModel eDM = new TranscationModeDataModel();
             if (modeList == null || modeList.Count <= 0)
                 modeList = await eDM.GetTranscationModeListAsync();
             return modeList;

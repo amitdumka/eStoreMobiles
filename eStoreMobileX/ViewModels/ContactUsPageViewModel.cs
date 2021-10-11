@@ -52,10 +52,10 @@ namespace eStoreMobileX.ViewModels
             this.MapMarkerImage = "Pin.png";
             this.MapMarkerLatitude = "40.133808";
             this.MapMarkerLongitude = "-75.516279";
-            this.MapMarkerHeader = "Sipes Inc";
-            this.MapMarkerAddress = "7654 Cleveland street, Phoenixville, PA 19460";
-            this.MapMarkerEmailId = "dopuyi@hostguru.info";
-            this.MapMarkerPhoneNumber = "+1-202-555-0101";
+            this.MapMarkerHeader = "The Arvind Store, Dumka";
+            this.MapMarkerAddress = "Bhagalpur Road, Near TATA Showroom, Dumka, JH 814101";
+            this.MapMarkerEmailId = "thearvindstoredumka@gmail.com";
+            this.MapMarkerPhoneNumber = "+91-6434-224461";
             this.MapMarkerCloseImage = "Close.png";
             this.GetPinLocation();
         }

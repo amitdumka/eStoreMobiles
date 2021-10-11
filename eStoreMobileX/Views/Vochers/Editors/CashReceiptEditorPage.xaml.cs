@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using eStore.Shared.Models.Accounts;
+using eStoreMobile.Core.Models.Dtos;
 using Syncfusion.XForms.DataForm;
 using Xamarin.Forms;
 
@@ -11,6 +12,7 @@ namespace eStoreMobileX.Views.Vochers.Editors
         public CashReceiptEditorPage()
         {
             InitializeComponent();
+            _ = viewModel.LoadModeList();
         }
 
         void SaveData_Clicked(System.Object sender, System.EventArgs e)
@@ -39,7 +41,7 @@ namespace eStoreMobileX.Views.Vochers.Editors
             };
             viewModel.SaveReceit(Receipt, true);
         }
-        private void dataForm_AutoGeneratingDataFormItem(object sender, Syncfusion.XForms.DataForm.AutoGeneratingDataFormItemEventArgs e)
+        private async void dataForm_AutoGeneratingDataFormItem(object sender, Syncfusion.XForms.DataForm.AutoGeneratingDataFormItemEventArgs e)
         {
             try
             {
@@ -63,12 +65,12 @@ namespace eStoreMobileX.Views.Vochers.Editors
                         Name = "TranscationModeId",
                         Editor = "DropDown",
                         LabelText = "Mode",
-                        // ItemsSource = (await GetEmpList()),
+                        ItemsSource = (await viewModel.LoadModeList()),
                         PlaceHolderText = "Select a Mode",
                         LayoutOptions = LayoutType.TextInputLayout
                     };
-                    //(e.DataFormItem as DataFormDropDownItem).DisplayMemberPath = nameof(DropListVM.Label);
-                    //(e.DataFormItem as DataFormDropDownItem).SelectedValuePath = nameof(DropListVM.Value);
+                    (e.DataFormItem as DataFormDropDownItem).DisplayMemberPath = nameof(DropListVM.Label);
+                    (e.DataFormItem as DataFormDropDownItem).SelectedValuePath = nameof(DropListVM.Value);
                 }
 
             }
