@@ -39,16 +39,22 @@ namespace eStoreMobile.Core.DataViewModel
 
         public async Task<User> VerifyLoginAsync(string username, string password)
         {
-            
-            using(_context = new eStoreDbContext())
+            try
             {
-                if ((await _context.Users.CountAsync()) > 0)
-                   return await _context.Users.Where(c => c.UserName == username && c.Password == password).FirstOrDefaultAsync();
-                else
+                using (_context = new eStoreDbContext())
                 {
-                    return await VerifyLoginRemoteAsync(username, password);
+                    if ((await _context.Users.CountAsync()) > 0)
+                        return await _context.Users.Where(c => c.UserName == username && c.Password == password).FirstOrDefaultAsync();
+                    else
+                    {
+                        return await VerifyLoginRemoteAsync(username, password);
+                    }
                 }
+            }catch(Exception ex)
+            {
+                return await VerifyLoginRemoteAsync(username, password);
             }
+            
             
         }
 

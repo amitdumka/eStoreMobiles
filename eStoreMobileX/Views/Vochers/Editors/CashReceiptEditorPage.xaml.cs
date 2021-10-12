@@ -49,7 +49,7 @@ namespace eStoreMobileX.Views.Vochers.Editors
                 {
                     OutlineCornerRadius = 30
                 };
-                if (e.DataFormItem.Name == "CashRecieptId" || e.DataFormItem.Name == "Mode") e.Cancel = true;
+                if (e.DataFormItem.Name == "CashReceiptId" || e.DataFormItem.Name == "Mode") e.Cancel = true;
 
                 else if (e.DataFormItem.Name == "IsReadOnly" || e.DataFormItem.Name == "EntryStatus")
                     e.Cancel = true;

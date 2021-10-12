@@ -9,6 +9,9 @@ using eStore.Shared.Models.Banking;
 using eStore.Shared.Models.Accounts.Expenses;
 using eStore.Shared.Models.Purchases;
 using eStore.Shared.Models.Accounts;
+using eStoreMobile.Core.Models.Invoicing;
+using Invoice = eStoreMobile.Core.Models.Invoicing.Invoice;
+using InvoicePayment = eStoreMobile.Core.Models.Invoicing.InvoicePayment;
 
 namespace eStoreMobile.Core.Database
 {
@@ -19,7 +22,11 @@ namespace eStoreMobile.Core.Database
         {
             DatabasePath = Constants.DatabasePath;
             SQLitePCL.Batteries_V2.Init();
+            
+            //this.Database.Migrate();
             this.Database.EnsureCreated();
+            //this.Database.GetAppliedMigrations();
+            
 
         }
         public eStoreDbContext(string databasePath)
@@ -50,6 +57,9 @@ namespace eStoreMobile.Core.Database
         public DbSet<LedgerMaster> LedgerMasters { get; set; }
         public DbSet<LedgerType> LedgerTypes { get; set; }
 
+        public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<InvoicePayment> InvoicePayments { get; set; }
+        public DbSet<InvoiceItem> InvoiceItems { get; set; }
        
         //public ICollection<BankAccountInfo> BankAccounts { get; set; }
         //public ICollection<Areas.Uploader.Models.BankSetting> BankSettings { get; set; }

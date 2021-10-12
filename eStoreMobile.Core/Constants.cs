@@ -11,7 +11,7 @@ namespace eStoreMobile.Core
     {
         public const string BackendUrl  = "https://zumo-abcd1234.azurewebsites.net";
         //Database
-        public const string DatabaseFilename = "estoreSQLiteVer3.db3";
+        public const string DatabaseFilename = "estoreSQLiteVer5.db3";
 
         public const SQLite.SQLiteOpenFlags Flags =
             // open the database in read/write mode
@@ -44,21 +44,20 @@ namespace eStoreMobile.Core
         public static readonly string SyncServerUrl = $"{BaseAddress}/syncServer";
         public static readonly string TranscationModeUrl = $"{BaseAddress}/TranscationModes";
         public static readonly string BankUrl = $"{BaseAddress}/banks";
+        public static readonly string BankAccountUrl = $"{BaseAddress}/bankAccounts";
         public static readonly string SalesmanUrl = $"{BaseAddress}/Salesmen";
 
         public static readonly string PartyUrl = $"{BaseAddress}/Parties";
         public static readonly string LedgerTypeUrl = $"{BaseAddress}/LedgerTypes";
         public static readonly string LedgerMasterUrl = $"{BaseAddress}/LedgerMasters";
 
-
         //Vouchers
         public static readonly string ExpenseUrl = $"{BaseAddress}/expenses";
-        public static readonly string PaymentUrl = $"{BaseAddress}/payments";
-       
+        public static readonly string PaymentUrl = $"{BaseAddress}/payments";       
         public static readonly string ReceiptsUrl = $"{BaseAddress}/receipts";
         public static readonly string CashPaymentUrl = $"{BaseAddress}/cashPayments";
-
         public static readonly string CashReceiptsUrl = $"{BaseAddress}/cashReceipts";
+        public static readonly string InvoicesUrl = $"{BaseAddress}/invocing";
     }
 
 }

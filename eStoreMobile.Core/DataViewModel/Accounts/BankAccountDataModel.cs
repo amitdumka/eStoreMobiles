@@ -10,7 +10,7 @@ namespace eStoreMobile.Core.DataViewModel
 {
     public class BankAccountDataModel : LocalDataModel<BankAccount>
     {
-        public BankAccountDataModel() : base(Constants.BankUrl, "BankAccount")
+        public BankAccountDataModel() : base(Constants.BankAccountUrl, "BankAccount")
         {
 
         }
@@ -27,8 +27,7 @@ namespace eStoreMobile.Core.DataViewModel
             foreach (var item in Items)
             {
                 item.BankId = 0;
-                //item.LedgerType = null;
-                //item.LedgerMaster = null;
+                
             }
             return await this.Sync(Items);
         }

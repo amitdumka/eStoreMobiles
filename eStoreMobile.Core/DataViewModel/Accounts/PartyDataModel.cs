@@ -28,6 +28,10 @@ namespace eStoreMobile.Core.DataViewModel
             {
                 item.PartyId = 0;
                 item.LedgerType = null;
+                if (string.IsNullOrEmpty(item.PANNo)) item.PANNo = " ";
+                if (string.IsNullOrEmpty(item.GSTNo)) item.GSTNo = " ";
+                if (string.IsNullOrEmpty(item.Address)) item.Address = " ";
+
                 //item.LedgerMaster = null;
             }
             return await this.Sync(Items);

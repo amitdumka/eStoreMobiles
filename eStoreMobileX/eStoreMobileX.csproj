@@ -316,6 +316,8 @@
     <None Remove="ViewModel\Vouchers\" />
     <None Remove="Views\Vochers\" />
     <None Remove="Views\Vochers\Editors\" />
+    <None Remove="ViewModel\Invoice\" />
+    <None Remove="Views\Invoices\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -343,6 +345,8 @@
     <Folder Include="Views\StockList\" />
     <Folder Include="ViewModel\Dashboards\" />
     <Folder Include="Views\Vochers\Editors\" />
+    <Folder Include="ViewModel\Invoice\" />
+    <Folder Include="Views\Invoices\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Views\Vochers\CashPaymentEditorPage">

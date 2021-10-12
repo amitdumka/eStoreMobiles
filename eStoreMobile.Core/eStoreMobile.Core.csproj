@@ -28,6 +28,8 @@
     <Folder Include="DataViewModel\DataModel\" />
     <Folder Include="DataViewModel\Payroll\" />
     <Folder Include="DataViewModel\Accounts\" />
+    <Folder Include="Models\Invoicing\" />
+    <Folder Include="DataViewModel\Invoices\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,6 +39,8 @@
     <None Remove="DataViewModel\DataModel\" />
     <None Remove="DataViewModel\Payroll\" />
     <None Remove="DataViewModel\Accounts\" />
+    <None Remove="Models\Invoicing\" />
+    <None Remove="DataViewModel\Invoices\" />
   </ItemGroup>
   <Import Project="..\eStoreMobile.Shared\eStoreMobile.Shared.projitems" Label="Shared" />
 
