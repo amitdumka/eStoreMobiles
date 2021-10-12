@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using eStoreMobile.Core.DataViewModel.Invoices;
+using eStoreMobile.Core.Functions;
 using eStoreMobile.Core.Models.Invoicing;
 
 namespace eStoreMobileX.ViewModel.Invoicing
@@ -18,7 +19,10 @@ namespace eStoreMobileX.ViewModel.Invoicing
             Invoices = new List<Invoice>();
             InvoiceItems = new List<InvoiceItem>();
             Invoice = new Invoice();
+            Invoice.OnDate = DateTime.Now;
+            Invoice.InvoiceType = InvoiceType.ManualInovice;
             InvoicePayment = new InvoicePayment();
+            Invoice.InvoiceNumber = InvoiceSystem.GenerateInvoiceNumber(InvoiceType.ManualInovice);
             LoadData();
         }
 

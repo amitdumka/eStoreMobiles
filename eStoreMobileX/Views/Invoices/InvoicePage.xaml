@@ -3,10 +3,69 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Invoices"
+     xmlns:pulltorefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms" 
+    xmlns:datagrid="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+    xmlns:local="clr-namespace:eStoreMobileX.ViewModel.Invoicing" 
     x:Class="eStoreMobileX.Views.Invoices.InvoicePage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label  Text="Invoice"></Label>
-        </StackLayout>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+ Sale" x:Name="Sale" Clicked="Sale_Clicked" />
+        <ToolbarItem Text="Sale Return" Order="Secondary" Priority="0" x:Name="SaleReturn" Clicked="SaleReturn_Clicked" />
+        <ToolbarItem Text="Regular Sale" Order="Secondary" Priority="0" />
+        <ToolbarItem Text="Regular Sale Return" Order="Secondary" Clicked=""/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.BindingContext>
+        <local:InvoiceViewModel x:Name="viewModel" />
+    </ContentPage.BindingContext>
+    <ContentPage.Content BackgroundColor="#1B1F35">
+        <pulltorefresh:SfPullToRefresh BackgroundColor="#1B1F35" x:Name="pullToRefresh">
+            <pulltorefresh:SfPullToRefresh.PullableContent>
+                <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" Padding="5">
+                    <Label Text="Invoices" FontSize="Title" TextColor="Aqua" HorizontalTextAlignment="Center" TextDecorations="Underline" FontAttributes="Bold" />
+                    <StackLayout Margin="5" VerticalOptions="StartAndExpand" Padding="10">
+                        <datagrid:SfDataGrid ItemsSource="{Binding Invoices}"
+                                                    x:Name="dataGrid"
+                                                    BackgroundColor="#E5EBFF"                                                   
+                                                    AllowSwiping="true"
+                                                    AllowSorting="True"
+                                                    ColumnSizer="Star"
+                                                    SelectionMode="Single"
+                                                    AutoGenerateColumns="False"  HeightRequest="600" 
+                                                    VerticalOptions="StartAndExpand">
+
+                            <datagrid:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns" >
+                                <datagrid:GridTextColumn HeaderText="Invoice"
+                                     HeaderFontAttribute="Bold"  ColumnSizer="Star"
+                                     MappingName="InvoiceNumber" />
+                                <datagrid:GridTextColumn HeaderText="Date"
+                                        TextAlignment="Center"
+                                        HeaderFontAttribute="Bold"
+                                        HeaderTextAlignment="Center"
+                                        ColumnSizer="LastColumnFill"
+                                        MappingName="OnDate" />
+                                <datagrid:GridTextColumn HeaderText="Amount"
+                                         HeaderFontAttribute="Bold"   ColumnSizer="LastColumnFill"
+                                         MappingName="TotalAmount" />
+                                <datagrid:GridTextColumn HeaderText="Qty"
+                                         HeaderFontAttribute="Bold"  ColumnSizer="LastColumnFill"
+                                         MappingName="TotalQty" />
+                                <datagrid:GridSwitchColumn HeaderText="Discount"
+                                         HeaderFontAttribute="Bold"     ColumnSizer="LastColumnFill"
+                                         MappingName="TotalDiscount" />
+                                <datagrid:GridTextColumn HeaderText="Tax"
+                                         HeaderFontAttribute="Bold"     ColumnSizer="LastColumnFill"
+                                         MappingName="TotalTax" />
+                                <datagrid:GridTextColumn HeaderText="Mode"
+                                         HeaderFontAttribute="Bold"     ColumnSizer="LastColumnFill"
+                                         MappingName="PayMode" />
+                            </datagrid:SfDataGrid.Columns>
+                            <datagrid:SfDataGrid.SortColumnDescriptions>
+                                <datagrid:SortColumnDescription ColumnName="OnDate" />
+                            </datagrid:SfDataGrid.SortColumnDescriptions>
+                        </datagrid:SfDataGrid>
+                    </StackLayout>
+                </StackLayout>
+            </pulltorefresh:SfPullToRefresh.PullableContent>
+        </pulltorefresh:SfPullToRefresh>
     </ContentPage.Content>
+
 </ContentPage>

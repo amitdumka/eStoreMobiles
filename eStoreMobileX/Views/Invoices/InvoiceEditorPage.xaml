@@ -1,12 +1,56 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:popuplayout="clr-namespace:Syncfusion.XForms.PopupLayout;assembly=Syncfusion.SfPopupLayout.XForms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:eStoreMobileX.ViewModel.Invoicing"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:dataform="clr-namespace:Syncfusion.XForms.DataForm;assembly=Syncfusion.SfDataForm.XForms"
+    xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
     Title="Add Invoice"
     x:Class="eStoreMobileX.Views.Invoices.InvoiceEditorPage">
+    <ContentPage.BindingContext>
+        <local:InvoiceViewModel x:Name="viewModel" />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <Label  Text="Invoice"></Label>
+            <Label x:Name="title_label" Text="Invoice" TextColor="DarkOliveGreen"  FontSize="20"  HorizontalOptions="CenterAndExpand" Margin="10" />
+            <Button Text="+" x:Name="AddItem" Clicked="AddItem_Clicked"      HorizontalOptions="End"
+                    BackgroundColor="MediumVioletRed" TextColor="White" FontSize="Large"/>
+            <ScrollView>
+                <dataform:SfDataForm    NotifyPropertyChanges="True"
+                         VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                         AutoGeneratingDataFormItem="dataForm_AutoGeneratingDataFormItem"                       
+                        x:Name="dataForm" DataObject="{Binding Invoice}" LayoutOptions="TextInputLayout"  ShowHelperText="False" >
+                </dataform:SfDataForm>
+            </ScrollView>
+            <popuplayout:SfPopupLayout x:Name="popup" ><!--IsOpen="{Binding CanShowPopup}">-->
+                <popuplayout:SfPopupLayout.PopupView>
+                    <popuplayout:PopupView AppearanceMode="TwoButton" AnimationMode="Zoom"  HeaderTitle="Product Item">
+                        <popuplayout:PopupView.PopupStyle>
+                            <popuplayout:PopupStyle 
+                                FooterBackgroundColor="LightGray"
+                                        AcceptButtonBackgroundColor ="DimGray"
+                                        AcceptButtonTextColor="White"
+                                        DeclineButtonBackgroundColor="DimGray"
+                                        DeclineButtonTextColor="White"    
+                                        HeaderBackgroundColor="DimGray"
+                                    HeaderFontAttribute="Bold"
+                                    HeaderFontFamily="Helvetica-Bold"
+                                    HeaderFontSize="25"
+                                    HeaderTextAlignment="Center"
+                                
+                                    HeaderTextColor="White"/>
+                        </popuplayout:PopupView.PopupStyle>
+                    </popuplayout:PopupView>
+                </popuplayout:SfPopupLayout.PopupView>
+                <popuplayout:SfPopupLayout.Content >
+                    <StackLayout>
+                        <Button Text="Click to open popup" VerticalOptions="Center" HorizontalOptions="Center" />
+                    </StackLayout>
+                </popuplayout:SfPopupLayout.Content>
+            </popuplayout:SfPopupLayout>
         </StackLayout>
+        
     </ContentPage.Content>
 </ContentPage>

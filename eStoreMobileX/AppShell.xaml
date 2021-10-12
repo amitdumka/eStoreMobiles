@@ -4,6 +4,7 @@
        xmlns:views="clr-namespace:eStoreMobileX.Views"
        xmlns:local="clr-namespace:eStoreMobileX.Views.Payroll"
        xmlns:vouchers="clr-namespace:eStoreMobileX.Views.Vochers"
+       xmlns:inv="clr-namespace:eStoreMobileX.Views.Invoices"
        FlyoutBackgroundImage="TheArvindStore005.png"
        FlyoutBackgroundImageAspect="AspectFill"
        FlyoutHeaderBehavior="CollapseOnScroll"
@@ -86,6 +87,9 @@
     </FlyoutItem>
     <FlyoutItem Title="Settings" Icon="icon_about.png">
         <ShellContent Route="Settings" ContentTemplate="{DataTemplate views:SettingsPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Invoice" Icon="icon_about.png">
+        <ShellContent Route="Invoice" ContentTemplate="{DataTemplate inv:InvoicePage}" />
     </FlyoutItem>
 
 

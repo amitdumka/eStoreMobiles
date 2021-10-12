@@ -1,5 +1,6 @@
 ﻿using eStoreMobileX.Features;
 using eStoreMobileX.Views;
+using eStoreMobileX.Views.Invoices;
 using eStoreMobileX.Views.Payroll;
 using eStoreMobileX.Views.Vochers;
 using eStoreMobileX.Views.Vochers.Editors;
@@ -41,6 +42,9 @@ namespace eStoreMobileX
             Routing.RegisterRoute(nameof(ReceiptEditorPage), typeof(ReceiptEditorPage));
             Routing.RegisterRoute(nameof(CashReceiptPage), typeof(CashReceiptPage));
             Routing.RegisterRoute(nameof(CashReceiptEditorPage), typeof(CashReceiptEditorPage));
+            Routing.RegisterRoute(nameof(InvoicePage), typeof(InvoicePage));
+            Routing.RegisterRoute(nameof(InvoiceEditorPage), typeof(InvoiceEditorPage));
+            Routing.RegisterRoute(nameof(InvoiceReturnEditorPage), typeof(InvoiceReturnEditorPage));
 
             //Routing.RegisterRoute(nameof(ResetPasswordPageWithGradient), typeof(ResetPasswordPageWithGradient));
             //Routing.RegisterRoute(nameof(ContactUsPage), typeof(ContactUsPage));

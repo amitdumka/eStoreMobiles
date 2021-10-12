@@ -5,7 +5,8 @@
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:dataform="clr-namespace:Syncfusion.XForms.DataForm;assembly=Syncfusion.SfDataForm.XForms"
     
-    xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:local="clr-namespace:eStoreMobileX.ViewModel.Payroll"
+    xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+    xmlns:local="clr-namespace:eStoreMobileX.ViewModel.Payroll"
     Title="Attendance"
     x:Class="eStoreMobileX.Views.Payroll.AttendanceEditorPage">
     <ContentPage.BindingContext>
