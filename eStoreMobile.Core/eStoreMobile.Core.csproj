@@ -25,12 +25,18 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ApiSync\" />
+    <Folder Include="DataViewModel\DataModel\" />
+    <Folder Include="DataViewModel\Payroll\" />
+    <Folder Include="DataViewModel\Accounts\" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Microsoft.EntityFrameworkCore.Sqlite" />
     <None Remove="Microsoft.EntityFrameworkCore" />
     <None Remove="Syncfusion.Xamarin.DataGridExport" />
+    <None Remove="DataViewModel\DataModel\" />
+    <None Remove="DataViewModel\Payroll\" />
+    <None Remove="DataViewModel\Accounts\" />
   </ItemGroup>
   <Import Project="..\eStoreMobile.Shared\eStoreMobile.Shared.projitems" Label="Shared" />
 

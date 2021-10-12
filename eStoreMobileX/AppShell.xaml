@@ -116,6 +116,7 @@
                       Icon="icon_about.png"
                       ContentTemplate="{DataTemplate views:StockForm}" />
     </TabBar>
+    <MenuItem Text="Sync" StyleClass="MenuItemLayoutStyle" Clicked="OnSyncMenuClicked"></MenuItem>
     <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
     </MenuItem>
 </Shell>

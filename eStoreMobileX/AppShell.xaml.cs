@@ -1,4 +1,5 @@
-﻿using eStoreMobileX.Views;
+﻿using eStoreMobileX.Features;
+using eStoreMobileX.Views;
 using eStoreMobileX.Views.Payroll;
 using eStoreMobileX.Views.Vochers;
 using eStoreMobileX.Views.Vochers.Editors;
@@ -65,6 +66,18 @@ namespace eStoreMobileX
         {
              App.Current.MainPage = new LoginPage();
             
+        }
+
+        private async void OnSyncMenuClicked(System.Object sender, System.EventArgs e)
+        {
+            await DisplayAlert("Alert", "Please Wait while eStore get Sync With remote server!", "OK").ConfigureAwait(false);
+            if ((await SyncUpService.SyncWithServer()))
+            {
+                await DisplayAlert("Alert", "eStore is fully sync with server!!", "OK").ConfigureAwait(false);
+            }
+            else {
+                await DisplayAlert("Error", "eStore is not sync with server!! Try again in some time!!", "OK").ConfigureAwait(false);
+            }
         }
     }
 }

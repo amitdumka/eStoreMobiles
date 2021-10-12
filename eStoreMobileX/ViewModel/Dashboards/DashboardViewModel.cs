@@ -30,6 +30,7 @@ namespace eStoreMobileX.ViewModel.Dashboards
         }
         public AccountsInfo AccountInfo()
         {
+            
             return masterReport.AccountsInfo;
         }
 
@@ -37,6 +38,10 @@ namespace eStoreMobileX.ViewModel.Dashboards
         {
             return masterReport.EmpInfoList;
         }
-        
+        public System.Collections.Generic.List<string> LeadingSalesman()
+        {
+            return masterReport.LeadingSalesman ;
+        }
+
     }
 }
