@@ -40,4 +40,7 @@ namespace eStore.Shared.Models.Payroll
 
         public virtual Party Party { get; set; }
     }
+
+
+
 }
